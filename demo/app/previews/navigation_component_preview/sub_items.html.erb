@@ -1,0 +1,36 @@
+<%= polaris_navigation do |navigation| %>
+  <% navigation.with_section do |section| %>
+    <% section.with_item(
+      url: "#",
+      label: "Home",
+      icon: "HomeMinor"
+    ) %>
+    <% section.with_item(
+      url: "#",
+      label: "Orders",
+      icon: "OrdersMinor",
+      badge: "15"
+    ) %>
+    <% section.with_item(
+      url: "#",
+      label: "Marketing",
+      icon: "MarketingMinor",
+      badge: "15"
+    ) %>
+    <% section.with_item(
+      url: "#",
+      label: "Products",
+      icon: "ProductsMinor"
+    ) do |item| %>
+      <% item.with_sub_item(
+        url: "#",
+        label: "Collections"
+      ) %>
+      <% item.with_sub_item(
+        url: "#",
+        label: "Inventory",
+        selected: true
+      ) %>
+    <% end %>
+  <% end %>
+<% end %>

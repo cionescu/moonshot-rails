@@ -1,0 +1,41 @@
+<%= polaris_text_field(
+  name: :url,
+  type: :url,
+  label: "URL",
+  prefix: "https://shopify.com/",
+) %>
+
+<br>
+
+<%= polaris_text_field(
+  name: :shop_domain,
+  label: "Shop address",
+  suffix: ".myshopify.com",
+) %>
+
+<br>
+
+<%= polaris_text_field(
+  name: :price,
+  value: "2",
+  type: :number,
+  prefix: "$",
+) %>
+
+<br>
+
+<%= polaris_text_field(name: :field, placeholder: "Text field") do |c| %>
+  <% c.with_prefix(icon: "BillingStatementDollarMajor") %>
+  <% c.with_suffix(icon: "EmailMajor") %>
+<% end %>
+
+<br>
+
+<%= polaris_text_field(name: :field, placeholder: "Text field") do |c| %>
+  <% c.with_prefix do %>
+    <%= polaris_icon(name: "BillingStatementDollarMajor") %>
+  <% end %>
+  <% c.with_suffix do %>
+    <%= polaris_icon(name: "EmailMajor") %>
+  <% end %>
+<% end %>

@@ -1,0 +1,22 @@
+<%= polaris_card(title: "Secure your account with 2-step authentication") do |card| %>
+  <% card.with_section do %>
+    <%= polaris_stack(spacing: :loose, vertical: true) do |stack| %>
+      <% stack.with_item do %>
+        <p>
+          Two-step authentication adds an extra layer of security when logging in
+          to your account. A special code will be required each time you log in,
+          ensuring only you can access your account.
+        </p>
+      <% end %>
+
+      <% stack.with_item do %>
+        <%= polaris_stack(distribution: :trailing) do %>
+          <%= polaris_button_group do |group| %>
+            <% group.with_button { "Enable two-step authentication" } %>
+            <% group.with_button(plain: true) { "Learn more" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

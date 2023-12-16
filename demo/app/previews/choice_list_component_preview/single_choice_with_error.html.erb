@@ -1,0 +1,9 @@
+<%= polaris_choice_list(
+  title: "Company name",
+  name: :company_name,
+  error: "Company name cannot be hidden at this time",
+) do |choice| %>
+  <% choice.with_radio_button(label: "Hidden", value: "hidden") %>
+  <% choice.with_radio_button(label: "Optional", value: "optional") %>
+  <% choice.with_radio_button(label: "Required", value: "required") %>
+<% end %>

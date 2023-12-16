@@ -1,0 +1,27 @@
+<%= polaris_navigation do |navigation| %>
+  <% navigation.with_section do |section| %>
+    <% section.with_item(
+      url: "#",
+      label: "Home",
+      icon: "HomeMinor"
+    ) %>
+    <% section.with_item(
+      url: "#",
+      label: "Orders",
+      icon: "OrdersMinor"
+    ) %>
+    <% section.with_item(
+      url: "#",
+      label: "Products",
+      icon: "ProductsMinor"
+    ) %>
+  <% end %>
+
+  <% navigation.with_section(separator: true) do |section| %>
+    <% section.with_item(
+      url: "#",
+      label: "Online Store",
+      icon: "OnlineStoreMinor"
+    ) %>
+  <% end %>
+<% end %>

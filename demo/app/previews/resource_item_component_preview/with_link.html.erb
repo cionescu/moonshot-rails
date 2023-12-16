@@ -1,0 +1,20 @@
+<%= polaris_card(sectioned: false) do %>
+  <%= polaris_resource_list do %>
+    <%= polaris_resource_item(url: "https://shopify.com") do %>
+      <%= polaris_stack do |stack| %>
+        <% stack.with_item do %>
+          <p>Content with URL</p>
+        <% end %>
+        <% stack.with_item do %>
+          <p>
+            <%= polaris_link(url: "https://shopify.dev") { "Link" } %>
+          </p>
+        <% end %>
+
+        <% stack.with_item do %>
+          <%= polaris_button(url: "https://platmart.io", plain: true) { "Button" } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

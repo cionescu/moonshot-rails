@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="no-js" style="<%= polaris_html_styles %>">
+  <head>
+    <title>Demo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'polaris_view_components' %>
+    <%= javascript_importmap_tags %>
+
+    <script defer data-domain="polarisviewcomponents.org" src="https://plausible.io/js/script.js"></script>
+  </head>
+
+  <body style="<%= polaris_body_styles %>">
+    <div class="app-wrapper">
+      <div class="app-content">
+        <main role="main">
+          <% if content_for?(:content) %>
+            <%= yield :content %>
+          <% else %>
+            <%= polaris_page do %>
+              <%= yield %>
+            <% end %>
+          <% end %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
