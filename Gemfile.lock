@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    moonshot-rails (0.0.1)
+    moonshot-rails (0.0.2)
       rails (>= 7.0.0)
 
 GEM
