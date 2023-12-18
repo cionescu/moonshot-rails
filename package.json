@@ -4,7 +4,10 @@
   "description": "A collection of Stimulus controllers for building SaaS applications with Rails",
   "main": "app/assets/javascripts/moonshot.js",
   "module": "app/assets/javascripts/moonshot/index.js",
-  "repository": "git@github.com:baoagency/moonshot.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/cionescu/moonshot-rails.git"
+  },
   "author": "Catalin Ionescu <catalin.ionescu282@gmail.com>",
   "contributors": [],
   "files": [
