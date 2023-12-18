@@ -1,7 +1,11 @@
-import Shepherd from './shepherd_controller'
+import PostHogController from './post_hog_controller'
+import ShepherdController from './shepherd_controller'
 
-export { Shepherd }
+export {
+  PostHogController, ShepherdController
+}
 
 export function registerControllers(application) {
-  application.register('moonshot-shepherd', Shepherd)
+  application.register('shepherd', ShepherdController)
+  application.register('post-hog', PostHogController)
 }
