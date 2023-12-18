@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors = ['Catalin Ionescu']
   spec.email = ['catalin.ionescu282@gmail.com']
 
-  spec.homepage = 'https://github.com/baoagency/polaris-view-components'
+  spec.homepage = 'https://github.com/cionescu/moonshot-rails'
   spec.summary = 'A collection of Stimulus controllers for building SaaS applications with Rails'
   spec.license = 'MIT'
 
@@ -26,4 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'rails', '>= 7.0.0'
 
   spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'rspec'
 end
