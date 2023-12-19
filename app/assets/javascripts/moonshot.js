@@ -1,6 +1,34 @@
-import { post } from "@rails/request.js";
+import posthog from "posthog-js";
 
 import { Controller } from "@hotwired/stimulus";
+
+import { post } from "@rails/request.js";
+
+class PostHogController extends Controller {
+  static values={
+    apiKey: String,
+    identification: Object
+  };
+  connect() {
+    posthog.init(this.apiKeyValue, {
+      api_host: "https://eu.posthog.com",
+      custom_campaign_params: [ "ref" ],
+      session_recording: {
+        maskAllInputs: false,
+        maskInputOptions: {
+          password: true
+        }
+      }
+    });
+    if (Object.keys(this.identificationValue).length) {
+      const {id: id, email: email, name: name} = this.identificationValue;
+      posthog.identify(id, {
+        email: email,
+        name: name
+      });
+    }
+  }
+}
 
 /*! shepherd.js 11.2.0 */ var isMergeableObject = function isMergeableObject(value) {
   return isNonNullObject(value) && !isSpecial(value);
@@ -3554,7 +3582,7 @@ class Shepherd_modal extends SvelteComponent {
   }
 }
 
-const Shepherd$1 = new Evented;
+const Shepherd = new Evented;
 
 class Tour extends Evented {
   constructor(options = {}) {
@@ -3574,7 +3602,7 @@ class Tour extends Evented {
         this.on(e, (opts => {
           opts = opts || {};
           opts.tour = this;
-          Shepherd$1.trigger(e, opts);
+          Shepherd.trigger(e, opts);
         }));
       })(event);
     }));
@@ -3635,7 +3663,7 @@ class Tour extends Evented {
     }
   }
   isActive() {
-    return Shepherd$1.activeTour === this;
+    return Shepherd.activeTour === this;
   }
   next() {
     const index = this.steps.indexOf(this.currentStep);
@@ -3696,7 +3724,7 @@ class Tour extends Evented {
     this.trigger(event, {
       index: index
     });
-    Shepherd$1.activeTour = null;
+    Shepherd.activeTour = null;
     this.trigger("inactive", {
       tour: this
     });
@@ -3719,7 +3747,7 @@ class Tour extends Evented {
     this.trigger("active", {
       tour: this
     });
-    Shepherd$1.activeTour = this;
+    Shepherd.activeTour = this;
   }
   _setupModal() {
     this.modal = new Shepherd_modal({
@@ -3760,18 +3788,18 @@ class NoOp {
 }
 
 if (isServerSide) {
-  Object.assign(Shepherd$1, {
+  Object.assign(Shepherd, {
     Tour: NoOp,
     Step: NoOp
   });
 } else {
-  Object.assign(Shepherd$1, {
+  Object.assign(Shepherd, {
     Tour: Tour,
     Step: Step
   });
 }
 
-class Shepherd extends Controller {
+class ShepherdController extends Controller {
   static values={
     tourName: String,
     endpoint: String,
@@ -3779,7 +3807,7 @@ class Shepherd extends Controller {
     context: Object
   };
   initialize() {
-    this.tour = new Shepherd$1.Tour(this.configValue.tour);
+    this.tour = new Shepherd.Tour(this.configValue.tour);
   }
   connect() {
     const steps = this.processTourConfigAction(this.configValue.steps);
@@ -3843,7 +3871,8 @@ class Shepherd extends Controller {
 }
 
 function registerControllers(application) {
-  application.register("moonshot-shepherd", Shepherd);
+  application.register("shepherd", ShepherdController);
+  application.register("post-hog", PostHogController);
 }
 
-export { Shepherd, registerControllers };
+export { PostHogController, ShepherdController, registerControllers };
