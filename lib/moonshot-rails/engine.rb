@@ -8,14 +8,6 @@ module MoonshotRails
       #{root}/app/helpers
     ]
 
-    initializer 'moonshot_rails.assets' do |app|
-      if app.config.respond_to?(:assets)
-        app.config.assets.precompile += %w[
-          moonshot.js
-        ]
-      end
-    end
-
     initializer 'moonshot_rails.helpers' do
       ActiveSupport.on_load(:action_controller_base) do
         helper Moonshot::MoonshotHelper
