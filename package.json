@@ -1,6 +1,6 @@
 {
   "name": "moonshot-rails",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A collection of Stimulus controllers for building SaaS applications with Rails",
   "main": "app/assets/javascripts/moonshot.js",
   "module": "app/assets/javascripts/moonshot/index.js",
@@ -28,17 +28,18 @@
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.1",
+    "@rollup/plugin-terser": "^0.4.4",
     "postcss": "^8.4.29",
     "postcss-cli": "^11.0.0",
     "postcss-import": "^15.1.0",
     "postcss-nested": "^6.0.1",
-    "rollup": "^2.79.1",
-    "@rollup/plugin-terser": "^0.4.4"
+    "rollup": "^2.79.1"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@rails/request.js": "^0.0.9",
-    "shepherd.js": "^11.0.1",
-    "posthog-js": "^1.82.3"
+    "crisp-sdk-web": "^1.0.21",
+    "posthog-js": "^1.82.3",
+    "shepherd.js": "^11.0.1"
   }
 }

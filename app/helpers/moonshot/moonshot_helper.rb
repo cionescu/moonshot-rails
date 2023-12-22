@@ -33,5 +33,27 @@ module Moonshot
 
       tag.div(data: options)
     end
+
+    def crisp_chat user: nil, enabled: true, wrapper: :div, api_key:
+      return unless enabled
+
+      options = {
+        controller: 'crisp',
+        crisp_website_id_value: api_key
+      }
+
+      if user
+        options.merge!({
+          crisp_identification_value: {
+            name: user.tracker_name,
+            email: user.tracker_email
+          }
+        })
+      end
+
+      tag.send(wrapper, data: options) do
+        yield if block_given?
+      end
+    end
   end
 end
