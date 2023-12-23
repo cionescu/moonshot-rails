@@ -1,3 +1,6 @@
+[![npm version](https://badge.fury.io/js/moonshot-rails.svg)](https://badge.fury.io/js/moonshot-rails)
+[![Gem Version](https://badge.fury.io/rb/moonshot-rails.svg)](https://badge.fury.io/rb/moonshot-rails)
+
 # Moonshot Rails
 
 A collection of Stimulus controllers and other helpers enabling faster building of SaaS applications using modern Rails and Stimulus. Most of these are heavily opinionated.
