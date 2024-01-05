@@ -4211,7 +4211,7 @@ class PostHogController extends Controller {
     });
     if (Object.keys(this.identificationValue).length) {
       const {id: id, email: email, name: name} = this.identificationValue;
-      $r.identify(id, {
+      $r.identify(id.toString(), {
         email: email,
         name: name
       });

@@ -22,7 +22,7 @@ export default class extends Controller {
 
     if (Object.keys(this.identificationValue).length) {
       const { id, email, name } = this.identificationValue
-      posthog.identify(id, { email, name })
+      posthog.identify(id.toString(), { email, name })
     }
   }
 }
