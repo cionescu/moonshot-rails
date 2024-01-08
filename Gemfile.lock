@@ -3,6 +3,7 @@ PATH
   specs:
     moonshot-rails (0.0.5)
       rails (>= 7.0.0)
+      view_component (>= 3.0.0)
 
 GEM
   remote: https://rubygems.org/

@@ -1,0 +1,14 @@
+.card.mw-800px.mx-auto.bg-white
+  .card-body
+    %h2.fs-2.mb-4= title
+    %ol.mb-0.ps-4
+      - items.each do |item|
+        %li.mb-4
+          .d-flex.justify-content-between.align-items-center
+            %h2.fs-4.mb-0{ class: class_names('text-gray-600 text-decoration-line-through' => item.completed?) }= item.title
+            - if item.completed?
+              %i.fas.fa-check.text-success
+            - else
+              = item
+          - if item.subtitle.present?
+            %p.fs-7.text-gray-600.lh-lg= item.subtitle
