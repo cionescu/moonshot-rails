@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'rails', '~> 7.1.0'
+gem 'rails', '~> 7.1.3'
 
 
 gem 'lookbook', '~> 2.0'
