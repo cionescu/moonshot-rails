@@ -3,6 +3,8 @@ require 'moonshot-rails/engine'
 require 'moonshot-rails/config'
 
 module MoonshotRails
+  MissingConfig = Class.new(StandardError)
+
   class << self
     attr_accessor :configuration
 

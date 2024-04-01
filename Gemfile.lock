@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     moonshot-rails (0.0.7)
+      excon (>= 0.100)
       rails (>= 7.0.0)
       view_component (>= 3.0.0)
 
@@ -90,6 +91,9 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
+    crack (1.0.0)
+      bigdecimal
+      rexml
     crass (1.0.6)
     css_parser (1.16.0)
       addressable
@@ -97,8 +101,10 @@ GEM
     diff-lcs (1.5.1)
     drb (2.2.1)
     erubi (1.12.0)
+    excon (0.110.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    hashdiff (1.1.0)
     htmlbeautifier (1.4.3)
     htmlentities (4.3.4)
     i18n (1.14.4)
@@ -200,6 +206,7 @@ GEM
     redcarpet (3.6.0)
     reline (0.5.0)
       io-console (~> 0.5)
+    rexml (3.2.6)
     rouge (4.2.1)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
@@ -243,6 +250,10 @@ GEM
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
+    webmock (3.23.0)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.8.1)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -260,6 +271,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  excon
   lookbook (~> 2.0)
   moonshot-rails!
   pry
@@ -271,6 +283,7 @@ DEPENDENCIES
   sqlite3
   stimulus-rails
   turbo-rails
+  webmock
 
 BUNDLED WITH
    2.5.1

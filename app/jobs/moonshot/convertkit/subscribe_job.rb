@@ -10,7 +10,7 @@ module Moonshot
       def perform user
         return unless Rails.env.production?
 
-        binding.pry
+        assert_required_config!
 
         existing_subscriber = find_by(email: user.email)
         return existing_subscriber if existing_subscriber
@@ -56,6 +56,12 @@ module Moonshot
         Excon
           .post("https://api.convertkit.com/v3/#{path}", body: json_body, headers: { 'Content-Type' => 'application/json' })
           .then { |response| JSON.parse(response.body) }
+      end
+
+      def assert_required_config!
+        %i[convertkit_api_key convertkit_api_secret convertkit_form_id].each do |config|
+          raise MoonshotRails::MissingConfig, "#{config} is required" unless send(config).present?
+        end
       end
     end
   end
