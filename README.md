@@ -5,9 +5,17 @@
 
 A collection of Stimulus controllers and other helpers enabling faster building of SaaS applications using modern Rails and Stimulus. Most of these are heavily opinionated.
 
+## JavaScript Helpers
+
 1. [Post Hog Analytics Stimulusjs wrapper](#1-post-hog-analytics-stimulusjs-wrapper)
 2. [Shepherdjs Stimulusjs wrapper](#2-shepherdjs-stimulusjs-wrapper)
 3. [Crisp Chat Stimulusjs wrapper](#3-crisp-chat-stimulusjs-wrapper)
+
+## Content Helpers
+1. Jobs to be Done view component
+
+## Background Jobs
+1. Convertkit Subscribe / Unsubscribe
 
 ## Installation
 
@@ -15,6 +23,11 @@ A collection of Stimulus controllers and other helpers enabling faster building 
   bundle add moonshot-rails
   yarn add moonshot-rails
 
+```
+
+### Generate an initializer
+```bash
+  bundle exec rails generate moonshot_rails
 ```
 
 ### Include all the stimulus controllers
