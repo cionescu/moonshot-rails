@@ -17,9 +17,7 @@ module Moonshot
 
         post_request "forms/#{convertkit_form_id}/subscribe", {
           email: user.email,
-          fields: {
-            business_name: user.business.name
-          }
+          fields: user.convertkit_fields
         }
       end
 

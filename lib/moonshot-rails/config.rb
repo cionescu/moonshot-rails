@@ -2,8 +2,8 @@
 
 module MoonshotRails
   class Config
-    mattr_accessor :convertkit_api_key
-    mattr_accessor :convertkit_api_secret
-    mattr_accessor :convertkit_form_id
+    cattr_accessor :convertkit_api_key
+    cattr_accessor :convertkit_api_secret
+    cattr_accessor :convertkit_form_id
   end
 end

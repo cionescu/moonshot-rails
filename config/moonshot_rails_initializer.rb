@@ -1,5 +1,5 @@
 MoonshotRails.configure do |config|
-  # config.converkit_api_key =
-  # config.converkit_api_secret =
-  # config.converkit_form_name =
+  # config.convertkit_api_key =
+  # config.convertkit_api_secret =
+  # config.convertkit_form_id =
 end
