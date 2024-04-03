@@ -17,9 +17,9 @@ git add .
 git commit -m "Bump version for $VERSION"
 git push
 git tag v$VERSION
-git push --tags
+git push
 
-rake release
+bundle exec rake release
 
 npm run release
 
