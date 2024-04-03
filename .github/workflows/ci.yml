@@ -25,6 +25,11 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
+      - name: Prepare dummy app
+        run: |
+          cd spec/dummy
+          bundle
+          bundle exec rake db:create db:migrate
       - name: Run tests
         run: |
           bundle exec rspec
