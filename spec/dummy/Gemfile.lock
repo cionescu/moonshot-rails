@@ -1,7 +1,7 @@
 PATH
   remote: ../..
   specs:
-    moonshot-rails (0.0.7)
+    moonshot-rails (0.0.8)
       excon (>= 0.100)
       rails (>= 7.0.0)
       view_component (>= 3.0.0)
