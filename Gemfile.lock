@@ -4,7 +4,7 @@ PATH
     moonshot-rails (0.0.8)
       excon (>= 0.100)
       rails (>= 7.0.0)
-      view_component (>= 3.0.0)
+      view_component (>= 2.0.0)
 
 GEM
   remote: https://rubygems.org/
