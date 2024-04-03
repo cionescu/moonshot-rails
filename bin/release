@@ -1,33 +1,37 @@
 #!/usr/bin/env bash
 
-VERSION=$1
+VERSION=`cat lib/moonshot-rails/version.rb | grep VERSION | cut -d \" -f2`
 
-if [ -z $1 ] ; then
-  echo "Please provide version number: bin/release 1.0.0" && exit 1;
-fi
+# if [ -z $1 ] ; then
+#   echo "Please provide version number: bin/release 1.0.0" && exit 1;
+# fi
 
-printf "# frozen_string_literal: true module MoonshotRails\n    VERSION = \"$VERSION\"\n  end\n" > ./lib/moonshot-rails/version.rb
+# # printf "# frozen_string_literal: true module MoonshotRails\n    VERSION = \"$VERSION\"\n  end\n" > ./lib/moonshot-rails/version.rb
 bundle
 cd spec/dummy
 bundle
-cd ..
-cd ..
+cd ../../
+npm install
+
 git add .
 git commit -m "Bump version for $VERSION"
 git push
 git tag v$VERSION
 git push --tags
+
 rake release
 
-echo "Need to publish NPM package too? [y/n]"
+npm run release
 
-while true; do
-  read yn
-  case $yn in
-    [Yy]* )
-      npm run release
-      break;;
-    [Nn]* ) break;;
-    * ) echo "Please answer yes or no.";;
-  esac
-done
+# echo "Need to publish NPM package too? [y/n]"
+
+# while true; do
+#   read yn
+#   case $yn in
+#     [Yy]* )
+#       npm run release
+#       break;;
+#     [Nn]* ) break;;
+#     * ) echo "Please answer yes or no.";;
+#   esac
+# done
