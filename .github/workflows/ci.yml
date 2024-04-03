@@ -29,7 +29,8 @@ jobs:
         run: |
           cd spec/dummy
           bundle
-          bundle exec rake db:create db:migrate
+          RAILS_ENV=test bundle exec rails db:migrate
+          cd ../../
       - name: Run tests
         run: |
           bundle exec rspec
