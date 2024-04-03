@@ -15,10 +15,12 @@ module Moonshot
         existing_subscriber = find_by(email: user.email)
         return existing_subscriber if existing_subscriber
 
-        post_request "forms/#{convertkit_form_id}/subscribe", {
-          email: user.email,
-          fields: user.convertkit_fields
+        params = {
+          email: user.email
         }
+        params.merge!(fields: user.convertkit_fields) if user.respond_to?(:convertkit_fields)
+
+        post_request "forms/#{convertkit_form_id}/subscribe", params
       end
 
       def find_by email:

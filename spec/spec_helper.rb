@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
-
 require 'webmock/rspec'
 
 RSpec.configure do |config|

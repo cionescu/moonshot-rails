@@ -6,6 +6,7 @@ module MoonshotRails
 
     config.autoload_paths = %W[
       #{root}/app/helpers
+      #{root}/app/models
     ]
 
     initializer 'moonshot_rails.helpers' do
