@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 3.0.0'
 
+  spec.add_runtime_dependency 'excon', '>= 0.100'
   spec.add_runtime_dependency 'rails', '>= 7.0.0'
   spec.add_runtime_dependency 'view_component', '>= 3.0.0'
 end

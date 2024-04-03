@@ -1,5 +1,5 @@
 PATH
-  remote: .
+  remote: ../..
   specs:
     moonshot-rails (0.0.7)
       excon (>= 0.100)
@@ -88,7 +88,6 @@ GEM
     base64 (0.2.0)
     bigdecimal (3.1.7)
     builder (3.2.4)
-    coderay (1.1.3)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crack (1.0.0)
@@ -132,18 +131,21 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.1)
+    nokogiri (1.16.3-aarch64-linux)
+      racc (~> 1.4)
+    nokogiri (1.16.3-arm-linux)
+      racc (~> 1.4)
     nokogiri (1.16.3-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.3-x86-linux)
       racc (~> 1.4)
     nokogiri (1.16.3-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.3-x86_64-linux)
       racc (~> 1.4)
-    pry (0.14.2)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
     psych (5.1.2)
       stringio
-    public_suffix (5.0.4)
+    public_suffix (5.0.5)
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
@@ -184,7 +186,7 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
-    rake (13.1.0)
+    rake (13.2.0)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
     reline (0.5.0)
@@ -214,7 +216,10 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.7.3-aarch64-linux)
+    sqlite3 (1.7.3-arm-linux)
     sqlite3 (1.7.3-arm64-darwin)
+    sqlite3 (1.7.3-x86-linux)
     sqlite3 (1.7.3-x86_64-darwin)
     sqlite3 (1.7.3-x86_64-linux)
     stimulus-rails (1.3.3)
@@ -239,26 +244,25 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
-  arm64-darwin-20
-  arm64-darwin-21
-  arm64-darwin-22
-  arm64-darwin-23
-  x86_64-darwin-20
-  x86_64-darwin-21
+  aarch64-linux
+  arm-linux
+  arm64-darwin
+  x86-linux
+  x86_64-darwin
   x86_64-linux
 
 DEPENDENCIES
-  excon
   moonshot-rails!
-  pry
   puma (~> 6.0)
-  rails (~> 7.1.0)
-  rake (~> 13.0)
-  rspec-rails
+  rails (~> 7.1.3.2)
+  rspec-rails (~> 6.1.0)
   sprockets-rails
   sqlite3
   stimulus-rails
   webmock
+
+RUBY VERSION
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.5.7

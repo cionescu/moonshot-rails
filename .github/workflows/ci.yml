@@ -1,0 +1,36 @@
+name: Testing
+
+on:
+  pull_request:
+    branches:
+      - '*'
+  push:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.2'
+          bundler: default
+          bundler-cache: true
+          rubygems: latest
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      - name: Prepare dummy app
+        run: |
+          cd spec/dummy
+          bundle
+          RAILS_ENV=test bundle exec rails db:migrate
+          cd ../../
+      - name: Run tests
+        run: |
+          bundle exec rspec
