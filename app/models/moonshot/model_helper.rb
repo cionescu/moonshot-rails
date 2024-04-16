@@ -5,14 +5,14 @@ module Moonshot
     extend ActiveSupport::Concern
 
     class_methods do
-      def convertkit_sync
-        after_save_commit :moonshot_convertkit_subscribe
+      def convertkit_sync first_name: :name, fields: :convertkit_fields
+        after_save_commit -> { moonshot_convertkit_upsert first_name: first_name, fields: fields }
         after_destroy_commit :moonshot_convertkit_unsubscribe
       end
     end
 
-    def moonshot_convertkit_subscribe
-      Moonshot::Convertkit::SubscribeJob.perform_later self
+    def moonshot_convertkit_upsert first_name: :name, fields: :convertkit_fields
+      Moonshot::Convertkit::UpsertJob.perform_later self.class.name, user_id: id, first_name: first_name, fields: fields
     end
 
     def moonshot_convertkit_unsubscribe
