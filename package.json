@@ -4,6 +4,7 @@
   "description": "A collection of Stimulus controllers for building SaaS applications with Rails",
   "main": "app/assets/javascripts/moonshot.js",
   "module": "app/assets/javascripts/moonshot/index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/cionescu/moonshot-rails.git"
@@ -31,9 +32,9 @@
     "@rollup/plugin-terser": "^0.4.4",
     "postcss": "^8.4.29",
     "postcss-cli": "^11.0.0",
-    "postcss-import": "^15.1.0",
+    "postcss-import": "^16.1.0",
     "postcss-nested": "^6.0.1",
-    "rollup": "^2.79.1"
+    "rollup": "^3.0"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",

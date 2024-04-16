@@ -171,131 +171,137 @@ function h(e, t) {
 
 var f = {
   DEBUG: !1,
-  LIB_VERSION: "1.116.6"
+  LIB_VERSION: "1.122.0"
 }, p = Array.isArray, g = Object.prototype, v = g.hasOwnProperty, _ = g.toString, m = p || function(e) {
   return "[object Array]" === _.call(e);
 }, y = function(e) {
   return "function" == typeof e;
 }, b = function(e) {
   return e === Object(e) && !m(e);
+}, k = function(e) {
+  if (b(e)) {
+    for (var t in e) if (v.call(e, t)) return !1;
+    return !0;
+  }
+  return !1;
 }, w = function(e) {
   return void 0 === e;
-}, k = function(e) {
-  return "[object String]" == _.call(e);
 }, S = function(e) {
-  return null === e;
+  return "[object String]" == _.call(e);
 }, F = function(e) {
-  return w(e) || S(e);
+  return null === e;
 }, R = function(e) {
+  return w(e) || F(e);
+}, P = function(e) {
   return "[object Number]" == _.call(e);
 }, x = function(e) {
   return "[object Boolean]" === _.call(e);
 }, E = function(e) {
   return e instanceof FormData;
-}, P = "undefined" != typeof window ? window : void 0, I = "undefined" != typeof globalThis ? globalThis : P, C = Array.prototype, T = C.forEach, $ = C.indexOf, A = null == I ? void 0 : I.navigator, O = null == I ? void 0 : I.document, M = null == I ? void 0 : I.location, q = null == I ? void 0 : I.fetch, D = null != I && I.XMLHttpRequest && "withCredentials" in new I.XMLHttpRequest ? I.XMLHttpRequest : void 0, L = null == I ? void 0 : I.AbortController, N = null == A ? void 0 : A.userAgent, B = null != P ? P : {}, H = "[PostHog.js]", j = {
+}, I = "undefined" != typeof window ? window : void 0, C = "undefined" != typeof globalThis ? globalThis : I, $ = Array.prototype, T = $.forEach, q = $.indexOf, M = null == C ? void 0 : C.navigator, O = null == C ? void 0 : C.document, A = null == C ? void 0 : C.location, D = null == C ? void 0 : C.fetch, L = null != C && C.XMLHttpRequest && "withCredentials" in new C.XMLHttpRequest ? C.XMLHttpRequest : void 0, N = null == C ? void 0 : C.AbortController, B = null == M ? void 0 : M.userAgent, H = null != I ? I : {}, j = "[PostHog.js]", U = {
   _log: function(e) {
-    if (P && (f.DEBUG || B.POSTHOG_DEBUG) && !w(P.console) && P.console) {
-      for (var t = ("__rrweb_original__" in P.console[e] ? P.console[e].__rrweb_original__ : P.console[e]), n = arguments.length, i = new Array(n > 1 ? n - 1 : 0), r = 1; r < n; r++) i[r - 1] = arguments[r];
-      t.apply(void 0, [ H ].concat(i));
+    if (I && (f.DEBUG || H.POSTHOG_DEBUG) && !w(I.console) && I.console) {
+      for (var t = ("__rrweb_original__" in I.console[e] ? I.console[e].__rrweb_original__ : I.console[e]), n = arguments.length, i = new Array(n > 1 ? n - 1 : 0), r = 1; r < n; r++) i[r - 1] = arguments[r];
+      t.apply(void 0, [ j ].concat(i));
     }
   },
   info: function() {
     for (var e = arguments.length, t = new Array(e), n = 0; n < e; n++) t[n] = arguments[n];
-    j._log.apply(j, [ "log" ].concat(t));
+    U._log.apply(U, [ "log" ].concat(t));
   },
   warn: function() {
     for (var e = arguments.length, t = new Array(e), n = 0; n < e; n++) t[n] = arguments[n];
-    j._log.apply(j, [ "warn" ].concat(t));
+    U._log.apply(U, [ "warn" ].concat(t));
   },
   error: function() {
     for (var e = arguments.length, t = new Array(e), n = 0; n < e; n++) t[n] = arguments[n];
-    j._log.apply(j, [ "error" ].concat(t));
+    U._log.apply(U, [ "error" ].concat(t));
   },
   critical: function() {
     for (var e, t = arguments.length, n = new Array(t), i = 0; i < t; i++) n[i] = arguments[i];
-    (e = console).error.apply(e, [ H ].concat(n));
+    (e = console).error.apply(e, [ j ].concat(n));
   },
   uninitializedWarning: function(e) {
-    j.error("You must initialize PostHog before calling ".concat(e));
+    U.error("You must initialize PostHog before calling ".concat(e));
   }
-}, U = {}, V = function(e) {
+}, W = {}, V = function(e) {
   return e.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
 };
 
-function W(e, t, n) {
-  if (m(e)) if (T && e.forEach === T) e.forEach(t, n); else if ("length" in e && e.length === +e.length) for (var i = 0, r = e.length; i < r; i++) if (i in e && t.call(n, e[i], i) === U) return;
+function z(e, t, n) {
+  if (m(e)) if (T && e.forEach === T) e.forEach(t, n); else if ("length" in e && e.length === +e.length) for (var i = 0, r = e.length; i < r; i++) if (i in e && t.call(n, e[i], i) === W) return;
 }
 
-function z(e, t, n) {
-  if (!F(e)) {
-    if (m(e)) return W(e, t, n);
+function G(e, t, n) {
+  if (!R(e)) {
+    if (m(e)) return z(e, t, n);
     if (E(e)) {
       var i, r = h(e.entries());
       try {
         for (r.s(); !(i = r.n()).done; ) {
           var s = i.value;
-          if (t.call(n, s[1], s[0]) === U) return;
+          if (t.call(n, s[1], s[0]) === W) return;
         }
       } catch (e) {
         r.e(e);
       } finally {
         r.f();
       }
-    } else for (var o in e) if (v.call(e, o) && t.call(n, e[o], o) === U) return;
+    } else for (var o in e) if (v.call(e, o) && t.call(n, e[o], o) === W) return;
   }
 }
 
-var G = function(e) {
+var Q = function(e) {
   for (var t = arguments.length, n = new Array(t > 1 ? t - 1 : 0), i = 1; i < t; i++) n[i - 1] = arguments[i];
-  return W(n, (function(t) {
+  return z(n, (function(t) {
     for (var n in t) void 0 !== t[n] && (e[n] = t[n]);
   })), e;
 };
 
-function Q(e, t) {
+function Y(e, t) {
   return -1 !== e.indexOf(t);
 }
 
-function Y(e) {
+function J(e) {
   for (var t = Object.keys(e), n = t.length, i = new Array(n); n--; ) i[n] = [ t[n], e[t[n]] ];
   return i;
 }
 
-var J = function() {
+var K = function() {
   return Date.now = Date.now || function() {
     return +new Date;
   }, Date.now();
-}, K = function(e) {
+}, X = function(e) {
   try {
     return e();
   } catch (e) {
     return;
   }
-}, X = function(e) {
+}, Z = function(e) {
   return function() {
     try {
       for (var t = arguments.length, n = new Array(t), i = 0; i < t; i++) n[i] = arguments[i];
       return e.apply(this, n);
     } catch (e) {
-      j.critical("Implementation error. Please turn on debug mode and open a ticket on https://app.posthog.com/home#panel=support%3Asupport%3A."), 
-      j.critical(e);
+      U.critical("Implementation error. Please turn on debug mode and open a ticket on https://app.posthog.com/home#panel=support%3Asupport%3A."), 
+      U.critical(e);
     }
   };
-}, Z = function(e) {
+}, ee = function(e) {
   var t = {};
-  return z(e, (function(e, n) {
-    k(e) && e.length > 0 && (t[n] = e);
+  return G(e, (function(e, n) {
+    S(e) && e.length > 0 && (t[n] = e);
   })), t;
 };
 
-function ee(e, t) {
+function te(e, t) {
   return n = e, i = function(e) {
-    return k(e) && !S(t) ? e.slice(0, t) : e;
+    return S(e) && !F(t) ? e.slice(0, t) : e;
   }, r = new Set, function e(t, n) {
     return t !== Object(t) ? i ? i(t, n) : t : r.has(t) ? void 0 : (r.add(t), m(t) ? (s = [], 
-    W(t, (function(t) {
+    z(t, (function(t) {
       s.push(e(t));
-    }))) : (s = {}, z(t, (function(t, n) {
+    }))) : (s = {}, G(t, (function(t, n) {
       r.has(t) || (s[n] = e(t, n));
     }))), s);
     var s;
@@ -303,16 +309,16 @@ function ee(e, t) {
   var n, i, r;
 }
 
-var te = function(e) {
+var ne, ie = function(e) {
   var t, n, i, r, s = "";
   for (t = n = 0, i = (e = (e + "").replace(/\r\n/g, "\n").replace(/\r/g, "\n")).length, 
   r = 0; r < i; r++) {
     var o = e.charCodeAt(r), a = null;
     o < 128 ? n++ : a = o > 127 && o < 2048 ? String.fromCharCode(o >> 6 | 192, 63 & o | 128) : String.fromCharCode(o >> 12 | 224, o >> 6 & 63 | 128, 63 & o | 128), 
-    S(a) || (n > t && (s += e.substring(t, n)), s += a, t = n = r + 1);
+    F(a) || (n > t && (s += e.substring(t, n)), s += a, t = n = r + 1);
   }
   return n > t && (s += e.substring(t, e.length)), s;
-}, ne = function() {
+}, re = function() {
   function e(t) {
     return t && (t.preventDefault = e.preventDefault, t.stopPropagation = e.stopPropagation), 
     t;
@@ -326,7 +332,7 @@ var te = function(e) {
       var o = "on" + n, a = t[o];
       t[o] = function(t, n, i) {
         return function(r) {
-          if (r = r || e(null == P ? void 0 : P.event)) {
+          if (r = r || e(null == I ? void 0 : I.event)) {
             var s, o = !0;
             y(i) && (s = i(r));
             var a = n.call(t, r);
@@ -334,11 +340,11 @@ var te = function(e) {
           }
         };
       }(t, i, a);
-    } else j.error("No valid element provided to register_event");
+    } else U.error("No valid element provided to register_event");
   };
 }();
 
-function ie(e, t) {
+function se(e, t) {
   var n = function() {
     if (!O) return t("document not found");
     var n = O.createElement("script");
@@ -353,11 +359,1039 @@ function ie(e, t) {
   null != O && O.body ? n() : null == O || O.addEventListener("DOMContentLoaded", n);
 }
 
-function re(e) {
+!function(e) {
+  e.GZipJS = "gzip-js", e.Base64 = "base64";
+}(ne || (ne = {}));
+
+var oe = "$people_distinct_id", ae = "__alias", ue = "__timers", le = "$autocapture_disabled_server_side", ce = "$session_recording_enabled_server_side", de = "$console_log_recording_enabled_server_side", he = "$session_recording_network_payload_capture", fe = "$session_recording_canvas_recording", pe = "$replay_sample_rate", ge = "$replay_minimum_duration", ve = "$sesid", _e = "$session_is_sampled", me = "$enabled_feature_flags", ye = "$early_access_features", be = "$stored_person_properties", ke = "$stored_group_properties", we = "$surveys", Se = "$flag_call_reported", Fe = "$user_state", Re = "$posthog_quota_limited", Pe = "$client_session_props", xe = "$initial_campaign_params", Ee = "$initial_referrer_info", Ie = "$epp", Ce = [ oe, ae, "__cmpns", ue, ce, ve, me, Fe, Re, ye, ke, be, we, Se, Pe, xe, Ee, Ie ], $e = "$active_feature_flags", Te = "$override_feature_flags", qe = "$feature_flag_payloads", Me = function(e) {
+  var t, n = {}, i = h(J(e || {}));
+  try {
+    for (i.s(); !(t = i.n()).done; ) {
+      var r = u(t.value, 2), s = r[0], o = r[1];
+      o && (n[s] = o);
+    }
+  } catch (e) {
+    i.e(e);
+  } finally {
+    i.f();
+  }
+  return n;
+}, Oe = function() {
+  function e(t) {
+    i(this, e), this.instance = t, this._override_warning = !1, this.featureFlagEventHandlers = [], 
+    this.reloadFeatureFlagsQueued = !1, this.reloadFeatureFlagsInAction = !1;
+  }
+  return s(e, [ {
+    key: "getFlags",
+    value: function() {
+      return Object.keys(this.getFlagVariants());
+    }
+  }, {
+    key: "getFlagVariants",
+    value: function() {
+      var e = this.instance.get_property(me), t = this.instance.get_property(Te);
+      if (!t) return e || {};
+      for (var n = Q({}, e), i = Object.keys(t), r = 0; r < i.length; r++) n[i[r]] = t[i[r]];
+      return this._override_warning || (U.warn(" Overriding feature flags!", {
+        enabledFlags: e,
+        overriddenFlags: t,
+        finalFlags: n
+      }), this._override_warning = !0), n;
+    }
+  }, {
+    key: "getFlagPayloads",
+    value: function() {
+      return this.instance.get_property(qe) || {};
+    }
+  }, {
+    key: "reloadFeatureFlags",
+    value: function() {
+      this.reloadFeatureFlagsQueued || (this.reloadFeatureFlagsQueued = !0, this._startReloadTimer());
+    }
+  }, {
+    key: "setAnonymousDistinctId",
+    value: function(e) {
+      this.$anon_distinct_id = e;
+    }
+  }, {
+    key: "setReloadingPaused",
+    value: function(e) {
+      this.reloadFeatureFlagsInAction = e;
+    }
+  }, {
+    key: "resetRequestQueue",
+    value: function() {
+      this.reloadFeatureFlagsQueued = !1;
+    }
+  }, {
+    key: "_startReloadTimer",
+    value: function() {
+      var e = this;
+      this.reloadFeatureFlagsQueued && !this.reloadFeatureFlagsInAction && setTimeout((function() {
+        !e.reloadFeatureFlagsInAction && e.reloadFeatureFlagsQueued && (e.reloadFeatureFlagsQueued = !1, 
+        e._reloadFeatureFlagsRequest());
+      }), 5);
+    }
+  }, {
+    key: "_reloadFeatureFlagsRequest",
+    value: function() {
+      var e = this;
+      if (!this.instance.config.advanced_disable_feature_flags) {
+        this.setReloadingPaused(!0);
+        var t = this.instance.config.token, n = this.instance.get_property(be), i = this.instance.get_property(ke), r = {
+          token: t,
+          distinct_id: this.instance.get_distinct_id(),
+          groups: this.instance.getGroups(),
+          $anon_distinct_id: this.$anon_distinct_id,
+          person_properties: n,
+          group_properties: i,
+          disable_flags: this.instance.config.advanced_disable_feature_flags || void 0
+        };
+        this.instance._send_request({
+          method: "POST",
+          url: this.instance.requestRouter.endpointFor("api", "/decide/?v=3"),
+          data: r,
+          compression: this.instance.config.disable_compression ? void 0 : ne.Base64,
+          timeout: this.instance.config.feature_flag_request_timeout_ms,
+          callback: function(t) {
+            var n;
+            e.setReloadingPaused(!1);
+            var i = !0;
+            200 === t.statusCode && (e.$anon_distinct_id = void 0, i = !1), e.receivedFeatureFlags(null !== (n = t.json) && void 0 !== n ? n : {}, i), 
+            e._startReloadTimer();
+          }
+        });
+      }
+    }
+  }, {
+    key: "getFeatureFlag",
+    value: function(e) {
+      var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+      if (this.instance.decideEndpointWasHit || this.getFlags() && this.getFlags().length > 0) {
+        var n, i = this.getFlagVariants()[e], r = "".concat(i), s = this.instance.get_property(Se) || {};
+        if (t.send_event || !("send_event" in t)) if (!(e in s) || !s[e].includes(r)) m(s[e]) ? s[e].push(r) : s[e] = [ r ], 
+        null === (n = this.instance.persistence) || void 0 === n || n.register(o({}, Se, s)), 
+        this.instance.capture("$feature_flag_called", {
+          $feature_flag: e,
+          $feature_flag_response: i
+        });
+        return i;
+      }
+      U.warn('getFeatureFlag for key "' + e + "\" failed. Feature flags didn't load in time.");
+    }
+  }, {
+    key: "getFeatureFlagPayload",
+    value: function(e) {
+      return this.getFlagPayloads()[e];
+    }
+  }, {
+    key: "isFeatureEnabled",
+    value: function(e) {
+      var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+      if (this.instance.decideEndpointWasHit || this.getFlags() && this.getFlags().length > 0) return !!this.getFeatureFlag(e, t);
+      U.warn('isFeatureEnabled for key "' + e + "\" failed. Feature flags didn't load in time.");
+    }
+  }, {
+    key: "addFeatureFlagsHandler",
+    value: function(e) {
+      this.featureFlagEventHandlers.push(e);
+    }
+  }, {
+    key: "removeFeatureFlagsHandler",
+    value: function(e) {
+      this.featureFlagEventHandlers = this.featureFlagEventHandlers.filter((function(t) {
+        return t !== e;
+      }));
+    }
+  }, {
+    key: "receivedFeatureFlags",
+    value: function(e, n) {
+      if (this.instance.persistence) {
+        this.instance.decideEndpointWasHit = !0;
+        var i = this.getFlagVariants(), r = this.getFlagPayloads();
+        !function(e, n) {
+          var i, r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}, s = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {}, a = e.featureFlags, u = e.featureFlagPayloads;
+          if (a) if (m(a)) {
+            var l, c = {};
+            if (a) for (var d = 0; d < a.length; d++) c[a[d]] = !0;
+            n && n.register((o(l = {}, $e, a), o(l, me, c), l));
+          } else {
+            var h = a, f = u;
+            e.errorsWhileComputingFlags && (h = t(t({}, r), h), f = t(t({}, s), f)), n && n.register((o(i = {}, $e, Object.keys(Me(h))), 
+            o(i, me, h || {}), o(i, qe, f || {}), i));
+          }
+        }(e, this.instance.persistence, i, r), this._fireFeatureFlagsCallbacks(n);
+      }
+    }
+  }, {
+    key: "override",
+    value: function(e) {
+      if (!this.instance.__loaded || !this.instance.persistence) return U.uninitializedWarning("posthog.feature_flags.override");
+      if (this._override_warning = !1, !1 === e) this.instance.persistence.unregister(Te); else if (m(e)) {
+        for (var t = {}, n = 0; n < e.length; n++) t[e[n]] = !0;
+        this.instance.persistence.register(o({}, Te, t));
+      } else this.instance.persistence.register(o({}, Te, e));
+    }
+  }, {
+    key: "onFeatureFlags",
+    value: function(e) {
+      var t = this;
+      if (this.addFeatureFlagsHandler(e), this.instance.decideEndpointWasHit) {
+        var n = this._prepareFeatureFlagsForCallbacks(), i = n.flags, r = n.flagVariants;
+        e(i, r);
+      }
+      return function() {
+        return t.removeFeatureFlagsHandler(e);
+      };
+    }
+  }, {
+    key: "updateEarlyAccessFeatureEnrollment",
+    value: function(e, n) {
+      var i, r, s = o({}, "$feature_enrollment/".concat(e), n);
+      this.instance.capture("$feature_enrollment_update", {
+        $feature_flag: e,
+        $feature_enrollment: n,
+        $set: s
+      }), this.setPersonPropertiesForFlags(s, !1);
+      var a = t(t({}, this.getFlagVariants()), {}, o({}, e, n));
+      null === (i = this.instance.persistence) || void 0 === i || i.register((o(r = {}, $e, Object.keys(Me(a))), 
+      o(r, me, a), r)), this._fireFeatureFlagsCallbacks();
+    }
+  }, {
+    key: "getEarlyAccessFeatures",
+    value: function(e) {
+      var t = this, n = arguments.length > 1 && void 0 !== arguments[1] && arguments[1], i = this.instance.get_property(ye);
+      if (i && !n) return e(i);
+      this.instance._send_request({
+        transport: "XHR",
+        url: this.instance.requestRouter.endpointFor("api", "/api/early_access_features/?token=".concat(this.instance.config.token)),
+        method: "GET",
+        callback: function(n) {
+          var i;
+          if (n.json) {
+            var r = n.json.earlyAccessFeatures;
+            return null === (i = t.instance.persistence) || void 0 === i || i.register(o({}, ye, r)), 
+            e(r);
+          }
+        }
+      });
+    }
+  }, {
+    key: "_prepareFeatureFlagsForCallbacks",
+    value: function() {
+      var e = this.getFlags(), t = this.getFlagVariants();
+      return {
+        flags: e.filter((function(e) {
+          return t[e];
+        })),
+        flagVariants: Object.keys(t).filter((function(e) {
+          return t[e];
+        })).reduce((function(e, n) {
+          return e[n] = t[n], e;
+        }), {})
+      };
+    }
+  }, {
+    key: "_fireFeatureFlagsCallbacks",
+    value: function(e) {
+      var t = this._prepareFeatureFlagsForCallbacks(), n = t.flags, i = t.flagVariants;
+      this.featureFlagEventHandlers.forEach((function(t) {
+        return t(n, i, {
+          errorsLoading: e
+        });
+      }));
+    }
+  }, {
+    key: "setPersonPropertiesForFlags",
+    value: function(e) {
+      var n = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1], i = this.instance.get_property(be) || {};
+      this.instance.register(o({}, be, t(t({}, i), e))), n && this.instance.reloadFeatureFlags();
+    }
+  }, {
+    key: "resetPersonPropertiesForFlags",
+    value: function() {
+      this.instance.unregister(be);
+    }
+  }, {
+    key: "setGroupPropertiesForFlags",
+    value: function(e) {
+      var n = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1], i = this.instance.get_property(ke) || {};
+      0 !== Object.keys(i).length && Object.keys(i).forEach((function(n) {
+        i[n] = t(t({}, i[n]), e[n]), delete e[n];
+      })), this.instance.register(o({}, ke, t(t({}, i), e))), n && this.instance.reloadFeatureFlags();
+    }
+  }, {
+    key: "resetGroupPropertiesForFlags",
+    value: function(e) {
+      if (e) {
+        var n = this.instance.get_property(ke) || {};
+        this.instance.register(o({}, ke, t(t({}, n), {}, o({}, e, {}))));
+      } else this.instance.unregister(ke);
+    }
+  } ]), e;
+}();
+
+Math.trunc || (Math.trunc = function(e) {
+  return e < 0 ? Math.ceil(e) : Math.floor(e);
+}), Number.isInteger || (Number.isInteger = function(e) {
+  return P(e) && isFinite(e) && Math.floor(e) === e;
+});
+
+var Ae = "0123456789abcdef", De = function() {
+  function e(t) {
+    if (i(this, e), this.bytes = t, 16 !== t.length) throw new TypeError("not 128-bit length");
+  }
+  return s(e, [ {
+    key: "toString",
+    value: function() {
+      for (var e = "", t = 0; t < this.bytes.length; t++) e = e + Ae.charAt(this.bytes[t] >>> 4) + Ae.charAt(15 & this.bytes[t]), 
+      3 !== t && 5 !== t && 7 !== t && 9 !== t || (e += "-");
+      if (36 !== e.length) throw new Error("Invalid UUIDv7 was generated");
+      return e;
+    }
+  }, {
+    key: "clone",
+    value: function() {
+      return new e(this.bytes.slice(0));
+    }
+  }, {
+    key: "equals",
+    value: function(e) {
+      return 0 === this.compareTo(e);
+    }
+  }, {
+    key: "compareTo",
+    value: function(e) {
+      for (var t = 0; t < 16; t++) {
+        var n = this.bytes[t] - e.bytes[t];
+        if (0 !== n) return Math.sign(n);
+      }
+      return 0;
+    }
+  } ], [ {
+    key: "fromFieldsV7",
+    value: function(t, n, i, r) {
+      if (!Number.isInteger(t) || !Number.isInteger(n) || !Number.isInteger(i) || !Number.isInteger(r) || t < 0 || n < 0 || i < 0 || r < 0 || t > 0xffffffffffff || n > 4095 || i > 1073741823 || r > 4294967295) throw new RangeError("invalid field value");
+      var s = new Uint8Array(16);
+      return s[0] = t / Math.pow(2, 40), s[1] = t / Math.pow(2, 32), s[2] = t / Math.pow(2, 24), 
+      s[3] = t / Math.pow(2, 16), s[4] = t / Math.pow(2, 8), s[5] = t, s[6] = 112 | n >>> 8, 
+      s[7] = n, s[8] = 128 | i >>> 24, s[9] = i >>> 16, s[10] = i >>> 8, s[11] = i, s[12] = r >>> 24, 
+      s[13] = r >>> 16, s[14] = r >>> 8, s[15] = r, new e(s);
+    }
+  } ]), e;
+}(), Le = function() {
+  function e() {
+    i(this, e), o(this, "timestamp", 0), o(this, "counter", 0), o(this, "random", new He);
+  }
+  return s(e, [ {
+    key: "generate",
+    value: function() {
+      var e = this.generateOrAbort();
+      if (w(e)) {
+        this.timestamp = 0;
+        var t = this.generateOrAbort();
+        if (w(t)) throw new Error("Could not generate UUID after timestamp reset");
+        return t;
+      }
+      return e;
+    }
+  }, {
+    key: "generateOrAbort",
+    value: function() {
+      var e = Date.now();
+      if (e > this.timestamp) this.timestamp = e, this.resetCounter(); else {
+        if (!(e + 1e4 > this.timestamp)) return;
+        this.counter++, this.counter > 4398046511103 && (this.timestamp++, this.resetCounter());
+      }
+      return De.fromFieldsV7(this.timestamp, Math.trunc(this.counter / Math.pow(2, 30)), this.counter & Math.pow(2, 30) - 1, this.random.nextUint32());
+    }
+  }, {
+    key: "resetCounter",
+    value: function() {
+      this.counter = 1024 * this.random.nextUint32() + (1023 & this.random.nextUint32());
+    }
+  } ]), e;
+}(), Ne = function(e) {
+  if ("undefined" != typeof UUIDV7_DENY_WEAK_RNG && UUIDV7_DENY_WEAK_RNG) throw new Error("no cryptographically strong RNG available");
+  for (var t = 0; t < e.length; t++) e[t] = 65536 * Math.trunc(65536 * Math.random()) + Math.trunc(65536 * Math.random());
+  return e;
+};
+
+I && !w(I.crypto) && crypto.getRandomValues && (Ne = function(e) {
+  return crypto.getRandomValues(e);
+});
+
+var Be, He = function() {
+  function e() {
+    i(this, e), o(this, "buffer", new Uint32Array(8)), o(this, "cursor", 1 / 0);
+  }
+  return s(e, [ {
+    key: "nextUint32",
+    value: function() {
+      return this.cursor >= this.buffer.length && (Ne(this.buffer), this.cursor = 0), 
+      this.buffer[this.cursor++];
+    }
+  } ]), e;
+}(), je = function() {
+  return Ue().toString();
+}, Ue = function() {
+  return (Be || (Be = new Le)).generate();
+}, We = "Thu, 01 Jan 1970 00:00:00 GMT", Ve = "";
+
+var ze = /[a-z0-9][a-z0-9-]+\.[a-z]{2,}$/i;
+
+function Ge(e, t) {
+  if (t) {
+    var n = function(e) {
+      var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : O;
+      if (Ve) return Ve;
+      if (!t) return "";
+      if ([ "localhost", "127.0.0.1" ].includes(e)) return "";
+      for (var n = e.split("."), i = Math.min(n.length, 8), r = "dmn_chk_" + je(), s = new RegExp("(^|;)\\s*" + r + "=1"); !Ve && i--; ) {
+        var o = n.slice(i).join("."), a = r + "=1;domain=." + o;
+        t.cookie = a, s.test(t.cookie) && (t.cookie = a + ";expires=" + We, Ve = o);
+      }
+      return Ve;
+    }(e);
+    if (!n) {
+      var i = function(e) {
+        var t = e.match(ze);
+        return t ? t[0] : "";
+      }(e);
+      i !== n && U.info("Warning: cookie subdomain discovery mismatch", i, n), n = i;
+    }
+    return n ? "; domain=." + n : "";
+  }
+  return "";
+}
+
+var Qe, Ye = {
+  is_supported: function() {
+    return !!O;
+  },
+  error: function(e) {
+    U.error("cookieStore error: " + e);
+  },
+  get: function(e) {
+    if (O) {
+      try {
+        for (var t = e + "=", n = O.cookie.split(";").filter((function(e) {
+          return e.length;
+        })), i = 0; i < n.length; i++) {
+          for (var r = n[i]; " " == r.charAt(0); ) r = r.substring(1, r.length);
+          if (0 === r.indexOf(t)) return decodeURIComponent(r.substring(t.length, r.length));
+        }
+      } catch (e) {}
+      return null;
+    }
+  },
+  parse: function(e) {
+    var t;
+    try {
+      t = JSON.parse(Ye.get(e)) || {};
+    } catch (e) {}
+    return t;
+  },
+  set: function(e, t, n, i, r) {
+    if (O) try {
+      var s = "", o = "", a = Ge(O.location.hostname, i);
+      if (n) {
+        var u = new Date;
+        u.setTime(u.getTime() + 24 * n * 60 * 60 * 1e3), s = "; expires=" + u.toUTCString();
+      }
+      r && (o = "; secure");
+      var l = e + "=" + encodeURIComponent(JSON.stringify(t)) + s + "; SameSite=Lax; path=/" + a + o;
+      return l.length > 3686.4 && U.warn("cookieStore warning: large cookie, len=" + l.length), 
+      O.cookie = l, l;
+    } catch (e) {
+      return;
+    }
+  },
+  remove: function(e, t) {
+    try {
+      Ye.set(e, "", -1, t);
+    } catch (e) {
+      return;
+    }
+  }
+}, Je = null, Ke = {
+  is_supported: function() {
+    if (!F(Je)) return Je;
+    var e = !0;
+    if (w(I)) e = !1; else try {
+      var t = "__mplssupport__";
+      Ke.set(t, "xyz"), '"xyz"' !== Ke.get(t) && (e = !1), Ke.remove(t);
+    } catch (t) {
+      e = !1;
+    }
+    return e || U.error("localStorage unsupported; falling back to cookie store"), Je = e, 
+    e;
+  },
+  error: function(e) {
+    U.error("localStorage error: " + e);
+  },
+  get: function(e) {
+    try {
+      return null == I ? void 0 : I.localStorage.getItem(e);
+    } catch (e) {
+      Ke.error(e);
+    }
+    return null;
+  },
+  parse: function(e) {
+    try {
+      return JSON.parse(Ke.get(e)) || {};
+    } catch (e) {}
+    return null;
+  },
+  set: function(e, t) {
+    try {
+      null == I || I.localStorage.setItem(e, JSON.stringify(t));
+    } catch (e) {
+      Ke.error(e);
+    }
+  },
+  remove: function(e) {
+    try {
+      null == I || I.localStorage.removeItem(e);
+    } catch (e) {
+      Ke.error(e);
+    }
+  }
+}, Xe = [ "distinct_id", ve, _e, Ie ], Ze = t(t({}, Ke), {}, {
+  parse: function(e) {
+    try {
+      var t = {};
+      try {
+        t = Ye.parse(e) || {};
+      } catch (e) {}
+      var n = Q(t, JSON.parse(Ke.get(e) || "{}"));
+      return Ke.set(e, n), n;
+    } catch (e) {}
+    return null;
+  },
+  set: function(e, t, n, i, r) {
+    try {
+      Ke.set(e, t);
+      var s = {};
+      Xe.forEach((function(e) {
+        t[e] && (s[e] = t[e]);
+      })), Object.keys(s).length && Ye.set(e, s, n, i, r);
+    } catch (e) {
+      Ke.error(e);
+    }
+  },
+  remove: function(e, t) {
+    try {
+      null == I || I.localStorage.removeItem(e), Ye.remove(e, t);
+    } catch (e) {
+      Ke.error(e);
+    }
+  }
+}), et = {}, tt = {
+  is_supported: function() {
+    return !0;
+  },
+  error: function(e) {
+    U.error("memoryStorage error: " + e);
+  },
+  get: function(e) {
+    return et[e] || null;
+  },
+  parse: function(e) {
+    return et[e] || null;
+  },
+  set: function(e, t) {
+    et[e] = t;
+  },
+  remove: function(e) {
+    delete et[e];
+  }
+}, nt = null, it = {
+  is_supported: function() {
+    if (!F(nt)) return nt;
+    if (nt = !0, w(I)) nt = !1; else try {
+      var e = "__support__";
+      it.set(e, "xyz"), '"xyz"' !== it.get(e) && (nt = !1), it.remove(e);
+    } catch (e) {
+      nt = !1;
+    }
+    return nt;
+  },
+  error: function(e) {
+    U.error("sessionStorage error: ", e);
+  },
+  get: function(e) {
+    try {
+      return null == I ? void 0 : I.sessionStorage.getItem(e);
+    } catch (e) {
+      it.error(e);
+    }
+    return null;
+  },
+  parse: function(e) {
+    try {
+      return JSON.parse(it.get(e)) || null;
+    } catch (e) {}
+    return null;
+  },
+  set: function(e, t) {
+    try {
+      null == I || I.sessionStorage.setItem(e, JSON.stringify(t));
+    } catch (e) {
+      it.error(e);
+    }
+  },
+  remove: function(e) {
+    try {
+      null == I || I.sessionStorage.removeItem(e);
+    } catch (e) {
+      it.error(e);
+    }
+  }
+}, rt = [ "localhost", "127.0.0.1" ], st = function(e) {
+  var t = null == O ? void 0 : O.createElement("a");
+  return w(t) ? null : (t.href = e, t);
+}, ot = function(e, t) {
+  return !!function(e) {
+    try {
+      new RegExp(e);
+    } catch (e) {
+      return !1;
+    }
+    return !0;
+  }(t) && new RegExp(t).test(e);
+}, at = function(e) {
+  var t, n, i = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "&", r = [];
+  return G(e, (function(e, i) {
+    w(e) || w(i) || "undefined" === i || (t = encodeURIComponent(function(e) {
+      return e instanceof File;
+    }(e) ? e.name : e.toString()), n = encodeURIComponent(i), r[r.length] = n + "=" + t);
+  })), r.join(i);
+}, ut = function(e, t) {
+  for (var n, i = ((e.split("#")[0] || "").split("?")[1] || "").split("&"), r = 0; r < i.length; r++) {
+    var s = i[r].split("=");
+    if (s[0] === t) {
+      n = s;
+      break;
+    }
+  }
+  if (!m(n) || n.length < 2) return "";
+  var o = n[1];
+  try {
+    o = decodeURIComponent(o);
+  } catch (e) {
+    U.error("Skipping decoding for malformed query param: " + o);
+  }
+  return o.replace(/\+/g, " ");
+}, lt = function(e, t) {
+  var n = e.match(new RegExp(t + "=([^&]*)"));
+  return n ? n[1] : null;
+}, ct = "Mobile", dt = "iOS", ht = "Android", ft = "Tablet", pt = ht + " " + ft, gt = "iPad", vt = "Apple", _t = vt + " Watch", mt = "Safari", yt = "BlackBerry", bt = "Samsung", kt = bt + "Browser", wt = bt + " Internet", St = "Chrome", Ft = St + " OS", Rt = St + " " + dt, Pt = "Internet Explorer", xt = Pt + " " + ct, Et = "Opera", It = Et + " Mini", Ct = "Edge", $t = "Microsoft " + Ct, Tt = "Firefox", qt = Tt + " " + dt, Mt = "Nintendo", Ot = "PlayStation", At = "Xbox", Dt = ht + " " + ct, Lt = ct + " " + mt, Nt = "Windows", Bt = Nt + " Phone", Ht = "Nokia", jt = "Ouya", Ut = "Generic", Wt = Ut + " " + ct.toLowerCase(), Vt = Ut + " " + ft.toLowerCase(), zt = "Konqueror", Gt = "(\\d+(\\.\\d+)?)", Qt = new RegExp("Version/" + Gt), Yt = new RegExp(At, "i"), Jt = new RegExp(Ot + " \\w+", "i"), Kt = new RegExp(Mt + " \\w+", "i"), Xt = new RegExp(yt + "|PlayBook|BB10", "i"), Zt = {
+  "NT3.51": "NT 3.11",
+  "NT4.0": "NT 4.0",
+  "5.0": "2000",
+  5.1: "XP",
+  5.2: "XP",
+  "6.0": "Vista",
+  6.1: "7",
+  6.2: "8",
+  6.3: "8.1",
+  6.4: "10",
+  "10.0": "10"
+};
+
+var en = function(e, t) {
+  return t && Y(t, vt) || function(e) {
+    return Y(e, mt) && !Y(e, St) && !Y(e, ht);
+  }(e);
+}, tn = function(e, t) {
+  return t = t || "", Y(e, " OPR/") && Y(e, "Mini") ? It : Y(e, " OPR/") ? Et : Xt.test(e) ? yt : Y(e, "IE" + ct) || Y(e, "WPDesktop") ? xt : Y(e, kt) ? wt : Y(e, Ct) || Y(e, "Edg/") ? $t : Y(e, "FBIOS") ? "Facebook " + ct : Y(e, St) ? St : Y(e, "CriOS") ? Rt : Y(e, "UCWEB") || Y(e, "UCBrowser") ? "UC Browser" : Y(e, "FxiOS") ? qt : Y(e, ht) ? Dt : Y(e.toLowerCase(), zt.toLowerCase()) ? zt : en(e, t) ? Y(e, ct) ? Lt : mt : Y(e, Tt) ? Tt : Y(e, "MSIE") || Y(e, "Trident/") ? Pt : Y(e, "Gecko") ? Tt : "";
+}, nn = (o(Qe = {}, xt, [ new RegExp("rv:" + Gt) ]), o(Qe, $t, [ new RegExp(Ct + "?\\/" + Gt) ]), 
+o(Qe, St, [ new RegExp(St + "/" + Gt) ]), o(Qe, Rt, [ new RegExp("CriOS\\/" + Gt) ]), 
+o(Qe, "UC Browser", [ new RegExp("(UCBrowser|UCWEB)\\/" + Gt) ]), o(Qe, mt, [ Qt ]), 
+o(Qe, Lt, [ Qt ]), o(Qe, Et, [ new RegExp("(Opera|OPR)\\/" + Gt) ]), o(Qe, Tt, [ new RegExp(Tt + "\\/" + Gt) ]), 
+o(Qe, qt, [ new RegExp("FxiOS\\/" + Gt) ]), o(Qe, zt, [ new RegExp("Konqueror[:/]?" + Gt, "i") ]), 
+o(Qe, yt, [ new RegExp(yt + " " + Gt), Qt ]), o(Qe, Dt, [ new RegExp("android\\s" + Gt) ]), 
+o(Qe, wt, [ new RegExp(kt + "\\/" + Gt) ]), o(Qe, Pt, [ new RegExp("(rv:|MSIE )" + Gt) ]), 
+o(Qe, "Mozilla", [ new RegExp("rv:" + Gt) ]), Qe), rn = [ [ new RegExp(At + "; " + At + " (.*?)[);]", "i"), function(e) {
+  return [ At, e && e[1] || "" ];
+} ], [ new RegExp(Mt, "i"), [ Mt, "" ] ], [ new RegExp(Ot, "i"), [ Ot, "" ] ], [ Xt, [ yt, "" ] ], [ new RegExp(Nt, "i"), function(e, t) {
+  if (/Phone/.test(t) || /WPDesktop/.test(t)) return [ Bt, "" ];
+  if (new RegExp(ct).test(t) && !/IEMobile\b/.test(t)) return [ Nt + " " + ct, "" ];
+  var n = /Windows NT ([0-9.]+)/i.exec(t);
+  if (n && n[1]) {
+    var i = n[1], r = Zt[i] || "";
+    return /arm/i.test(t) && (r = "RT"), [ Nt, r ];
+  }
+  return [ Nt, "" ];
+} ], [ /((iPhone|iPad|iPod).*?OS (\d+)_(\d+)_?(\d+)?|iPhone)/, function(e) {
+  if (e && e[3]) {
+    var t = [ e[3], e[4], e[5] || "0" ];
+    return [ dt, t.join(".") ];
+  }
+  return [ dt, "" ];
+} ], [ /(watch.*\/(\d+\.\d+\.\d+)|watch os,(\d+\.\d+),)/i, function(e) {
+  var t = "";
+  return e && e.length >= 3 && (t = w(e[2]) ? e[3] : e[2]), [ "watchOS", t ];
+} ], [ new RegExp("(" + ht + " (\\d+)\\.(\\d+)\\.?(\\d+)?|" + ht + ")", "i"), function(e) {
+  if (e && e[2]) {
+    var t = [ e[2], e[3], e[4] || "0" ];
+    return [ ht, t.join(".") ];
+  }
+  return [ ht, "" ];
+} ], [ /Mac OS X (\d+)[_.](\d+)[_.]?(\d+)?/i, function(e) {
+  var t = [ "Mac OS X", "" ];
+  if (e && e[1]) {
+    var n = [ e[1], e[2], e[3] || "0" ];
+    t[1] = n.join(".");
+  }
+  return t;
+} ], [ /Mac/i, [ "Mac OS X", "" ] ], [ /CrOS/, [ Ft, "" ] ], [ /Linux|debian/i, [ "Linux", "" ] ] ], sn = function(e) {
+  return Kt.test(e) ? Mt : Jt.test(e) ? Ot : Yt.test(e) ? At : new RegExp(jt, "i").test(e) ? jt : new RegExp("(" + Bt + "|WPDesktop)", "i").test(e) ? Bt : /iPad/.test(e) ? gt : /iPod/.test(e) ? "iPod Touch" : /iPhone/.test(e) ? "iPhone" : /(watch)(?: ?os[,/]|\d,\d\/)[\d.]+/i.test(e) ? _t : Xt.test(e) ? yt : /(kobo)\s(ereader|touch)/i.test(e) ? "Kobo" : new RegExp(Ht, "i").test(e) ? Ht : /(kf[a-z]{2}wi|aeo[c-r]{2})( bui|\))/i.test(e) || /(kf[a-z]+)( bui|\)).+silk\//i.test(e) ? "Kindle Fire" : /(Android|ZTE)/i.test(e) ? !new RegExp(ct).test(e) || /(9138B|TB782B|Nexus [97]|pixel c|HUAWEISHT|BTV|noble nook|smart ultra 6)/i.test(e) ? /pixel[\daxl ]{1,6}/i.test(e) && !/pixel c/i.test(e) || /(huaweimed-al00|tah-|APA|SM-G92|i980|zte|U304AA)/i.test(e) || /lmy47v/i.test(e) && !/QTAQZ3/i.test(e) ? ht : pt : ht : new RegExp("(pda|" + ct + ")", "i").test(e) ? Wt : new RegExp(ft, "i").test(e) && !new RegExp(ft + " pc", "i").test(e) ? Vt : "";
+}, on = "https?://(.*)", an = [ "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "gad_source", "gclsrc", "dclid", "gbraid", "wbraid", "fbclid", "msclkid", "twclid", "li_fat_id", "mc_cid", "igshid", "ttclid" ], un = {
+  campaignParams: function(e) {
+    var t = an.concat(e || []), n = {};
+    return G(t, (function(e) {
+      var t = O ? ut(O.URL, e) : "";
+      t.length && (n[e] = t);
+    })), n;
+  },
+  searchEngine: function() {
+    var e = null == O ? void 0 : O.referrer;
+    return e ? 0 === e.search(on + "google.([^/?]*)") ? "google" : 0 === e.search(on + "bing.com") ? "bing" : 0 === e.search(on + "yahoo.com") ? "yahoo" : 0 === e.search(on + "duckduckgo.com") ? "duckduckgo" : null : null;
+  },
+  searchInfo: function() {
+    var e = un.searchEngine(), t = "yahoo" != e ? "q" : "p", n = {};
+    if (!F(e)) {
+      n.$search_engine = e;
+      var i = O ? ut(O.referrer, t) : "";
+      i.length && (n.ph_keyword = i);
+    }
+    return n;
+  },
+  browser: tn,
+  browserVersion: function(e, t) {
+    var n = tn(e, t), i = nn[n];
+    if (w(i)) return null;
+    for (var r = 0; r < i.length; r++) {
+      var s = i[r], o = e.match(s);
+      if (o) return parseFloat(o[o.length - 2]);
+    }
+    return null;
+  },
+  browserLanguage: function() {
+    return navigator.language || navigator.userLanguage;
+  },
+  os: function(e) {
+    for (var t = 0; t < rn.length; t++) {
+      var n = u(rn[t], 2), i = n[0], r = n[1], s = i.exec(e), o = s && (y(r) ? r(s, e) : r);
+      if (o) return o;
+    }
+    return [ "", "" ];
+  },
+  device: sn,
+  deviceType: function(e) {
+    var t = sn(e);
+    return t === gt || t === pt || "Kobo" === t || "Kindle Fire" === t || t === Vt ? ft : t === Mt || t === At || t === Ot || t === jt ? "Console" : t === _t ? "Wearable" : t ? ct : "Desktop";
+  },
+  referrer: function() {
+    return (null == O ? void 0 : O.referrer) || "$direct";
+  },
+  referringDomain: function() {
+    var e;
+    return null != O && O.referrer && (null === (e = st(O.referrer)) || void 0 === e ? void 0 : e.host) || "$direct";
+  },
+  referrerInfo: function() {
+    return {
+      $referrer: this.referrer(),
+      $referring_domain: this.referringDomain()
+    };
+  },
+  properties: function() {
+    if (!B) return {};
+    var e = u(un.os(B), 2), t = e[0], n = e[1];
+    return Q(ee({
+      $os: t,
+      $os_version: n,
+      $browser: un.browser(B, navigator.vendor),
+      $device: un.device(B),
+      $device_type: un.deviceType(B)
+    }), {
+      $current_url: null == A ? void 0 : A.href,
+      $host: null == A ? void 0 : A.host,
+      $pathname: null == A ? void 0 : A.pathname,
+      $raw_user_agent: B.length > 1e3 ? B.substring(0, 997) + "..." : B,
+      $browser_version: un.browserVersion(B, navigator.vendor),
+      $browser_language: un.browserLanguage(),
+      $screen_height: null == I ? void 0 : I.screen.height,
+      $screen_width: null == I ? void 0 : I.screen.width,
+      $viewport_height: null == I ? void 0 : I.innerHeight,
+      $viewport_width: null == I ? void 0 : I.innerWidth,
+      $lib: "web",
+      $lib_version: f.LIB_VERSION,
+      $insert_id: Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 10),
+      $time: K() / 1e3
+    });
+  },
+  people_properties: function() {
+    if (!B) return {};
+    var e = u(un.os(B), 2), t = e[0], n = e[1];
+    return Q(ee({
+      $os: t,
+      $os_version: n,
+      $browser: un.browser(B, navigator.vendor)
+    }), {
+      $browser_version: un.browserVersion(B, navigator.vendor)
+    });
+  }
+}, ln = [ "cookie", "localstorage", "localstorage+cookie", "sessionstorage", "memory" ], cn = function() {
+  function e(t) {
+    i(this, e), this.config = t, this.props = {}, this.campaign_params_saved = !1, this.name = function(e) {
+      var t = "";
+      return e.token && (t = e.token.replace(/\+/g, "PL").replace(/\//g, "SL").replace(/=/g, "EQ")), 
+      e.persistence_name ? "ph_" + e.persistence_name : "ph_" + t + "_posthog";
+    }(t), this.storage = this.buildStorage(t), this.load(), this.update_config(t, t), 
+    this.save();
+  }
+  return s(e, [ {
+    key: "buildStorage",
+    value: function(e) {
+      -1 === ln.indexOf(e.persistence.toLowerCase()) && (U.critical("Unknown persistence type " + e.persistence + "; falling back to localStorage+cookie"), 
+      e.persistence = "localStorage+cookie");
+      var t = e.persistence.toLowerCase();
+      return "localstorage" === t && Ke.is_supported() ? Ke : "localstorage+cookie" === t && Ze.is_supported() ? Ze : "sessionstorage" === t && it.is_supported() ? it : "memory" === t ? tt : "cookie" === t ? Ye : Ze.is_supported() ? Ze : Ye;
+    }
+  }, {
+    key: "properties",
+    value: function() {
+      var e = {};
+      return G(this.props, (function(t, n) {
+        if (n === me && b(t)) for (var i = Object.keys(t), r = 0; r < i.length; r++) e["$feature/".concat(i[r])] = t[i[r]]; else o = n, 
+        a = !1, (F(s = Ce) ? a : q && s.indexOf === q ? -1 != s.indexOf(o) : (G(s, (function(e) {
+          if (a || (a = e === o)) return W;
+        })), a)) || (e[n] = t);
+        var s, o, a;
+      })), e;
+    }
+  }, {
+    key: "load",
+    value: function() {
+      if (!this.disabled) {
+        var e = this.storage.parse(this.name);
+        e && (this.props = Q({}, e));
+      }
+    }
+  }, {
+    key: "save",
+    value: function() {
+      this.disabled || this.storage.set(this.name, this.props, this.expire_days, this.cross_subdomain, this.secure);
+    }
+  }, {
+    key: "remove",
+    value: function() {
+      this.storage.remove(this.name, !1), this.storage.remove(this.name, !0);
+    }
+  }, {
+    key: "clear",
+    value: function() {
+      this.remove(), this.props = {};
+    }
+  }, {
+    key: "register_once",
+    value: function(e, t, n) {
+      var i = this;
+      if (b(e)) {
+        w(t) && (t = "None"), this.expire_days = w(n) ? this.default_expiry : n;
+        var r = !1;
+        if (G(e, (function(e, n) {
+          i.props.hasOwnProperty(n) && i.props[n] !== t || (i.props[n] = e, r = !0);
+        })), r) return this.save(), !0;
+      }
+      return !1;
+    }
+  }, {
+    key: "register",
+    value: function(e, t) {
+      var n = this;
+      if (b(e)) {
+        this.expire_days = w(t) ? this.default_expiry : t;
+        var i = !1;
+        if (G(e, (function(t, r) {
+          e.hasOwnProperty(r) && n.props[r] !== t && (n.props[r] = t, i = !0);
+        })), i) return this.save(), !0;
+      }
+      return !1;
+    }
+  }, {
+    key: "unregister",
+    value: function(e) {
+      e in this.props && (delete this.props[e], this.save());
+    }
+  }, {
+    key: "update_campaign_params",
+    value: function() {
+      this.campaign_params_saved || (this.register(un.campaignParams(this.config.custom_campaign_params)), 
+      this.campaign_params_saved = !0);
+    }
+  }, {
+    key: "set_initial_campaign_params",
+    value: function() {
+      this.register_once(o({}, xe, un.campaignParams(this.config.custom_campaign_params)), void 0);
+    }
+  }, {
+    key: "update_search_keyword",
+    value: function() {
+      this.register(un.searchInfo());
+    }
+  }, {
+    key: "update_referrer_info",
+    value: function() {
+      this.register(un.referrerInfo());
+    }
+  }, {
+    key: "set_initial_referrer_info",
+    value: function() {
+      this.register_once(o({}, Ee, un.referrerInfo()), void 0);
+    }
+  }, {
+    key: "get_referrer_info",
+    value: function() {
+      return ee({
+        $referrer: this.props.$referrer,
+        $referring_domain: this.props.$referring_domain
+      });
+    }
+  }, {
+    key: "get_initial_props",
+    value: function() {
+      var e = this, t = {};
+      return G([ Ee, xe ], (function(n) {
+        var i = e.props[n];
+        i && G(i, (function(e, n) {
+          var i;
+          t["$initial_" + (i = n, i.replace(/^\$/, ""))] = e;
+        }));
+      })), t;
+    }
+  }, {
+    key: "safe_merge",
+    value: function(e) {
+      return G(this.props, (function(t, n) {
+        n in e || (e[n] = t);
+      })), e;
+    }
+  }, {
+    key: "update_config",
+    value: function(e, t) {
+      if (this.default_expiry = this.expire_days = e.cookie_expiration, this.set_disabled(e.disable_persistence), 
+      this.set_cross_subdomain(e.cross_subdomain_cookie), this.set_secure(e.secure_cookie), 
+      e.persistence !== t.persistence) {
+        var n = this.buildStorage(e), i = this.props;
+        this.clear(), this.storage = n, this.props = i, this.save();
+      }
+    }
+  }, {
+    key: "set_disabled",
+    value: function(e) {
+      this.disabled = e, this.disabled ? this.remove() : this.save();
+    }
+  }, {
+    key: "set_cross_subdomain",
+    value: function(e) {
+      e !== this.cross_subdomain && (this.cross_subdomain = e, this.remove(), this.save());
+    }
+  }, {
+    key: "get_cross_subdomain",
+    value: function() {
+      return !!this.cross_subdomain;
+    }
+  }, {
+    key: "set_secure",
+    value: function(e) {
+      e !== this.secure && (this.secure = e, this.remove(), this.save());
+    }
+  }, {
+    key: "set_event_timer",
+    value: function(e, t) {
+      var n = this.props[ue] || {};
+      n[e] = t, this.props[ue] = n, this.save();
+    }
+  }, {
+    key: "remove_event_timer",
+    value: function(e) {
+      var t = (this.props[ue] || {})[e];
+      return w(t) || (delete this.props[ue][e], this.save()), t;
+    }
+  }, {
+    key: "get_user_state",
+    value: function() {
+      return this.props[Fe] || "anonymous";
+    }
+  }, {
+    key: "set_user_state",
+    value: function(e) {
+      this.props[Fe] = e, this.save();
+    }
+  }, {
+    key: "get_quota_limits",
+    value: function() {
+      return this.props[Re] || {};
+    }
+  }, {
+    key: "set_quota_limits",
+    value: function(e) {
+      this.props[Re] = e, this.save();
+    }
+  } ]), e;
+}(), dn = 2, hn = 4;
+
+var fn = s((function e(t) {
+  var n, r, s = this, a = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+  i(this, e), o(this, "bucketSize", 100), o(this, "refillRate", 10), o(this, "mutationBuckets", {}), 
+  o(this, "loggedTracker", {}), o(this, "refillBuckets", (function() {
+    Object.keys(s.mutationBuckets).forEach((function(e) {
+      s.mutationBuckets[e] = s.mutationBuckets[e] + s.refillRate, s.mutationBuckets[e] >= s.bucketSize && delete s.mutationBuckets[e];
+    }));
+  })), o(this, "getNodeOrRelevantParent", (function(e) {
+    var t = s.rrweb.mirror.getNode(e);
+    if ("svg" !== (null == t ? void 0 : t.nodeName) && t instanceof Element) {
+      var n = t.closest("svg");
+      if (n) return [ s.rrweb.mirror.getId(n), n ];
+    }
+    return [ e, t ];
+  })), o(this, "numberOfChanges", (function(e) {
+    var t, n, i, r, s, o, a, u;
+    return (null !== (t = null === (n = e.removes) || void 0 === n ? void 0 : n.length) && void 0 !== t ? t : 0) + (null !== (i = null === (r = e.attributes) || void 0 === r ? void 0 : r.length) && void 0 !== i ? i : 0) + (null !== (s = null === (o = e.texts) || void 0 === o ? void 0 : o.length) && void 0 !== s ? s : 0) + (null !== (a = null === (u = e.adds) || void 0 === u ? void 0 : u.length) && void 0 !== a ? a : 0);
+  })), o(this, "throttleMutations", (function(e) {
+    if (3 !== e.type || 0 !== e.data.source) return e;
+    var t = e.data, n = s.numberOfChanges(t);
+    t.attributes && (t.attributes = t.attributes.filter((function(e) {
+      var t, n, i, r = u(s.getNodeOrRelevantParent(e.id), 2), o = r[0], a = r[1];
+      if (0 === s.mutationBuckets[o]) return !1;
+      (s.mutationBuckets[o] = null !== (t = s.mutationBuckets[o]) && void 0 !== t ? t : s.bucketSize, 
+      s.mutationBuckets[o] = Math.max(s.mutationBuckets[o] - 1, 0), 0 === s.mutationBuckets[o]) && (s.loggedTracker[o] || (s.loggedTracker[o] = !0, 
+      null === (n = (i = s.options).onBlockedNode) || void 0 === n || n.call(i, o, a)));
+      return e;
+    })));
+    var i = s.numberOfChanges(t);
+    return 0 !== i || n === i ? e : void 0;
+  })), this.rrweb = t, this.options = a, this.refillRate = null !== (n = this.options.refillRate) && void 0 !== n ? n : this.refillRate, 
+  this.bucketSize = null !== (r = this.options.bucketSize) && void 0 !== r ? r : this.bucketSize, 
+  setInterval((function() {
+    s.refillBuckets();
+  }), 1e3);
+})), pn = function(e) {
+  return e[e.DomContentLoaded = 0] = "DomContentLoaded", e[e.Load = 1] = "Load", e[e.FullSnapshot = 2] = "FullSnapshot", 
+  e[e.IncrementalSnapshot = 3] = "IncrementalSnapshot", e[e.Meta = 4] = "Meta", e[e.Custom = 5] = "Custom", 
+  e[e.Plugin = 6] = "Plugin", e;
+}(pn || {});
+
+function gn(e) {
   return e ? V(e).split(/\s+/) : [];
 }
 
-function se(e) {
+function vn(e) {
   var t = "";
   switch (n(e.className)) {
    case "string":
@@ -371,51 +1405,51 @@ function se(e) {
    default:
     t = "";
   }
-  return re(t);
+  return gn(t);
 }
 
-function oe(e) {
-  return F(e) ? null : V(e).split(/(\s+)/).filter((function(e) {
-    return Se(e);
+function _n(e) {
+  return R(e) ? null : V(e).split(/(\s+)/).filter((function(e) {
+    return Mn(e);
   })).join("").replace(/[\r\n]/g, " ").replace(/[ ]+/g, " ").substring(0, 255);
 }
 
-function ae(e) {
+function mn(e) {
   var t = "";
-  return ge(e) && !ve(e) && e.childNodes && e.childNodes.length && z(e.childNodes, (function(e) {
+  return Pn(e) && !xn(e) && e.childNodes && e.childNodes.length && G(e.childNodes, (function(e) {
     var n;
-    ce(e) && e.textContent && (t += null !== (n = oe(e.textContent)) && void 0 !== n ? n : "");
+    kn(e) && e.textContent && (t += null !== (n = _n(e.textContent)) && void 0 !== n ? n : "");
   })), V(t);
 }
 
-function ue(e) {
+function yn(e) {
   return !!e && 1 === e.nodeType;
 }
 
-function le(e, t) {
+function bn(e, t) {
   return !!e && !!e.tagName && e.tagName.toLowerCase() === t.toLowerCase();
 }
 
-function ce(e) {
+function kn(e) {
   return !!e && 3 === e.nodeType;
 }
 
-function de(e) {
+function wn(e) {
   return !!e && 11 === e.nodeType;
 }
 
-var he = [ "a", "button", "form", "input", "select", "textarea", "label" ];
+var Sn = [ "a", "button", "form", "input", "select", "textarea", "label" ];
 
-function fe(e) {
+function Fn(e) {
   var t = e.parentNode;
-  return !(!t || !ue(t)) && t;
+  return !(!t || !yn(t)) && t;
 }
 
-function pe(e, t) {
+function Rn(e, t) {
   var i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : void 0, r = arguments.length > 3 ? arguments[3] : void 0, s = arguments.length > 4 ? arguments[4] : void 0;
-  if (!P || !e || le(e, "html") || !ue(e)) return !1;
+  if (!I || !e || bn(e, "html") || !yn(e)) return !1;
   if (null != i && i.url_allowlist) {
-    var o = P.location.href, a = i.url_allowlist;
+    var o = I.location.href, a = i.url_allowlist;
     if (a && !a.some((function(e) {
       return o.match(e);
     }))) return !1;
@@ -426,11 +1460,11 @@ function pe(e, t) {
       return t.type === e;
     }))) return !1;
   }
-  for (var l = !1, c = [ e ], d = !0, f = e; f.parentNode && !le(f, "body"); ) if (de(f.parentNode)) c.push(f.parentNode.host), 
+  for (var l = !1, c = [ e ], d = !0, f = e; f.parentNode && !bn(f, "body"); ) if (wn(f.parentNode)) c.push(f.parentNode.host), 
   f = f.parentNode.host; else {
-    if (!(d = fe(f))) break;
-    if (r || he.indexOf(d.tagName.toLowerCase()) > -1) l = !0; else {
-      var p = P.getComputedStyle(d);
+    if (!(d = Fn(f))) break;
+    if (r || Sn.indexOf(d.tagName.toLowerCase()) > -1) l = !0; else {
+      var p = I.getComputedStyle(d);
       p && "pointer" === p.getPropertyValue("cursor") && (l = !0);
     }
     c.push(d), f = d;
@@ -483,7 +1517,7 @@ function pe(e, t) {
     }
     return !1;
   }(c, i)) return !1;
-  var g = P.getComputedStyle(e);
+  var g = I.getComputedStyle(e);
   if (g && "pointer" === g.getPropertyValue("cursor") && "click" === t.type) return !0;
   var v = e.tagName.toLowerCase();
   switch (v) {
@@ -499,64 +1533,64 @@ function pe(e, t) {
     return (s || [ "change", "click" ]).indexOf(t.type) >= 0;
 
    default:
-    return l ? (s || [ "click" ]).indexOf(t.type) >= 0 : (s || [ "click" ]).indexOf(t.type) >= 0 && (he.indexOf(v) > -1 || "true" === e.getAttribute("contenteditable"));
+    return l ? (s || [ "click" ]).indexOf(t.type) >= 0 : (s || [ "click" ]).indexOf(t.type) >= 0 && (Sn.indexOf(v) > -1 || "true" === e.getAttribute("contenteditable"));
   }
 }
 
-function ge(e) {
-  for (var t = e; t.parentNode && !le(t, "body"); t = t.parentNode) {
-    var n = se(t);
-    if (Q(n, "ph-sensitive") || Q(n, "ph-no-capture")) return !1;
+function Pn(e) {
+  for (var t = e; t.parentNode && !bn(t, "body"); t = t.parentNode) {
+    var n = vn(t);
+    if (Y(n, "ph-sensitive") || Y(n, "ph-no-capture")) return !1;
   }
-  if (Q(se(e), "ph-include")) return !0;
+  if (Y(vn(e), "ph-include")) return !0;
   var i = e.type || "";
-  if (k(i)) switch (i.toLowerCase()) {
+  if (S(i)) switch (i.toLowerCase()) {
    case "hidden":
    case "password":
     return !1;
   }
   var r = e.name || e.id || "";
-  if (k(r)) {
+  if (S(r)) {
     if (/^cc|cardnum|ccnum|creditcard|csc|cvc|cvv|exp|pass|pwd|routing|seccode|securitycode|securitynum|socialsec|socsec|ssn/i.test(r.replace(/[^a-zA-Z0-9]/g, ""))) return !1;
   }
   return !0;
 }
 
-function ve(e) {
-  return !!(le(e, "input") && ![ "button", "checkbox", "submit", "reset" ].includes(e.type) || le(e, "select") || le(e, "textarea") || "true" === e.getAttribute("contenteditable"));
+function xn(e) {
+  return !!(bn(e, "input") && ![ "button", "checkbox", "submit", "reset" ].includes(e.type) || bn(e, "select") || bn(e, "textarea") || "true" === e.getAttribute("contenteditable"));
 }
 
-var _e = "(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])[0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11})", me = new RegExp("^(?:".concat(_e, ")$")), ye = new RegExp(_e), be = "\\d{3}-?\\d{2}-?\\d{4}", we = new RegExp("^(".concat(be, ")$")), ke = new RegExp("(".concat(be, ")"));
+var En = "(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])[0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11})", In = new RegExp("^(?:".concat(En, ")$")), Cn = new RegExp(En), $n = "\\d{3}-?\\d{2}-?\\d{4}", Tn = new RegExp("^(".concat($n, ")$")), qn = new RegExp("(".concat($n, ")"));
 
-function Se(e) {
+function Mn(e) {
   var t = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
-  if (F(e)) return !1;
-  if (k(e)) {
-    if (e = V(e), (t ? me : ye).test((e || "").replace(/[- ]/g, ""))) return !1;
-    if ((t ? we : ke).test(e)) return !1;
+  if (R(e)) return !1;
+  if (S(e)) {
+    if (e = V(e), (t ? In : Cn).test((e || "").replace(/[- ]/g, ""))) return !1;
+    if ((t ? Tn : qn).test(e)) return !1;
   }
   return !0;
 }
 
-function Fe(e) {
-  var t = ae(e);
-  return Se(t = "".concat(t, " ").concat(Re(e)).trim()) ? t : "";
+function On(e) {
+  var t = mn(e);
+  return Mn(t = "".concat(t, " ").concat(An(e)).trim()) ? t : "";
 }
 
-function Re(e) {
+function An(e) {
   var t = "";
-  return e && e.childNodes && e.childNodes.length && z(e.childNodes, (function(e) {
+  return e && e.childNodes && e.childNodes.length && G(e.childNodes, (function(e) {
     var n;
     if (e && "span" === (null === (n = e.tagName) || void 0 === n ? void 0 : n.toLowerCase())) try {
-      var i = ae(e);
-      t = "".concat(t, " ").concat(i).trim(), e.childNodes && e.childNodes.length && (t = "".concat(t, " ").concat(Re(e)).trim());
+      var i = mn(e);
+      t = "".concat(t, " ").concat(i).trim(), e.childNodes && e.childNodes.length && (t = "".concat(t, " ").concat(An(e)).trim());
     } catch (e) {
-      j.error(e);
+      U.error(e);
     }
   })), t;
 }
 
-function xe(e) {
+function Dn(e) {
   return function(e) {
     var n = e.map((function(e) {
       var n, i, r = "";
@@ -584,13 +1618,13 @@ function xe(e) {
       } : {}), e.attr_id ? {
         attr_id: e.attr_id
       } : {}), e.attributes), c = {};
-      return Y(l).sort((function(e, t) {
+      return J(l).sort((function(e, t) {
         var n = u(e, 1)[0], i = u(t, 1)[0];
         return n.localeCompare(i);
       })).forEach((function(e) {
         var t = u(e, 2), n = t[0], i = t[1];
-        return c[Ee(n.toString())] = Ee(i.toString());
-      })), r += ":", r += Y(l).map((function(e) {
+        return c[Ln(n.toString())] = Ln(i.toString());
+      })), r += ":", r += J(l).map((function(e) {
         var t = u(e, 2), n = t[0], i = t[1];
         return "".concat(n, '="').concat(i, '"');
       })).join("");
@@ -602,13 +1636,13 @@ function xe(e) {
         text: null === (t = e.$el_text) || void 0 === t ? void 0 : t.slice(0, 400),
         tag_name: e.tag_name,
         href: null === (n = e.attr__href) || void 0 === n ? void 0 : n.slice(0, 2048),
-        attr_class: Pe(e),
+        attr_class: Nn(e),
         attr_id: e.attr__id,
         nth_child: e.nth_child,
         nth_of_type: e.nth_of_type,
         attributes: {}
       };
-      return Y(e).filter((function(e) {
+      return J(e).filter((function(e) {
         return 0 === u(e, 1)[0].indexOf("attr__");
       })).forEach((function(e) {
         var t = u(e, 2), n = t[0], r = t[1];
@@ -618,1199 +1652,16 @@ function xe(e) {
   }(e));
 }
 
-function Ee(e) {
+function Ln(e) {
   return e.replace(/"|\\"/g, '\\"');
 }
 
-function Pe(e) {
+function Nn(e) {
   var t = e.attr__class;
-  return t ? m(t) ? t : re(t) : void 0;
+  return t ? m(t) ? t : gn(t) : void 0;
 }
 
-var Ie = function() {
-  function e(t) {
-    i(this, e), this.clicks = [], this.enabled = t;
-  }
-  return s(e, [ {
-    key: "isRageClick",
-    value: function(e, t, n) {
-      if (!this.enabled) return !1;
-      var i = this.clicks[this.clicks.length - 1];
-      if (i && Math.abs(e - i.x) + Math.abs(t - i.y) < 30 && n - i.timestamp < 1e3) {
-        if (this.clicks.push({
-          x: e,
-          y: t,
-          timestamp: n
-        }), 3 === this.clicks.length) return !0;
-      } else this.clicks = [ {
-        x: e,
-        y: t,
-        timestamp: n
-      } ];
-      return !1;
-    }
-  } ]), e;
-}(), Ce = "$people_distinct_id", Te = "__alias", $e = "__timers", Ae = "$autocapture_disabled_server_side", Oe = "$session_recording_enabled_server_side", Me = "$console_log_recording_enabled_server_side", qe = "$session_recording_network_payload_capture", De = "$session_recording_canvas_recording", Le = "$sesid", Ne = "$session_is_sampled", Be = "$enabled_feature_flags", He = "$early_access_features", je = "$stored_person_properties", Ue = "$stored_group_properties", Ve = "$surveys", We = "$flag_call_reported", ze = "$user_state", Ge = "$posthog_quota_limited", Qe = "$client_session_props", Ye = [ Ce, Te, "__cmpns", $e, Oe, Le, Be, ze, Ge, He, Ue, je, Ve, We, Qe ], Je = "$copy_autocapture";
-
-function Ke(e, t) {
-  return t.length > e ? t.slice(0, e) + "..." : t;
-}
-
-var Xe, Ze = {
-  _initializedTokens: [],
-  _isDisabledServerSide: null,
-  _isAutocaptureEnabled: !1,
-  _setIsAutocaptureEnabled: function(e) {
-    var t, n = S(this._isDisabledServerSide) ? !(null === (t = e.persistence) || void 0 === t || !t.props[Ae]) : this._isDisabledServerSide, i = !!e.config.autocapture;
-    this._isAutocaptureEnabled = i && !n;
-  },
-  _previousElementSibling: function(e) {
-    if (e.previousElementSibling) return e.previousElementSibling;
-    var t = e;
-    do {
-      t = t.previousSibling;
-    } while (t && !ue(t));
-    return t;
-  },
-  _getAugmentPropertiesFromElement: function(e) {
-    if (!ge(e)) return {};
-    var t = {};
-    return z(e.attributes, (function(e) {
-      if (0 === e.name.indexOf("data-ph-capture-attribute")) {
-        var n = e.name.replace("data-ph-capture-attribute-", ""), i = e.value;
-        n && i && Se(i) && (t[n] = i);
-      }
-    })), t;
-  },
-  _getPropertiesFromElement: function(e, t, n) {
-    var i, r = e.tagName.toLowerCase(), s = {
-      tag_name: r
-    };
-    he.indexOf(r) > -1 && !n && ("a" === r.toLowerCase() || "button" === r.toLowerCase() ? s.$el_text = Ke(1024, Fe(e)) : s.$el_text = Ke(1024, ae(e)));
-    var o = se(e);
-    o.length > 0 && (s.classes = o.filter((function(e) {
-      return "" !== e;
-    })));
-    var a = null === (i = this.config) || void 0 === i ? void 0 : i.element_attribute_ignorelist;
-    z(e.attributes, (function(n) {
-      var i;
-      if ((!ve(e) || -1 !== [ "name", "id", "class" ].indexOf(n.name)) && ((null == a || !a.includes(n.name)) && !t && Se(n.value) && (i = n.name, 
-      !k(i) || "_ngcontent" !== i.substring(0, 10) && "_nghost" !== i.substring(0, 7)))) {
-        var r = n.value;
-        "class" === n.name && (r = re(r).join(" ")), s["attr__" + n.name] = Ke(1024, r);
-      }
-    }));
-    for (var u = 1, l = 1, c = e; c = this._previousElementSibling(c); ) u++, c.tagName === e.tagName && l++;
-    return s.nth_child = u, s.nth_of_type = l, s;
-  },
-  _getDefaultProperties: function(e) {
-    return {
-      $event_type: e,
-      $ce_version: 1
-    };
-  },
-  _extractCustomPropertyValue: function(e) {
-    var t = [];
-    return z(null == O ? void 0 : O.querySelectorAll(e.css_selector), (function(e) {
-      var n;
-      [ "input", "select" ].indexOf(e.tagName.toLowerCase()) > -1 ? n = e.value : e.textContent && (n = e.textContent), 
-      Se(n) && t.push(n);
-    })), t.join(", ");
-  },
-  _getCustomProperties: function(e) {
-    var t = this, n = {};
-    return z(this._customProperties, (function(i) {
-      z(i.event_selectors, (function(r) {
-        z(null == O ? void 0 : O.querySelectorAll(r), (function(r) {
-          Q(e, r) && ge(r) && (n[i.name] = t._extractCustomPropertyValue(i));
-        }));
-      }));
-    })), n;
-  },
-  _getEventTarget: function(e) {
-    return w(e.target) ? e.srcElement || null : null !== (t = e.target) && void 0 !== t && t.shadowRoot ? e.composedPath()[0] || null : e.target || null;
-    var t;
-  },
-  _captureEvent: function(e, t) {
-    var n, i = this, r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "$autocapture", s = arguments.length > 3 ? arguments[3] : void 0, o = this._getEventTarget(e);
-    (ce(o) && (o = o.parentNode || null), "$autocapture" === r && "click" === e.type && e instanceof MouseEvent) && (null !== (n = this.rageclicks) && void 0 !== n && n.isRageClick(e.clientX, e.clientY, (new Date).getTime()) && this._captureEvent(e, t, "$rageclick"));
-    var a = r === Je;
-    if (o && pe(o, e, this.config, a, a ? [ "copy", "cut" ] : void 0)) {
-      for (var u, l, c = [ o ], d = o; d.parentNode && !le(d, "body"); ) de(d.parentNode) ? (c.push(d.parentNode.host), 
-      d = d.parentNode.host) : (c.push(d.parentNode), d = d.parentNode);
-      var h, f = [], p = {}, g = !1;
-      if (z(c, (function(e) {
-        var n = ge(e);
-        "a" === e.tagName.toLowerCase() && (h = e.getAttribute("href"), h = n && Se(h) && h), 
-        Q(se(e), "ph-no-capture") && (g = !0), f.push(i._getPropertiesFromElement(e, t.config.mask_all_element_attributes, t.config.mask_all_text));
-        var r = i._getAugmentPropertiesFromElement(e);
-        G(p, r);
-      })), t.config.mask_all_text || ("a" === o.tagName.toLowerCase() || "button" === o.tagName.toLowerCase() ? f[0].$el_text = Fe(o) : f[0].$el_text = ae(o)), 
-      h && (f[0].attr__href = h), g) return !1;
-      var v = G(this._getDefaultProperties(e.type), t.elementsChainAsString ? {
-        $elements_chain: xe(f)
-      } : {
-        $elements: f
-      }, null !== (u = f[0]) && void 0 !== u && u.$el_text ? {
-        $el_text: null === (l = f[0]) || void 0 === l ? void 0 : l.$el_text
-      } : {}, this._getCustomProperties(c), p, s || {});
-      if (r === Je) {
-        var _, m = oe(null == P || null === (_ = P.getSelection()) || void 0 === _ ? void 0 : _.toString()), y = e.type || "clipboard";
-        if (!m) return !1;
-        v.$selected_content = m, v.$copy_type = y;
-      }
-      return t.capture(r, v), !0;
-    }
-  },
-  _navigate: function(e) {
-    P && (P.location.href = e);
-  },
-  _addDomEventHandlers: function(e) {
-    var t = this;
-    if (P && O) {
-      var n = function(n) {
-        n = n || (null == P ? void 0 : P.event), t._captureEvent(n, e);
-      }, i = function(n) {
-        n = n || (null == P ? void 0 : P.event), t._captureEvent(n, e, Je);
-      };
-      ne(O, "submit", n, !1, !0), ne(O, "change", n, !1, !0), ne(O, "click", n, !1, !0), 
-      b(e.config.autocapture) && e.config.autocapture.capture_copied_text && (ne(O, "copy", i, !1, !0), 
-      ne(O, "cut", i, !1, !0));
-    }
-  },
-  _customProperties: [],
-  rageclicks: null,
-  config: void 0,
-  init: function(e) {
-    var t;
-    x(e.__autocapture) || (this.config = e.__autocapture), null !== (t = this.config) && void 0 !== t && t.url_allowlist && (this.config.url_allowlist = this.config.url_allowlist.map((function(e) {
-      return new RegExp(e);
-    }))), this.rageclicks = new Ie(e.config.rageclick);
-  },
-  afterDecideResponse: function(e, t) {
-    var n = t.config.token;
-    this._initializedTokens.indexOf(n) > -1 ? j.info('autocapture already initialized for token "' + n + '"') : (t.persistence && t.persistence.register(o({}, Ae, !!e.autocapture_opt_out)), 
-    this._isDisabledServerSide = !!e.autocapture_opt_out, this._setIsAutocaptureEnabled(t), 
-    this._initializedTokens.push(n), e && e.config && e.config.enable_collect_everything && this._isAutocaptureEnabled ? (e.custom_properties && (this._customProperties = e.custom_properties), 
-    this._addDomEventHandlers(t)) : t.__autocapture = !1);
-  },
-  enabledForProject: function(e, t, n) {
-    if (!e) return !0;
-    t = w(t) ? 10 : t, n = w(n) ? 10 : n;
-    for (var i = 0, r = 0; r < e.length; r++) i += e.charCodeAt(r);
-    return i % t < n;
-  },
-  isBrowserSupported: function() {
-    return y(null == O ? void 0 : O.querySelectorAll);
-  }
-};
-
-!function(e) {
-  for (var t in e) y(e[t]) && (e[t] = e[t].bind(e));
-}(Ze), function(e) {
-  for (var t in e) y(e[t]) && (e[t] = X(e[t]));
-}(Ze), function(e) {
-  e.GZipJS = "gzip-js", e.Base64 = "base64";
-}(Xe || (Xe = {}));
-
-var et = "$active_feature_flags", tt = "$override_feature_flags", nt = "$feature_flag_payloads", it = function(e) {
-  var t, n = {}, i = h(Y(e || {}));
-  try {
-    for (i.s(); !(t = i.n()).done; ) {
-      var r = u(t.value, 2), s = r[0], o = r[1];
-      o && (n[s] = o);
-    }
-  } catch (e) {
-    i.e(e);
-  } finally {
-    i.f();
-  }
-  return n;
-}, rt = function() {
-  function e(t) {
-    i(this, e), this.instance = t, this._override_warning = !1, this.featureFlagEventHandlers = [], 
-    this.reloadFeatureFlagsQueued = !1, this.reloadFeatureFlagsInAction = !1;
-  }
-  return s(e, [ {
-    key: "getFlags",
-    value: function() {
-      return Object.keys(this.getFlagVariants());
-    }
-  }, {
-    key: "getFlagVariants",
-    value: function() {
-      var e = this.instance.get_property(Be), t = this.instance.get_property(tt);
-      if (!t) return e || {};
-      for (var n = G({}, e), i = Object.keys(t), r = 0; r < i.length; r++) !1 === t[i[r]] ? delete n[i[r]] : n[i[r]] = t[i[r]];
-      return this._override_warning || (j.warn(" Overriding feature flags!", {
-        enabledFlags: e,
-        overriddenFlags: t,
-        finalFlags: n
-      }), this._override_warning = !0), n;
-    }
-  }, {
-    key: "getFlagPayloads",
-    value: function() {
-      return this.instance.get_property(nt) || {};
-    }
-  }, {
-    key: "reloadFeatureFlags",
-    value: function() {
-      this.reloadFeatureFlagsQueued || (this.reloadFeatureFlagsQueued = !0, this._startReloadTimer());
-    }
-  }, {
-    key: "setAnonymousDistinctId",
-    value: function(e) {
-      this.$anon_distinct_id = e;
-    }
-  }, {
-    key: "setReloadingPaused",
-    value: function(e) {
-      this.reloadFeatureFlagsInAction = e;
-    }
-  }, {
-    key: "resetRequestQueue",
-    value: function() {
-      this.reloadFeatureFlagsQueued = !1;
-    }
-  }, {
-    key: "_startReloadTimer",
-    value: function() {
-      var e = this;
-      this.reloadFeatureFlagsQueued && !this.reloadFeatureFlagsInAction && setTimeout((function() {
-        !e.reloadFeatureFlagsInAction && e.reloadFeatureFlagsQueued && (e.reloadFeatureFlagsQueued = !1, 
-        e._reloadFeatureFlagsRequest());
-      }), 5);
-    }
-  }, {
-    key: "_reloadFeatureFlagsRequest",
-    value: function() {
-      var e = this;
-      if (!this.instance.config.advanced_disable_feature_flags) {
-        this.setReloadingPaused(!0);
-        var t = this.instance.config.token, n = this.instance.get_property(je), i = this.instance.get_property(Ue), r = {
-          token: t,
-          distinct_id: this.instance.get_distinct_id(),
-          groups: this.instance.getGroups(),
-          $anon_distinct_id: this.$anon_distinct_id,
-          person_properties: n,
-          group_properties: i,
-          disable_flags: this.instance.config.advanced_disable_feature_flags || void 0
-        };
-        this.instance._send_request({
-          method: "POST",
-          url: this.instance.requestRouter.endpointFor("api", "/decide/?v=3"),
-          data: r,
-          compression: Xe.Base64,
-          timeout: this.instance.config.feature_flag_request_timeout_ms,
-          callback: function(t) {
-            var n;
-            e.setReloadingPaused(!1);
-            var i = !0;
-            200 === t.statusCode && (e.$anon_distinct_id = void 0, i = !1), e.receivedFeatureFlags(null !== (n = t.json) && void 0 !== n ? n : {}, i), 
-            e._startReloadTimer();
-          }
-        });
-      }
-    }
-  }, {
-    key: "getFeatureFlag",
-    value: function(e) {
-      var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-      if (this.instance.decideEndpointWasHit || this.getFlags() && this.getFlags().length > 0) {
-        var n, i = this.getFlagVariants()[e], r = "".concat(i), s = this.instance.get_property(We) || {};
-        if (t.send_event || !("send_event" in t)) if (!(e in s) || !s[e].includes(r)) m(s[e]) ? s[e].push(r) : s[e] = [ r ], 
-        null === (n = this.instance.persistence) || void 0 === n || n.register(o({}, We, s)), 
-        this.instance.capture("$feature_flag_called", {
-          $feature_flag: e,
-          $feature_flag_response: i
-        });
-        return i;
-      }
-      j.warn('getFeatureFlag for key "' + e + "\" failed. Feature flags didn't load in time.");
-    }
-  }, {
-    key: "getFeatureFlagPayload",
-    value: function(e) {
-      return this.getFlagPayloads()[e];
-    }
-  }, {
-    key: "isFeatureEnabled",
-    value: function(e) {
-      var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-      if (this.instance.decideEndpointWasHit || this.getFlags() && this.getFlags().length > 0) return !!this.getFeatureFlag(e, t);
-      j.warn('isFeatureEnabled for key "' + e + "\" failed. Feature flags didn't load in time.");
-    }
-  }, {
-    key: "addFeatureFlagsHandler",
-    value: function(e) {
-      this.featureFlagEventHandlers.push(e);
-    }
-  }, {
-    key: "removeFeatureFlagsHandler",
-    value: function(e) {
-      this.featureFlagEventHandlers = this.featureFlagEventHandlers.filter((function(t) {
-        return t !== e;
-      }));
-    }
-  }, {
-    key: "receivedFeatureFlags",
-    value: function(e, n) {
-      if (this.instance.persistence) {
-        this.instance.decideEndpointWasHit = !0;
-        var i = this.getFlagVariants(), r = this.getFlagPayloads();
-        !function(e, n) {
-          var i, r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {}, s = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : {}, a = e.featureFlags, u = e.featureFlagPayloads;
-          if (a) if (m(a)) {
-            var l, c = {};
-            if (a) for (var d = 0; d < a.length; d++) c[a[d]] = !0;
-            n && n.register((o(l = {}, et, a), o(l, Be, c), l));
-          } else {
-            var h = a, f = u;
-            e.errorsWhileComputingFlags && (h = t(t({}, r), h), f = t(t({}, s), f)), n && n.register((o(i = {}, et, Object.keys(it(h))), 
-            o(i, Be, h || {}), o(i, nt, f || {}), i));
-          }
-        }(e, this.instance.persistence, i, r), this._fireFeatureFlagsCallbacks(n);
-      }
-    }
-  }, {
-    key: "override",
-    value: function(e) {
-      if (!this.instance.__loaded || !this.instance.persistence) return j.uninitializedWarning("posthog.feature_flags.override");
-      if (this._override_warning = !1, !1 === e) this.instance.persistence.unregister(tt); else if (m(e)) {
-        for (var t = {}, n = 0; n < e.length; n++) t[e[n]] = !0;
-        this.instance.persistence.register(o({}, tt, t));
-      } else this.instance.persistence.register(o({}, tt, e));
-    }
-  }, {
-    key: "onFeatureFlags",
-    value: function(e) {
-      var t = this;
-      if (this.addFeatureFlagsHandler(e), this.instance.decideEndpointWasHit) {
-        var n = this._prepareFeatureFlagsForCallbacks(), i = n.flags, r = n.flagVariants;
-        e(i, r);
-      }
-      return function() {
-        return t.removeFeatureFlagsHandler(e);
-      };
-    }
-  }, {
-    key: "updateEarlyAccessFeatureEnrollment",
-    value: function(e, n) {
-      var i, r, s = o({}, "$feature_enrollment/".concat(e), n);
-      this.instance.capture("$feature_enrollment_update", {
-        $feature_flag: e,
-        $feature_enrollment: n,
-        $set: s
-      }), this.setPersonPropertiesForFlags(s, !1);
-      var a = t(t({}, this.getFlagVariants()), {}, o({}, e, n));
-      null === (i = this.instance.persistence) || void 0 === i || i.register((o(r = {}, et, Object.keys(it(a))), 
-      o(r, Be, a), r)), this._fireFeatureFlagsCallbacks();
-    }
-  }, {
-    key: "getEarlyAccessFeatures",
-    value: function(e) {
-      var t = this, n = arguments.length > 1 && void 0 !== arguments[1] && arguments[1], i = this.instance.get_property(He);
-      if (i && !n) return e(i);
-      this.instance._send_request({
-        transport: "XHR",
-        url: this.instance.requestRouter.endpointFor("api", "/api/early_access_features/?token=".concat(this.instance.config.token)),
-        method: "GET",
-        callback: function(n) {
-          var i;
-          if (n.json) {
-            var r = n.json.earlyAccessFeatures;
-            return null === (i = t.instance.persistence) || void 0 === i || i.register(o({}, He, r)), 
-            e(r);
-          }
-        }
-      });
-    }
-  }, {
-    key: "_prepareFeatureFlagsForCallbacks",
-    value: function() {
-      var e = this.getFlags(), t = this.getFlagVariants();
-      return {
-        flags: e.filter((function(e) {
-          return t[e];
-        })),
-        flagVariants: Object.keys(t).filter((function(e) {
-          return t[e];
-        })).reduce((function(e, n) {
-          return e[n] = t[n], e;
-        }), {})
-      };
-    }
-  }, {
-    key: "_fireFeatureFlagsCallbacks",
-    value: function(e) {
-      var t = this._prepareFeatureFlagsForCallbacks(), n = t.flags, i = t.flagVariants;
-      this.featureFlagEventHandlers.forEach((function(t) {
-        return t(n, i, {
-          errorsLoading: e
-        });
-      }));
-    }
-  }, {
-    key: "setPersonPropertiesForFlags",
-    value: function(e) {
-      var n = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1], i = this.instance.get_property(je) || {};
-      this.instance.register(o({}, je, t(t({}, i), e))), n && this.instance.reloadFeatureFlags();
-    }
-  }, {
-    key: "resetPersonPropertiesForFlags",
-    value: function() {
-      this.instance.unregister(je);
-    }
-  }, {
-    key: "setGroupPropertiesForFlags",
-    value: function(e) {
-      var n = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1], i = this.instance.get_property(Ue) || {};
-      0 !== Object.keys(i).length && Object.keys(i).forEach((function(n) {
-        i[n] = t(t({}, i[n]), e[n]), delete e[n];
-      })), this.instance.register(o({}, Ue, t(t({}, i), e))), n && this.instance.reloadFeatureFlags();
-    }
-  }, {
-    key: "resetGroupPropertiesForFlags",
-    value: function(e) {
-      if (e) {
-        var n = this.instance.get_property(Ue) || {};
-        this.instance.register(o({}, Ue, t(t({}, n), {}, o({}, e, {}))));
-      } else this.instance.unregister(Ue);
-    }
-  } ]), e;
-}();
-
-Math.trunc || (Math.trunc = function(e) {
-  return e < 0 ? Math.ceil(e) : Math.floor(e);
-}), Number.isInteger || (Number.isInteger = function(e) {
-  return R(e) && isFinite(e) && Math.floor(e) === e;
-});
-
-var st = "0123456789abcdef", ot = function() {
-  function e(t) {
-    if (i(this, e), this.bytes = t, 16 !== t.length) throw new TypeError("not 128-bit length");
-  }
-  return s(e, [ {
-    key: "toString",
-    value: function() {
-      for (var e = "", t = 0; t < this.bytes.length; t++) e = e + st.charAt(this.bytes[t] >>> 4) + st.charAt(15 & this.bytes[t]), 
-      3 !== t && 5 !== t && 7 !== t && 9 !== t || (e += "-");
-      if (36 !== e.length) throw new Error("Invalid UUIDv7 was generated");
-      return e;
-    }
-  }, {
-    key: "clone",
-    value: function() {
-      return new e(this.bytes.slice(0));
-    }
-  }, {
-    key: "equals",
-    value: function(e) {
-      return 0 === this.compareTo(e);
-    }
-  }, {
-    key: "compareTo",
-    value: function(e) {
-      for (var t = 0; t < 16; t++) {
-        var n = this.bytes[t] - e.bytes[t];
-        if (0 !== n) return Math.sign(n);
-      }
-      return 0;
-    }
-  } ], [ {
-    key: "fromFieldsV7",
-    value: function(t, n, i, r) {
-      if (!Number.isInteger(t) || !Number.isInteger(n) || !Number.isInteger(i) || !Number.isInteger(r) || t < 0 || n < 0 || i < 0 || r < 0 || t > 0xffffffffffff || n > 4095 || i > 1073741823 || r > 4294967295) throw new RangeError("invalid field value");
-      var s = new Uint8Array(16);
-      return s[0] = t / Math.pow(2, 40), s[1] = t / Math.pow(2, 32), s[2] = t / Math.pow(2, 24), 
-      s[3] = t / Math.pow(2, 16), s[4] = t / Math.pow(2, 8), s[5] = t, s[6] = 112 | n >>> 8, 
-      s[7] = n, s[8] = 128 | i >>> 24, s[9] = i >>> 16, s[10] = i >>> 8, s[11] = i, s[12] = r >>> 24, 
-      s[13] = r >>> 16, s[14] = r >>> 8, s[15] = r, new e(s);
-    }
-  } ]), e;
-}(), at = function() {
-  function e() {
-    i(this, e), o(this, "timestamp", 0), o(this, "counter", 0), o(this, "random", new ct);
-  }
-  return s(e, [ {
-    key: "generate",
-    value: function() {
-      var e = this.generateOrAbort();
-      if (w(e)) {
-        this.timestamp = 0;
-        var t = this.generateOrAbort();
-        if (w(t)) throw new Error("Could not generate UUID after timestamp reset");
-        return t;
-      }
-      return e;
-    }
-  }, {
-    key: "generateOrAbort",
-    value: function() {
-      var e = Date.now();
-      if (e > this.timestamp) this.timestamp = e, this.resetCounter(); else {
-        if (!(e + 1e4 > this.timestamp)) return;
-        this.counter++, this.counter > 4398046511103 && (this.timestamp++, this.resetCounter());
-      }
-      return ot.fromFieldsV7(this.timestamp, Math.trunc(this.counter / Math.pow(2, 30)), this.counter & Math.pow(2, 30) - 1, this.random.nextUint32());
-    }
-  }, {
-    key: "resetCounter",
-    value: function() {
-      this.counter = 1024 * this.random.nextUint32() + (1023 & this.random.nextUint32());
-    }
-  } ]), e;
-}(), ut = function(e) {
-  if ("undefined" != typeof UUIDV7_DENY_WEAK_RNG && UUIDV7_DENY_WEAK_RNG) throw new Error("no cryptographically strong RNG available");
-  for (var t = 0; t < e.length; t++) e[t] = 65536 * Math.trunc(65536 * Math.random()) + Math.trunc(65536 * Math.random());
-  return e;
-};
-
-P && !w(P.crypto) && crypto.getRandomValues && (ut = function(e) {
-  return crypto.getRandomValues(e);
-});
-
-var lt, ct = function() {
-  function e() {
-    i(this, e), o(this, "buffer", new Uint32Array(8)), o(this, "cursor", 1 / 0);
-  }
-  return s(e, [ {
-    key: "nextUint32",
-    value: function() {
-      return this.cursor >= this.buffer.length && (ut(this.buffer), this.cursor = 0), 
-      this.buffer[this.cursor++];
-    }
-  } ]), e;
-}(), dt = function() {
-  return ht().toString();
-}, ht = function() {
-  return (lt || (lt = new at)).generate();
-}, ft = "Thu, 01 Jan 1970 00:00:00 GMT", pt = "";
-
-var gt = /[a-z0-9][a-z0-9-]+\.[a-z]{2,}$/i;
-
-function vt(e, t) {
-  if (t) {
-    var n = function(e) {
-      var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : O;
-      if (pt) return pt;
-      if (!t) return "";
-      if ([ "localhost", "127.0.0.1" ].includes(e)) return "";
-      for (var n = e.split("."), i = Math.min(n.length, 8), r = "dmn_chk_" + dt(), s = new RegExp("(^|;)\\s*" + r + "=1"); !pt && i--; ) {
-        var o = n.slice(i).join("."), a = r + "=1;domain=." + o;
-        t.cookie = a, s.test(t.cookie) && (t.cookie = a + ";expires=" + ft, pt = o);
-      }
-      return pt;
-    }(e);
-    if (!n) {
-      var i = function(e) {
-        var t = e.match(gt);
-        return t ? t[0] : "";
-      }(e);
-      i !== n && j.info("Warning: cookie subdomain discovery mismatch", i, n), n = i;
-    }
-    return n ? "; domain=." + n : "";
-  }
-  return "";
-}
-
-var _t, mt = {
-  is_supported: function() {
-    return !!O;
-  },
-  error: function(e) {
-    j.error("cookieStore error: " + e);
-  },
-  get: function(e) {
-    if (O) {
-      try {
-        for (var t = e + "=", n = O.cookie.split(";").filter((function(e) {
-          return e.length;
-        })), i = 0; i < n.length; i++) {
-          for (var r = n[i]; " " == r.charAt(0); ) r = r.substring(1, r.length);
-          if (0 === r.indexOf(t)) return decodeURIComponent(r.substring(t.length, r.length));
-        }
-      } catch (e) {}
-      return null;
-    }
-  },
-  parse: function(e) {
-    var t;
-    try {
-      t = JSON.parse(mt.get(e)) || {};
-    } catch (e) {}
-    return t;
-  },
-  set: function(e, t, n, i, r) {
-    if (O) try {
-      var s = "", o = "", a = vt(O.location.hostname, i);
-      if (n) {
-        var u = new Date;
-        u.setTime(u.getTime() + 24 * n * 60 * 60 * 1e3), s = "; expires=" + u.toUTCString();
-      }
-      r && (o = "; secure");
-      var l = e + "=" + encodeURIComponent(JSON.stringify(t)) + s + "; SameSite=Lax; path=/" + a + o;
-      return l.length > 3686.4 && j.warn("cookieStore warning: large cookie, len=" + l.length), 
-      O.cookie = l, l;
-    } catch (e) {
-      return;
-    }
-  },
-  remove: function(e, t) {
-    try {
-      mt.set(e, "", -1, t);
-    } catch (e) {
-      return;
-    }
-  }
-}, yt = null, bt = {
-  is_supported: function() {
-    if (!S(yt)) return yt;
-    var e = !0;
-    if (w(P)) e = !1; else try {
-      var t = "__mplssupport__";
-      bt.set(t, "xyz"), '"xyz"' !== bt.get(t) && (e = !1), bt.remove(t);
-    } catch (t) {
-      e = !1;
-    }
-    return e || j.error("localStorage unsupported; falling back to cookie store"), yt = e, 
-    e;
-  },
-  error: function(e) {
-    j.error("localStorage error: " + e);
-  },
-  get: function(e) {
-    try {
-      return null == P ? void 0 : P.localStorage.getItem(e);
-    } catch (e) {
-      bt.error(e);
-    }
-    return null;
-  },
-  parse: function(e) {
-    try {
-      return JSON.parse(bt.get(e)) || {};
-    } catch (e) {}
-    return null;
-  },
-  set: function(e, t) {
-    try {
-      null == P || P.localStorage.setItem(e, JSON.stringify(t));
-    } catch (e) {
-      bt.error(e);
-    }
-  },
-  remove: function(e) {
-    try {
-      null == P || P.localStorage.removeItem(e);
-    } catch (e) {
-      bt.error(e);
-    }
-  }
-}, wt = [ "distinct_id", Le, Ne ], kt = t(t({}, bt), {}, {
-  parse: function(e) {
-    try {
-      var t = {};
-      try {
-        t = mt.parse(e) || {};
-      } catch (e) {}
-      var n = G(t, JSON.parse(bt.get(e) || "{}"));
-      return bt.set(e, n), n;
-    } catch (e) {}
-    return null;
-  },
-  set: function(e, t, n, i, r) {
-    try {
-      bt.set(e, t);
-      var s = {};
-      wt.forEach((function(e) {
-        t[e] && (s[e] = t[e]);
-      })), Object.keys(s).length && mt.set(e, s, n, i, r);
-    } catch (e) {
-      bt.error(e);
-    }
-  },
-  remove: function(e, t) {
-    try {
-      null == P || P.localStorage.removeItem(e), mt.remove(e, t);
-    } catch (e) {
-      bt.error(e);
-    }
-  }
-}), St = {}, Ft = {
-  is_supported: function() {
-    return !0;
-  },
-  error: function(e) {
-    j.error("memoryStorage error: " + e);
-  },
-  get: function(e) {
-    return St[e] || null;
-  },
-  parse: function(e) {
-    return St[e] || null;
-  },
-  set: function(e, t) {
-    St[e] = t;
-  },
-  remove: function(e) {
-    delete St[e];
-  }
-}, Rt = null, xt = {
-  is_supported: function() {
-    if (!S(Rt)) return Rt;
-    if (Rt = !0, w(P)) Rt = !1; else try {
-      var e = "__support__";
-      xt.set(e, "xyz"), '"xyz"' !== xt.get(e) && (Rt = !1), xt.remove(e);
-    } catch (e) {
-      Rt = !1;
-    }
-    return Rt;
-  },
-  error: function(e) {
-    j.error("sessionStorage error: ", e);
-  },
-  get: function(e) {
-    try {
-      return null == P ? void 0 : P.sessionStorage.getItem(e);
-    } catch (e) {
-      xt.error(e);
-    }
-    return null;
-  },
-  parse: function(e) {
-    try {
-      return JSON.parse(xt.get(e)) || null;
-    } catch (e) {}
-    return null;
-  },
-  set: function(e, t) {
-    try {
-      null == P || P.sessionStorage.setItem(e, JSON.stringify(t));
-    } catch (e) {
-      xt.error(e);
-    }
-  },
-  remove: function(e) {
-    try {
-      null == P || P.sessionStorage.removeItem(e);
-    } catch (e) {
-      xt.error(e);
-    }
-  }
-}, Et = [ "localhost", "127.0.0.1" ], Pt = function(e) {
-  var t = null == O ? void 0 : O.createElement("a");
-  return w(t) ? null : (t.href = e, t);
-}, It = function(e, t) {
-  return !!function(e) {
-    try {
-      new RegExp(e);
-    } catch (e) {
-      return !1;
-    }
-    return !0;
-  }(t) && new RegExp(t).test(e);
-}, Ct = function(e) {
-  var t, n, i = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "&", r = [];
-  return z(e, (function(e, i) {
-    w(e) || w(i) || "undefined" === i || (t = encodeURIComponent(function(e) {
-      return e instanceof File;
-    }(e) ? e.name : e.toString()), n = encodeURIComponent(i), r[r.length] = n + "=" + t);
-  })), r.join(i);
-}, Tt = function(e, t) {
-  for (var n, i = ((e.split("#")[0] || "").split("?")[1] || "").split("&"), r = 0; r < i.length; r++) {
-    var s = i[r].split("=");
-    if (s[0] === t) {
-      n = s;
-      break;
-    }
-  }
-  if (!m(n) || n.length < 2) return "";
-  var o = n[1];
-  try {
-    o = decodeURIComponent(o);
-  } catch (e) {
-    j.error("Skipping decoding for malformed query param: " + o);
-  }
-  return o.replace(/\+/g, " ");
-}, $t = function(e, t) {
-  var n = e.match(new RegExp(t + "=([^&]*)"));
-  return n ? n[1] : null;
-}, At = "Mobile", Ot = "iOS", Mt = "Android", qt = "Tablet", Dt = Mt + " " + qt, Lt = "iPad", Nt = "Apple", Bt = Nt + " Watch", Ht = "Safari", jt = "BlackBerry", Ut = "Samsung", Vt = Ut + "Browser", Wt = Ut + " Internet", zt = "Chrome", Gt = zt + " OS", Qt = zt + " " + Ot, Yt = "Internet Explorer", Jt = Yt + " " + At, Kt = "Opera", Xt = Kt + " Mini", Zt = "Edge", en = "Microsoft " + Zt, tn = "Firefox", nn = tn + " " + Ot, rn = "Nintendo", sn = "PlayStation", on = "Xbox", an = Mt + " " + At, un = At + " " + Ht, ln = "Windows", cn = ln + " Phone", dn = "Nokia", hn = "Ouya", fn = "Generic", pn = fn + " " + At.toLowerCase(), gn = fn + " " + qt.toLowerCase(), vn = "Konqueror", _n = "(\\d+(\\.\\d+)?)", mn = new RegExp("Version/" + _n), yn = new RegExp(on, "i"), bn = new RegExp(sn + " \\w+", "i"), wn = new RegExp(rn + " \\w+", "i"), kn = new RegExp(jt + "|PlayBook|BB10", "i"), Sn = {
-  "NT3.51": "NT 3.11",
-  "NT4.0": "NT 4.0",
-  "5.0": "2000",
-  5.1: "XP",
-  5.2: "XP",
-  "6.0": "Vista",
-  6.1: "7",
-  6.2: "8",
-  6.3: "8.1",
-  6.4: "10",
-  "10.0": "10"
-};
-
-var Fn = function(e, t) {
-  return t && Q(t, Nt) || function(e) {
-    return Q(e, Ht) && !Q(e, zt) && !Q(e, Mt);
-  }(e);
-}, Rn = function(e, t) {
-  return t = t || "", Q(e, " OPR/") && Q(e, "Mini") ? Xt : Q(e, " OPR/") ? Kt : kn.test(e) ? jt : Q(e, "IE" + At) || Q(e, "WPDesktop") ? Jt : Q(e, Vt) ? Wt : Q(e, Zt) || Q(e, "Edg/") ? en : Q(e, "FBIOS") ? "Facebook " + At : Q(e, zt) ? zt : Q(e, "CriOS") ? Qt : Q(e, "UCWEB") || Q(e, "UCBrowser") ? "UC Browser" : Q(e, "FxiOS") ? nn : Q(e, Mt) ? an : Q(e.toLowerCase(), vn.toLowerCase()) ? vn : Fn(e, t) ? Q(e, At) ? un : Ht : Q(e, tn) ? tn : Q(e, "MSIE") || Q(e, "Trident/") ? Yt : Q(e, "Gecko") ? tn : "";
-}, xn = (o(_t = {}, Jt, [ new RegExp("rv:" + _n) ]), o(_t, en, [ new RegExp(Zt + "?\\/" + _n) ]), 
-o(_t, zt, [ new RegExp(zt + "/" + _n) ]), o(_t, Qt, [ new RegExp("CriOS\\/" + _n) ]), 
-o(_t, "UC Browser", [ new RegExp("(UCBrowser|UCWEB)\\/" + _n) ]), o(_t, Ht, [ mn ]), 
-o(_t, un, [ mn ]), o(_t, Kt, [ new RegExp("(Opera|OPR)\\/" + _n) ]), o(_t, tn, [ new RegExp(tn + "\\/" + _n) ]), 
-o(_t, nn, [ new RegExp("FxiOS\\/" + _n) ]), o(_t, vn, [ new RegExp("Konqueror[:/]?" + _n, "i") ]), 
-o(_t, jt, [ new RegExp(jt + " " + _n), mn ]), o(_t, an, [ new RegExp("android\\s" + _n) ]), 
-o(_t, Wt, [ new RegExp(Vt + "\\/" + _n) ]), o(_t, Yt, [ new RegExp("(rv:|MSIE )" + _n) ]), 
-o(_t, "Mozilla", [ new RegExp("rv:" + _n) ]), _t), En = [ [ new RegExp(on + "; " + on + " (.*?)[);]", "i"), function(e) {
-  return [ on, e && e[1] || "" ];
-} ], [ new RegExp(rn, "i"), [ rn, "" ] ], [ new RegExp(sn, "i"), [ sn, "" ] ], [ kn, [ jt, "" ] ], [ new RegExp(ln, "i"), function(e, t) {
-  if (/Phone/.test(t) || /WPDesktop/.test(t)) return [ cn, "" ];
-  if (new RegExp(At).test(t) && !/IEMobile\b/.test(t)) return [ ln + " " + At, "" ];
-  var n = /Windows NT ([0-9.]+)/i.exec(t);
-  if (n && n[1]) {
-    var i = n[1], r = Sn[i] || "";
-    return /arm/i.test(t) && (r = "RT"), [ ln, r ];
-  }
-  return [ ln, "" ];
-} ], [ /((iPhone|iPad|iPod).*?OS (\d+)_(\d+)_?(\d+)?|iPhone)/, function(e) {
-  if (e && e[3]) {
-    var t = [ e[3], e[4], e[5] || "0" ];
-    return [ Ot, t.join(".") ];
-  }
-  return [ Ot, "" ];
-} ], [ /(watch.*\/(\d+\.\d+\.\d+)|watch os,(\d+\.\d+),)/i, function(e) {
-  var t = "";
-  return e && e.length >= 3 && (t = w(e[2]) ? e[3] : e[2]), [ "watchOS", t ];
-} ], [ new RegExp("(" + Mt + " (\\d+)\\.(\\d+)\\.?(\\d+)?|" + Mt + ")", "i"), function(e) {
-  if (e && e[2]) {
-    var t = [ e[2], e[3], e[4] || "0" ];
-    return [ Mt, t.join(".") ];
-  }
-  return [ Mt, "" ];
-} ], [ /Mac OS X (\d+)[_.](\d+)[_.]?(\d+)?/i, function(e) {
-  var t = [ "Mac OS X", "" ];
-  if (e && e[1]) {
-    var n = [ e[1], e[2], e[3] || "0" ];
-    t[1] = n.join(".");
-  }
-  return t;
-} ], [ /Mac/i, [ "Mac OS X", "" ] ], [ /CrOS/, [ Gt, "" ] ], [ /Linux|debian/i, [ "Linux", "" ] ] ], Pn = function(e) {
-  return wn.test(e) ? rn : bn.test(e) ? sn : yn.test(e) ? on : new RegExp(hn, "i").test(e) ? hn : new RegExp("(" + cn + "|WPDesktop)", "i").test(e) ? cn : /iPad/.test(e) ? Lt : /iPod/.test(e) ? "iPod Touch" : /iPhone/.test(e) ? "iPhone" : /(watch)(?: ?os[,/]|\d,\d\/)[\d.]+/i.test(e) ? Bt : kn.test(e) ? jt : /(kobo)\s(ereader|touch)/i.test(e) ? "Kobo" : new RegExp(dn, "i").test(e) ? dn : /(kf[a-z]{2}wi|aeo[c-r]{2})( bui|\))/i.test(e) || /(kf[a-z]+)( bui|\)).+silk\//i.test(e) ? "Kindle Fire" : /(Android|ZTE)/i.test(e) ? !new RegExp(At).test(e) || /(9138B|TB782B|Nexus [97]|pixel c|HUAWEISHT|BTV|noble nook|smart ultra 6)/i.test(e) ? /pixel[\daxl ]{1,6}/i.test(e) && !/pixel c/i.test(e) || /(huaweimed-al00|tah-|APA|SM-G92|i980|zte|U304AA)/i.test(e) || /lmy47v/i.test(e) && !/QTAQZ3/i.test(e) ? Mt : Dt : Mt : new RegExp("(pda|" + At + ")", "i").test(e) ? pn : new RegExp(qt, "i").test(e) && !new RegExp(qt + " pc", "i").test(e) ? gn : "";
-}, In = "https?://(.*)", Cn = {
-  campaignParams: function(e) {
-    var t = [ "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "gad_source", "gclsrc", "dclid", "gbraid", "wbraid", "fbclid", "msclkid", "twclid", "li_fat_id", "mc_cid", "igshid", "ttclid" ].concat(e || []), n = {};
-    return z(t, (function(e) {
-      var t = O ? Tt(O.URL, e) : "";
-      t.length && (n[e] = t);
-    })), n;
-  },
-  searchEngine: function() {
-    var e = null == O ? void 0 : O.referrer;
-    return e ? 0 === e.search(In + "google.([^/?]*)") ? "google" : 0 === e.search(In + "bing.com") ? "bing" : 0 === e.search(In + "yahoo.com") ? "yahoo" : 0 === e.search(In + "duckduckgo.com") ? "duckduckgo" : null : null;
-  },
-  searchInfo: function() {
-    var e = Cn.searchEngine(), t = "yahoo" != e ? "q" : "p", n = {};
-    if (!S(e)) {
-      n.$search_engine = e;
-      var i = O ? Tt(O.referrer, t) : "";
-      i.length && (n.ph_keyword = i);
-    }
-    return n;
-  },
-  browser: Rn,
-  browserVersion: function(e, t) {
-    var n = Rn(e, t), i = xn[n];
-    if (w(i)) return null;
-    for (var r = 0; r < i.length; r++) {
-      var s = i[r], o = e.match(s);
-      if (o) return parseFloat(o[o.length - 2]);
-    }
-    return null;
-  },
-  browserLanguage: function() {
-    return navigator.language || navigator.userLanguage;
-  },
-  os: function(e) {
-    for (var t = 0; t < En.length; t++) {
-      var n = u(En[t], 2), i = n[0], r = n[1], s = i.exec(e), o = s && (y(r) ? r(s, e) : r);
-      if (o) return o;
-    }
-    return [ "", "" ];
-  },
-  device: Pn,
-  deviceType: function(e) {
-    var t = Pn(e);
-    return t === Lt || t === Dt || "Kobo" === t || "Kindle Fire" === t || t === gn ? qt : t === rn || t === on || t === sn || t === hn ? "Console" : t === Bt ? "Wearable" : t ? At : "Desktop";
-  },
-  referrer: function() {
-    return (null == O ? void 0 : O.referrer) || "$direct";
-  },
-  referringDomain: function() {
-    var e;
-    return null != O && O.referrer && (null === (e = Pt(O.referrer)) || void 0 === e ? void 0 : e.host) || "$direct";
-  },
-  properties: function() {
-    if (!N) return {};
-    var e = u(Cn.os(N), 2), t = e[0], n = e[1];
-    return G(Z({
-      $os: t,
-      $os_version: n,
-      $browser: Cn.browser(N, navigator.vendor),
-      $device: Cn.device(N),
-      $device_type: Cn.deviceType(N)
-    }), {
-      $current_url: null == M ? void 0 : M.href,
-      $host: null == M ? void 0 : M.host,
-      $pathname: null == M ? void 0 : M.pathname,
-      $raw_user_agent: N.length > 1e3 ? N.substring(0, 997) + "..." : N,
-      $browser_version: Cn.browserVersion(N, navigator.vendor),
-      $browser_language: Cn.browserLanguage(),
-      $screen_height: null == P ? void 0 : P.screen.height,
-      $screen_width: null == P ? void 0 : P.screen.width,
-      $viewport_height: null == P ? void 0 : P.innerHeight,
-      $viewport_width: null == P ? void 0 : P.innerWidth,
-      $lib: "web",
-      $lib_version: f.LIB_VERSION,
-      $insert_id: Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 10),
-      $time: J() / 1e3
-    });
-  },
-  people_properties: function() {
-    if (!N) return {};
-    var e = u(Cn.os(N), 2), t = e[0], n = e[1];
-    return G(Z({
-      $os: t,
-      $os_version: n,
-      $browser: Cn.browser(N, navigator.vendor)
-    }), {
-      $browser_version: Cn.browserVersion(N, navigator.vendor)
-    });
-  }
-}, Tn = [ "cookie", "localstorage", "localstorage+cookie", "sessionstorage", "memory" ], $n = function() {
-  function e(t) {
-    i(this, e), this.config = t, this.props = {}, this.campaign_params_saved = !1, this.name = function(e) {
-      var t = "";
-      return e.token && (t = e.token.replace(/\+/g, "PL").replace(/\//g, "SL").replace(/=/g, "EQ")), 
-      e.persistence_name ? "ph_" + e.persistence_name : "ph_" + t + "_posthog";
-    }(t), this.storage = this.buildStorage(t), this.load(), this.update_config(t, t), 
-    this.save();
-  }
-  return s(e, [ {
-    key: "buildStorage",
-    value: function(e) {
-      -1 === Tn.indexOf(e.persistence.toLowerCase()) && (j.critical("Unknown persistence type " + e.persistence + "; falling back to localStorage+cookie"), 
-      e.persistence = "localStorage+cookie");
-      var t = e.persistence.toLowerCase();
-      return "localstorage" === t && bt.is_supported() ? bt : "localstorage+cookie" === t && kt.is_supported() ? kt : "sessionstorage" === t && xt.is_supported() ? xt : "memory" === t ? Ft : "cookie" === t ? mt : kt.is_supported() ? kt : mt;
-    }
-  }, {
-    key: "properties",
-    value: function() {
-      var e = {};
-      return z(this.props, (function(t, n) {
-        if (n === Be && b(t)) for (var i = Object.keys(t), r = 0; r < i.length; r++) e["$feature/".concat(i[r])] = t[i[r]]; else o = n, 
-        a = !1, (S(s = Ye) ? a : $ && s.indexOf === $ ? -1 != s.indexOf(o) : (z(s, (function(e) {
-          if (a || (a = e === o)) return U;
-        })), a)) || (e[n] = t);
-        var s, o, a;
-      })), e;
-    }
-  }, {
-    key: "load",
-    value: function() {
-      if (!this.disabled) {
-        var e = this.storage.parse(this.name);
-        e && (this.props = G({}, e));
-      }
-    }
-  }, {
-    key: "save",
-    value: function() {
-      this.disabled || this.storage.set(this.name, this.props, this.expire_days, this.cross_subdomain, this.secure);
-    }
-  }, {
-    key: "remove",
-    value: function() {
-      this.storage.remove(this.name, !1), this.storage.remove(this.name, !0);
-    }
-  }, {
-    key: "clear",
-    value: function() {
-      this.remove(), this.props = {};
-    }
-  }, {
-    key: "register_once",
-    value: function(e, t, n) {
-      var i = this;
-      if (b(e)) {
-        w(t) && (t = "None"), this.expire_days = w(n) ? this.default_expiry : n;
-        var r = !1;
-        if (z(e, (function(e, n) {
-          i.props.hasOwnProperty(n) && i.props[n] !== t || (i.props[n] = e, r = !0);
-        })), r) return this.save(), !0;
-      }
-      return !1;
-    }
-  }, {
-    key: "register",
-    value: function(e, t) {
-      var n = this;
-      if (b(e)) {
-        this.expire_days = w(t) ? this.default_expiry : t;
-        var i = !1;
-        if (z(e, (function(t, r) {
-          e.hasOwnProperty(r) && n.props[r] !== t && (n.props[r] = t, i = !0);
-        })), i) return this.save(), !0;
-      }
-      return !1;
-    }
-  }, {
-    key: "unregister",
-    value: function(e) {
-      e in this.props && (delete this.props[e], this.save());
-    }
-  }, {
-    key: "update_campaign_params",
-    value: function() {
-      this.campaign_params_saved || (this.register(Cn.campaignParams(this.config.custom_campaign_params)), 
-      this.campaign_params_saved = !0);
-    }
-  }, {
-    key: "update_search_keyword",
-    value: function() {
-      this.register(Cn.searchInfo());
-    }
-  }, {
-    key: "update_referrer_info",
-    value: function() {
-      this.register({
-        $referrer: this.props.$referrer || Cn.referrer(),
-        $referring_domain: this.props.$referring_domain || Cn.referringDomain()
-      });
-    }
-  }, {
-    key: "get_referrer_info",
-    value: function() {
-      return Z({
-        $referrer: this.props.$referrer,
-        $referring_domain: this.props.$referring_domain
-      });
-    }
-  }, {
-    key: "safe_merge",
-    value: function(e) {
-      return z(this.props, (function(t, n) {
-        n in e || (e[n] = t);
-      })), e;
-    }
-  }, {
-    key: "update_config",
-    value: function(e, t) {
-      if (this.default_expiry = this.expire_days = e.cookie_expiration, this.set_disabled(e.disable_persistence), 
-      this.set_cross_subdomain(e.cross_subdomain_cookie), this.set_secure(e.secure_cookie), 
-      e.persistence !== t.persistence) {
-        var n = this.buildStorage(e), i = this.props;
-        this.clear(), this.storage = n, this.props = i, this.save();
-      }
-    }
-  }, {
-    key: "set_disabled",
-    value: function(e) {
-      this.disabled = e, this.disabled ? this.remove() : this.save();
-    }
-  }, {
-    key: "set_cross_subdomain",
-    value: function(e) {
-      e !== this.cross_subdomain && (this.cross_subdomain = e, this.remove(), this.save());
-    }
-  }, {
-    key: "get_cross_subdomain",
-    value: function() {
-      return !!this.cross_subdomain;
-    }
-  }, {
-    key: "set_secure",
-    value: function(e) {
-      e !== this.secure && (this.secure = e, this.remove(), this.save());
-    }
-  }, {
-    key: "set_event_timer",
-    value: function(e, t) {
-      var n = this.props[$e] || {};
-      n[e] = t, this.props[$e] = n, this.save();
-    }
-  }, {
-    key: "remove_event_timer",
-    value: function(e) {
-      var t = (this.props[$e] || {})[e];
-      return w(t) || (delete this.props[$e][e], this.save()), t;
-    }
-  }, {
-    key: "get_user_state",
-    value: function() {
-      return this.props[ze] || "anonymous";
-    }
-  }, {
-    key: "set_user_state",
-    value: function(e) {
-      this.props[ze] = e, this.save();
-    }
-  }, {
-    key: "get_quota_limits",
-    value: function() {
-      return this.props[Ge] || {};
-    }
-  }, {
-    key: "set_quota_limits",
-    value: function(e) {
-      this.props[Ge] = e, this.save();
-    }
-  } ]), e;
-}(), An = 2, On = 4;
-
-var Mn = s((function e(t) {
-  var n, r, s = this, a = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
-  i(this, e), o(this, "bucketSize", 100), o(this, "refillRate", 10), o(this, "mutationBuckets", {}), 
-  o(this, "loggedTracker", {}), o(this, "refillBuckets", (function() {
-    Object.keys(s.mutationBuckets).forEach((function(e) {
-      s.mutationBuckets[e] = s.mutationBuckets[e] + s.refillRate, s.mutationBuckets[e] >= s.bucketSize && delete s.mutationBuckets[e];
-    }));
-  })), o(this, "getNodeOrRelevantParent", (function(e) {
-    var t = s.rrweb.mirror.getNode(e);
-    if ("svg" !== (null == t ? void 0 : t.nodeName) && t instanceof Element) {
-      var n = t.closest("svg");
-      if (n) return [ s.rrweb.mirror.getId(n), n ];
-    }
-    return [ e, t ];
-  })), o(this, "numberOfChanges", (function(e) {
-    var t, n, i, r, s, o, a, u;
-    return (null !== (t = null === (n = e.removes) || void 0 === n ? void 0 : n.length) && void 0 !== t ? t : 0) + (null !== (i = null === (r = e.attributes) || void 0 === r ? void 0 : r.length) && void 0 !== i ? i : 0) + (null !== (s = null === (o = e.texts) || void 0 === o ? void 0 : o.length) && void 0 !== s ? s : 0) + (null !== (a = null === (u = e.adds) || void 0 === u ? void 0 : u.length) && void 0 !== a ? a : 0);
-  })), o(this, "throttleMutations", (function(e) {
-    if (3 !== e.type || 0 !== e.data.source) return e;
-    var t = e.data, n = s.numberOfChanges(t);
-    t.attributes && (t.attributes = t.attributes.filter((function(e) {
-      var t, n, i, r = u(s.getNodeOrRelevantParent(e.id), 2), o = r[0], a = r[1];
-      if (0 === s.mutationBuckets[o]) return !1;
-      (s.mutationBuckets[o] = null !== (t = s.mutationBuckets[o]) && void 0 !== t ? t : s.bucketSize, 
-      s.mutationBuckets[o] = Math.max(s.mutationBuckets[o] - 1, 0), 0 === s.mutationBuckets[o]) && (s.loggedTracker[o] || (s.loggedTracker[o] = !0, 
-      null === (n = (i = s.options).onBlockedNode) || void 0 === n || n.call(i, o, a)));
-      return e;
-    })));
-    var i = s.numberOfChanges(t);
-    return 0 !== i || n === i ? e : void 0;
-  })), this.rrweb = t, this.options = a, this.refillRate = null !== (n = this.options.refillRate) && void 0 !== n ? n : this.refillRate, 
-  this.bucketSize = null !== (r = this.options.bucketSize) && void 0 !== r ? r : this.bucketSize, 
-  setInterval((function() {
-    s.refillBuckets();
-  }), 1e3);
-})), qn = function(e) {
-  return e[e.DomContentLoaded = 0] = "DomContentLoaded", e[e.Load = 1] = "Load", e[e.FullSnapshot = 2] = "FullSnapshot", 
-  e[e.IncrementalSnapshot = 3] = "IncrementalSnapshot", e[e.Meta = 4] = "Meta", e[e.Custom = 5] = "Custom", 
-  e[e.Plugin = 6] = "Plugin", e;
-}(qn || {}), Dn = "[SessionRecording]", Ln = {
+var Bn = "[SessionRecording]", Hn = {
   initiatorTypes: [ "audio", "beacon", "body", "css", "early-hint", "embed", "fetch", "frame", "iframe", "icon", "image", "img", "input", "link", "navigation", "object", "ping", "script", "track", "video", "xmlhttprequest" ],
   maskRequestFn: function(e) {
     return e;
@@ -1821,48 +1672,48 @@ var Mn = s((function e(t) {
   recordPerformance: !1,
   performanceEntryTypeToObserve: [ "first-input", "navigation", "paint", "resource" ],
   payloadSizeLimitBytes: 1e6
-}, Nn = [ "authorization", "x-forwarded-for", "authorization", "cookie", "set-cookie", "x-api-key", "x-real-ip", "remote-addr", "forwarded", "proxy-authorization", "x-csrf-token", "x-csrftoken", "x-xsrf-token" ], Bn = [ "password", "secret", "passwd", "api_key", "apikey", "auth", "credentials", "mysql_pwd", "privatekey", "private_key", "token" ], Hn = [ "/s/", "/e/", "/i/" ];
+}, jn = [ "authorization", "x-forwarded-for", "authorization", "cookie", "set-cookie", "x-api-key", "x-real-ip", "remote-addr", "forwarded", "proxy-authorization", "x-csrf-token", "x-csrftoken", "x-xsrf-token" ], Un = [ "password", "secret", "passwd", "api_key", "apikey", "auth", "credentials", "mysql_pwd", "privatekey", "private_key", "token" ], Wn = [ "/s/", "/e/", "/i/" ];
 
-function jn(e, t, n, i) {
-  if (F(e)) return e;
+function Vn(e, t, n, i) {
+  if (R(e)) return e;
   var r = (null == t ? void 0 : t["content-length"]) || function(e) {
     return new Blob([ e ]).size;
   }(e);
-  return k(r) && (r = parseInt(r)), r > n ? Dn + " ".concat(i, " body too large to record (").concat(r, " bytes)") : e;
+  return S(r) && (r = parseInt(r)), r > n ? Bn + " ".concat(i, " body too large to record (").concat(r, " bytes)") : e;
 }
 
-function Un(e, t) {
-  if (F(e)) return e;
+function zn(e, t) {
+  if (R(e)) return e;
   var n = e;
-  return Se(n, !1) || (n = Dn + " " + t + " body redacted"), z(Bn, (function(e) {
+  return Mn(n, !1) || (n = Bn + " " + t + " body redacted"), G(Un, (function(e) {
     var i, r;
-    null !== (i = n) && void 0 !== i && i.length && -1 !== (null === (r = n) || void 0 === r ? void 0 : r.indexOf(e)) && (n = Dn + " " + t + " body redacted as might contain: " + e);
+    null !== (i = n) && void 0 !== i && i.length && -1 !== (null === (r = n) || void 0 === r ? void 0 : r.indexOf(e)) && (n = Bn + " " + t + " body redacted as might contain: " + e);
   })), n;
 }
 
-var Vn = function(e, n) {
+var Gn = function(e, n) {
   var i, r, s, o = {
-    payloadSizeLimitBytes: Ln.payloadSizeLimitBytes,
-    performanceEntryTypeToObserve: l(Ln.performanceEntryTypeToObserve)
+    payloadSizeLimitBytes: Hn.payloadSizeLimitBytes,
+    performanceEntryTypeToObserve: l(Hn.performanceEntryTypeToObserve)
   }, a = !1 !== e.session_recording.recordHeaders && n.recordHeaders, u = !1 !== e.session_recording.recordBody && n.recordBody, c = !1 !== e.capture_performance && n.recordPerformance, d = (i = o, 
   s = Math.min(1e6, null !== (r = i.payloadSizeLimitBytes) && void 0 !== r ? r : 1e6), 
   function(e) {
-    return null != e && e.requestBody && (e.requestBody = jn(e.requestBody, e.requestHeaders, s, "Request")), 
-    null != e && e.responseBody && (e.responseBody = jn(e.responseBody, e.responseHeaders, s, "Response")), 
+    return null != e && e.requestBody && (e.requestBody = Vn(e.requestBody, e.requestHeaders, s, "Request")), 
+    null != e && e.responseBody && (e.responseBody = Vn(e.responseBody, e.responseHeaders, s, "Response")), 
     e;
   }), h = function(e) {
     return d(function(e) {
-      var t = Pt(e.name);
-      if (!(t && t.pathname && Hn.some((function(e) {
+      var t = st(e.name);
+      if (!(t && t.pathname && Wn.some((function(e) {
         return 0 === t.pathname.indexOf(e);
       })))) return e;
-    }((t = e, z(Object.keys(null !== (n = t.requestHeaders) && void 0 !== n ? n : {}), (function(e) {
+    }((t = e, G(Object.keys(null !== (n = t.requestHeaders) && void 0 !== n ? n : {}), (function(e) {
       var n;
-      Nn.includes(e.toLowerCase()) && (null === (n = t.requestHeaders) || void 0 === n || delete n[e]);
+      jn.includes(e.toLowerCase()) && (null === (n = t.requestHeaders) || void 0 === n || delete n[e]);
     })), t)));
     var t, n;
   }, f = y(e.session_recording.maskNetworkRequestFn);
-  return f && y(e.session_recording.maskCapturedNetworkRequestFn) && j.warn("Both `maskNetworkRequestFn` and `maskCapturedNetworkRequestFn` are defined. `maskNetworkRequestFn` will be ignored."), 
+  return f && y(e.session_recording.maskCapturedNetworkRequestFn) && U.warn("Both `maskNetworkRequestFn` and `maskCapturedNetworkRequestFn` are defined. `maskNetworkRequestFn` will be ignored."), 
   f && (e.session_recording.maskCapturedNetworkRequestFn = function(n) {
     var i = e.session_recording.maskNetworkRequestFn({
       url: n.name
@@ -1875,81 +1726,81 @@ var Vn = function(e, n) {
     return s && null !== (n = null === (i = (r = e.session_recording).maskCapturedNetworkRequestFn) || void 0 === i ? void 0 : i.call(r, s)) && void 0 !== n ? n : void 0;
   } : function(e) {
     return function(e) {
-      if (!w(e)) return e.requestBody = Un(e.requestBody, "Request"), e.responseBody = Un(e.responseBody, "Response"), 
+      if (!w(e)) return e.requestBody = zn(e.requestBody, "Request"), e.responseBody = zn(e.responseBody, "Response"), 
       e;
     }(h(e));
-  }, t(t(t({}, Ln), o), {}, {
+  }, t(t(t({}, Hn), o), {}, {
     recordHeaders: a,
     recordBody: u,
     recordPerformance: c,
     recordInitialRequests: c
   });
-}, Wn = "__ph_opt_in_out_";
-
-function zn(e, t) {
-  ei(!0, e, t);
-}
-
-function Gn(e, t) {
-  ei(!1, e, t);
-}
-
-function Qn(e, t) {
-  return "1" === Zn(e, t);
-}
+}, Qn = "__ph_opt_in_out_";
 
 function Yn(e, t) {
-  return !!function(e) {
-    if (e && e.respectDnt) {
-      var t = e && e.window || P, n = null == t ? void 0 : t.navigator, i = !1;
-      return z([ null == n ? void 0 : n.doNotTrack, n.msDoNotTrack, t.doNotTrack ], (function(e) {
-        Q([ !0, 1, "1", "yes" ], e) && (i = !0);
-      })), i;
-    }
-    return !1;
-  }(t) || "0" === Zn(e, t);
+  ii(!0, e, t);
 }
 
 function Jn(e, t) {
-  Kn(t = t || {}).remove(Xn(e, t), !!t.crossSubdomainCookie);
+  ii(!1, e, t);
 }
 
-function Kn(e) {
-  return "localStorage" === (e = e || {}).persistenceType ? bt : "localStorage+cookie" === e.persistenceType ? kt : mt;
+function Kn(e, t) {
+  return "1" === ni(e, t);
 }
 
 function Xn(e, t) {
-  return ((t = t || {}).persistencePrefix || Wn) + e;
+  return !!function(e) {
+    if (e && e.respectDnt) {
+      var t = e && e.window || I, n = null == t ? void 0 : t.navigator, i = !1;
+      return G([ null == n ? void 0 : n.doNotTrack, n.msDoNotTrack, t.doNotTrack ], (function(e) {
+        Y([ !0, 1, "1", "yes" ], e) && (i = !0);
+      })), i;
+    }
+    return !1;
+  }(t) || "0" === ni(e, t);
 }
 
 function Zn(e, t) {
-  return Kn(t).get(Xn(e, t));
+  ei(t = t || {}).remove(ti(e, t), !!t.crossSubdomainCookie);
 }
 
-function ei(e, t, n) {
-  k(t) && t.length ? (Kn(n = n || {}).set(Xn(t, n), e ? 1 : 0, R(n.cookieExpiration) ? n.cookieExpiration : null, n.crossSubdomainCookie, n.secureCookie), 
+function ei(e) {
+  return "localStorage" === (e = e || {}).persistenceType ? Ke : "localStorage+cookie" === e.persistenceType ? Ze : Ye;
+}
+
+function ti(e, t) {
+  return ((t = t || {}).persistencePrefix || Qn) + e;
+}
+
+function ni(e, t) {
+  return ei(t).get(ti(e, t));
+}
+
+function ii(e, t, n) {
+  S(t) && t.length ? (ei(n = n || {}).set(ti(t, n), e ? 1 : 0, P(n.cookieExpiration) ? n.cookieExpiration : null, n.crossSubdomainCookie, n.secureCookie), 
   n.capture && e && n.capture(n.captureEventName || "$opt_in", n.captureProperties || {}, {
     send_instantly: !0
-  })) : j.error("gdpr." + (e ? "optIn" : "optOut") + " called with an invalid token");
+  })) : U.error("gdpr." + (e ? "optIn" : "optOut") + " called with an invalid token");
 }
 
-function ti(e) {
+function ri(e) {
   var t = !1;
   try {
     var n = e.config.token, i = e.config.respect_dnt, r = e.config.opt_out_capturing_persistence_type, s = e.config.opt_out_capturing_cookie_prefix || void 0, o = e.config.window;
-    n && (t = Yn(n, {
+    n && (t = Xn(n, {
       respectDnt: i,
       persistenceType: r,
       persistencePrefix: s,
       window: o
     }));
   } catch (e) {
-    j.error("Unexpected error when checking capturing opt-out status: " + e);
+    U.error("Unexpected error when checking capturing opt-out status: " + e);
   }
   return t;
 }
 
-var ni, ii = 3e5, ri = ii;
+var si, oi = 3e5, ai = oi;
 
 !function(e) {
   e[e.Mutation = 0] = "Mutation", e[e.MouseMove = 1] = "MouseMove", e[e.MouseInteraction = 2] = "MouseInteraction", 
@@ -1958,41 +1809,41 @@ var ni, ii = 3e5, ri = ii;
   e[e.StyleSheetRule = 8] = "StyleSheetRule", e[e.CanvasMutation = 9] = "CanvasMutation", 
   e[e.Font = 10] = "Font", e[e.Log = 11] = "Log", e[e.Drag = 12] = "Drag", e[e.StyleDeclaration = 13] = "StyleDeclaration", 
   e[e.Selection = 14] = "Selection", e[e.AdoptedStyleSheet = 15] = "AdoptedStyleSheet";
-}(ni || (ni = {}));
+}(si || (si = {}));
 
-var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.Input, ni.TouchMove, ni.MediaInteraction, ni.Drag ], oi = function(e) {
+var ui = [ si.MouseMove, si.MouseInteraction, si.Scroll, si.ViewportResize, si.Input, si.TouchMove, si.MediaInteraction, si.Drag ], li = function(e) {
   return {
     rrwebMethod: e,
     enqueuedAt: Date.now(),
     attempt: 1
   };
-}, ai = "[SessionRecording]", ui = function() {
+}, ci = "[SessionRecording]", di = function() {
   function e(t) {
     var n = this;
     if (i(this, e), o(this, "queuedRRWebEvents", []), o(this, "isIdle", !1), o(this, "_linkedFlagSeen", !1), 
     o(this, "_lastActivityTimestamp", Date.now()), o(this, "windowId", null), o(this, "sessionId", null), 
-    o(this, "_linkedFlag", null), o(this, "_sampleRate", null), o(this, "_minimumDuration", null), 
-    o(this, "_forceAllowLocalhostNetworkCapture", !1), this.instance = t, this._captureStarted = !1, 
-    this._endpoint = "/s/", this.stopRrweb = void 0, this.receivedDecide = !1, null == P || P.addEventListener("beforeunload", (function() {
+    o(this, "_linkedFlag", null), o(this, "_forceAllowLocalhostNetworkCapture", !1), 
+    o(this, "_samplingSessionListener", null), this.instance = t, this._captureStarted = !1, 
+    this._endpoint = "/s/", this.stopRrweb = void 0, this.receivedDecide = !1, null == I || I.addEventListener("beforeunload", (function() {
       n._flushBuffer();
-    })), null == P || P.addEventListener("offline", (function() {
+    })), null == I || I.addEventListener("offline", (function() {
       n._tryAddCustomEvent("browser offline", {});
-    })), null == P || P.addEventListener("online", (function() {
+    })), null == I || I.addEventListener("online", (function() {
       n._tryAddCustomEvent("browser online", {});
-    })), null == P || P.addEventListener("visibilitychange", (function() {
+    })), null == I || I.addEventListener("visibilitychange", (function() {
       if (null != O && O.visibilityState) {
         var e = "window " + O.visibilityState;
         n._tryAddCustomEvent(e, {});
       }
-    })), !this.instance.sessionManager) throw j.error(ai + " started without valid sessionManager"), 
-    new Error(ai + " started without valid sessionManager. This is a bug.");
-    this.buffer = this.clearBuffer();
+    })), !this.instance.sessionManager) throw U.error(ci + " started without valid sessionManager"), 
+    new Error(ci + " started without valid sessionManager. This is a bug.");
+    this.buffer = this.clearBuffer(), this._setupSampling();
   }
   return s(e, [ {
     key: "rrwebRecord",
     get: function() {
       var e;
-      return null == B || null === (e = B.rrweb) || void 0 === e ? void 0 : e.record;
+      return null == H || null === (e = H.rrweb) || void 0 === e ? void 0 : e.record;
     }
   }, {
     key: "started",
@@ -2002,14 +1853,15 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
   }, {
     key: "sessionManager",
     get: function() {
-      if (!this.instance.sessionManager) throw j.error(ai + " started without valid sessionManager"), 
-      new Error(ai + " started without valid sessionManager. This is a bug.");
+      if (!this.instance.sessionManager) throw U.error(ci + " started without valid sessionManager"), 
+      new Error(ci + " started without valid sessionManager. This is a bug.");
       return this.instance.sessionManager;
     }
   }, {
     key: "isSampled",
     get: function() {
-      return R(this._sampleRate) ? this.instance.get_property(Ne) : null;
+      var e = this.instance.get_property(_e);
+      return x(e) ? e : null;
     }
   }, {
     key: "sessionDuration",
@@ -2020,19 +1872,19 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
   }, {
     key: "isRecordingEnabled",
     get: function() {
-      var e = !!this.instance.get_property(Oe), t = !this.instance.config.disable_session_recording;
-      return P && e && t;
+      var e = !!this.instance.get_property(ce), t = !this.instance.config.disable_session_recording;
+      return I && e && t;
     }
   }, {
     key: "isConsoleLogCaptureEnabled",
     get: function() {
-      var e = !!this.instance.get_property(Me), t = this.instance.config.enable_recording_console_log;
+      var e = !!this.instance.get_property(de), t = this.instance.config.enable_recording_console_log;
       return null != t ? t : e;
     }
   }, {
     key: "canvasRecording",
     get: function() {
-      var e = this.instance.get_property(De);
+      var e = this.instance.get_property(fe);
       return e && e.fps && e.quality ? {
         enabled: e.enabled,
         fps: e.fps,
@@ -2042,7 +1894,7 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
   }, {
     key: "networkPayloadCapture",
     get: function() {
-      var e, t, n = this.instance.get_property(qe), i = {
+      var e, t, n = this.instance.get_property(he), i = {
         recordHeaders: null === (e = this.instance.config.session_recording) || void 0 === e ? void 0 : e.recordHeaders,
         recordBody: null === (t = this.instance.config.session_recording) || void 0 === t ? void 0 : t.recordBody
       }, r = (null == i ? void 0 : i.recordHeaders) || (null == n ? void 0 : n.recordHeaders), s = (null == i ? void 0 : i.recordBody) || (null == n ? void 0 : n.recordBody), o = this.instance.config.capture_performance || (null == n ? void 0 : n.capturePerformance);
@@ -2053,74 +1905,98 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
       } : void 0;
     }
   }, {
+    key: "sampleRate",
+    get: function() {
+      var e = this.instance.get_property(pe);
+      return P(e) ? e : null;
+    }
+  }, {
+    key: "minimumDuration",
+    get: function() {
+      var e = this.instance.get_property(ge);
+      return P(e) ? e : null;
+    }
+  }, {
     key: "status",
     get: function() {
-      return this.receivedDecide ? this.isRecordingEnabled ? F(this._linkedFlag) || this._linkedFlagSeen ? x(this.isSampled) ? this.isSampled ? "sampled" : "disabled" : "active" : "buffering" : "disabled" : "buffering";
+      return this.receivedDecide ? this.isRecordingEnabled ? R(this._linkedFlag) || this._linkedFlagSeen ? x(this.isSampled) ? this.isSampled ? "sampled" : "disabled" : "active" : "buffering" : "disabled" : "buffering";
     }
   }, {
     key: "startRecordingIfEnabled",
     value: function() {
-      this.isRecordingEnabled ? (this._startCapture(), j.info(ai + " started")) : (this.stopRecording(), 
+      this.isRecordingEnabled ? (this._startCapture(), U.info(ci + " started")) : (this.stopRecording(), 
       this.clearBuffer());
     }
   }, {
     key: "stopRecording",
     value: function() {
       this._captureStarted && this.stopRrweb && (this.stopRrweb(), this.stopRrweb = void 0, 
-      this._captureStarted = !1, j.info(ai + " stopped"));
+      this._captureStarted = !1, U.info(ci + " stopped"));
     }
   }, {
     key: "makeSamplingDecision",
     value: function(e) {
-      var t, n = this.sessionId !== e, i = this._sampleRate;
-      if (R(i)) {
+      var t, n = this.sessionId !== e, i = this.sampleRate;
+      if (P(i)) {
         var r, s = this.isSampled, a = n || !x(s);
         if (a) r = Math.random() < i; else r = s;
-        !r && a && j.warn(ai + " Sample rate (".concat(i, ") has determined that this sessionId (").concat(e, ") will not be sent to the server.")), 
+        !r && a && U.warn(ci + " Sample rate (".concat(i, ") has determined that this sessionId (").concat(e, ") will not be sent to the server.")), 
         this._tryAddCustomEvent("samplingDecisionMade", {
           sampleRate: i
-        }), null === (t = this.instance.persistence) || void 0 === t || t.register(o({}, Ne, r));
+        }), null === (t = this.instance.persistence) || void 0 === t || t.register(o({}, _e, r));
       } else {
         var u;
-        null === (u = this.instance.persistence) || void 0 === u || u.register(o({}, Ne, null));
+        null === (u = this.instance.persistence) || void 0 === u || u.register(o({}, _e, null));
       }
     }
   }, {
     key: "afterDecideResponse",
     value: function(e) {
-      var n, i, r, s, a, u, l, c, d, h, f = this;
-      this.instance.persistence && this.instance.persistence.register((o(h = {}, Oe, !!e.sessionRecording), 
-      o(h, Me, null === (a = e.sessionRecording) || void 0 === a ? void 0 : a.consoleLogRecordingEnabled), 
-      o(h, qe, t({
-        capturePerformance: e.capturePerformance
-      }, null === (u = e.sessionRecording) || void 0 === u ? void 0 : u.networkPayloadCapture)), 
-      o(h, De, {
-        enabled: null === (l = e.sessionRecording) || void 0 === l ? void 0 : l.recordCanvas,
-        fps: null === (c = e.sessionRecording) || void 0 === c ? void 0 : c.canvasFps,
-        quality: null === (d = e.sessionRecording) || void 0 === d ? void 0 : d.canvasQuality
-      }), h));
-      var p = null === (n = e.sessionRecording) || void 0 === n ? void 0 : n.sampleRate;
-      this._sampleRate = F(p) ? null : parseFloat(p);
-      var g, v = null === (i = e.sessionRecording) || void 0 === i ? void 0 : i.minimumDurationMilliseconds;
-      (this._minimumDuration = w(v) ? null : v, this._linkedFlag = (null === (r = e.sessionRecording) || void 0 === r ? void 0 : r.linkedFlag) || null, 
-      null !== (s = e.sessionRecording) && void 0 !== s && s.endpoint) && (this._endpoint = null === (g = e.sessionRecording) || void 0 === g ? void 0 : g.endpoint);
-      if (R(this._sampleRate) && this.sessionManager.onSessionId((function(e) {
-        f.makeSamplingDecision(e);
-      })), !F(this._linkedFlag)) {
-        var _ = k(this._linkedFlag) ? this._linkedFlag : this._linkedFlag.flag, m = k(this._linkedFlag) ? null : this._linkedFlag.variant;
+      var t, n, i, r = this;
+      (this._persistDecideResponse(e), this._linkedFlag = (null === (t = e.sessionRecording) || void 0 === t ? void 0 : t.linkedFlag) || null, 
+      null !== (n = e.sessionRecording) && void 0 !== n && n.endpoint) && (this._endpoint = null === (i = e.sessionRecording) || void 0 === i ? void 0 : i.endpoint);
+      if (this._setupSampling(), !R(this._linkedFlag)) {
+        var s = S(this._linkedFlag) ? this._linkedFlag : this._linkedFlag.flag, o = S(this._linkedFlag) ? null : this._linkedFlag.variant;
         this.instance.onFeatureFlags((function(e, t) {
-          var n = b(t) && _ in t, i = m ? t[_] === m : n;
+          var n = b(t) && s in t, i = o ? t[s] === o : n;
           if (i) {
-            var r = {
-              linkedFlag: _,
-              linkedVariant: m
-            }, s = "linked flag matched";
-            j.info(ai + " " + s, r), f._tryAddCustomEvent(s, r);
+            var a = {
+              linkedFlag: s,
+              linkedVariant: o
+            }, u = "linked flag matched";
+            U.info(ci + " " + u, a), r._tryAddCustomEvent(u, a);
           }
-          f._linkedFlagSeen = i;
+          r._linkedFlagSeen = i;
         }));
       }
       this.receivedDecide = !0, this.startRecordingIfEnabled();
+    }
+  }, {
+    key: "_setupSampling",
+    value: function() {
+      var e = this;
+      P(this.sampleRate) && F(this._samplingSessionListener) && (this._samplingSessionListener = this.sessionManager.onSessionId((function(t) {
+        e.makeSamplingDecision(t);
+      })));
+    }
+  }, {
+    key: "_persistDecideResponse",
+    value: function(e) {
+      if (this.instance.persistence) {
+        var n = this.instance.persistence, i = function() {
+          var i, r, s, a, u, l, c, d, h = null === (i = e.sessionRecording) || void 0 === i ? void 0 : i.sampleRate, f = R(h) ? null : parseFloat(h), p = null === (r = e.sessionRecording) || void 0 === r ? void 0 : r.minimumDurationMilliseconds;
+          n.register((o(d = {}, ce, !!e.sessionRecording), o(d, de, null === (s = e.sessionRecording) || void 0 === s ? void 0 : s.consoleLogRecordingEnabled), 
+          o(d, he, t({
+            capturePerformance: e.capturePerformance
+          }, null === (a = e.sessionRecording) || void 0 === a ? void 0 : a.networkPayloadCapture)), 
+          o(d, fe, {
+            enabled: null === (u = e.sessionRecording) || void 0 === u ? void 0 : u.recordCanvas,
+            fps: null === (l = e.sessionRecording) || void 0 === l ? void 0 : l.canvasFps,
+            quality: null === (c = e.sessionRecording) || void 0 === c ? void 0 : c.canvasQuality
+          }), o(d, pe, f), o(d, ge, w(p) ? null : p), d));
+        };
+        i(), this.sessionManager.onSessionId(i);
+      }
     }
   }, {
     key: "log",
@@ -2136,16 +2012,16 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
             payload: [ JSON.stringify(e) ]
           }
         },
-        timestamp: J()
+        timestamp: K()
       });
     }
   }, {
     key: "_startCapture",
     value: function() {
       var e = this;
-      w(Object.assign) || this._captureStarted || this.instance.config.disable_session_recording || ti(this.instance) || (this._captureStarted = !0, 
-      this.sessionManager.checkAndGetSessionAndWindowId(), this.rrwebRecord ? this._onScriptLoaded() : ie(this.instance.requestRouter.endpointFor("assets", "/static/recorder.js?v=".concat(f.LIB_VERSION)), (function(t) {
-        if (t) return j.error(ai + " could not load recorder.js", t);
+      w(Object.assign) || this._captureStarted || this.instance.config.disable_session_recording || ri(this.instance) || (this._captureStarted = !0, 
+      this.sessionManager.checkAndGetSessionAndWindowId(), this.rrwebRecord ? this._onScriptLoaded() : se(this.instance.requestRouter.endpointFor("assets", "/static/recorder.js?v=".concat(f.LIB_VERSION)), (function(t) {
+        if (t) return U.error(ci + " could not load recorder.js", t);
         e._onScriptLoaded();
       })));
     }
@@ -2153,17 +2029,17 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
     key: "_isInteractiveEvent",
     value: function(e) {
       var t;
-      return 3 === e.type && -1 !== si.indexOf(null === (t = e.data) || void 0 === t ? void 0 : t.source);
+      return 3 === e.type && -1 !== ui.indexOf(null === (t = e.data) || void 0 === t ? void 0 : t.source);
     }
   }, {
     key: "_updateWindowAndSessionIds",
     value: function(e) {
       var t = this._isInteractiveEvent(e);
-      t || this.isIdle || e.timestamp - this._lastActivityTimestamp > ri && (this.isIdle = !0, 
+      t || this.isIdle || e.timestamp - this._lastActivityTimestamp > ai && (this.isIdle = !0, 
       this._tryAddCustomEvent("sessionIdle", {
         reason: "user inactivity",
         timeSinceLastActive: e.timestamp - this._lastActivityTimestamp,
-        threshold: ri
+        threshold: ai
       }));
       var n = !1;
       if (t && (this._lastActivityTimestamp = e.timestamp, this.isIdle && (this.isIdle = !1, 
@@ -2172,7 +2048,7 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
         type: e.type
       }), n = !0)), !this.isIdle) {
         var i = this.sessionManager.checkAndGetSessionAndWindowId(!t, e.timestamp), r = i.windowId, s = i.sessionId, o = this.sessionId !== s, a = this.windowId !== r;
-        this.windowId = r, this.sessionId = s, (n || -1 === [ An, On ].indexOf(e.type) && (a || o)) && this._tryTakeFullSnapshot();
+        this.windowId = r, this.sessionId = s, (n || -1 === [ dn, hn ].indexOf(e.type) && (a || o)) && this._tryTakeFullSnapshot();
       }
     }
   }, {
@@ -2185,14 +2061,14 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
           enqueuedAt: e.enqueuedAt || Date.now(),
           attempt: e.attempt++,
           rrwebMethod: e.rrwebMethod
-        }) : j.warn(ai + " could not emit queued rrweb event.", t, e), !1;
+        }) : U.warn(ci + " could not emit queued rrweb event.", t, e), !1;
       }
     }
   }, {
     key: "_tryAddCustomEvent",
     value: function(e, t) {
       var n = this;
-      return this._tryRRWebMethod(oi((function() {
+      return this._tryRRWebMethod(li((function() {
         return n.rrwebRecord.addCustomEvent(e, t);
       })));
     }
@@ -2200,7 +2076,7 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
     key: "_tryTakeFullSnapshot",
     value: function() {
       var e = this;
-      return this._tryRRWebMethod(oi((function() {
+      return this._tryRRWebMethod(li((function() {
         return e.rrwebRecord.takeFullSnapshot();
       })));
     }
@@ -2232,12 +2108,12 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
         type: "image/webp",
         quality: this.canvasRecording.quality
       }), this.rrwebRecord) {
-        this.mutationRateLimiter = null !== (e = this.mutationRateLimiter) && void 0 !== e ? e : new Mn(this.rrwebRecord, {
+        this.mutationRateLimiter = null !== (e = this.mutationRateLimiter) && void 0 !== e ? e : new fn(this.rrwebRecord, {
           onBlockedNode: function(e, t) {
             var i = "Too many mutations on node '".concat(e, "'. Rate limiting. This could be due to SVG animations or something similar");
-            j.info(i, {
+            U.info(i, {
               node: t
-            }), n.log(ai + " " + i, "warn");
+            }), n.log(ci + " " + i, "warn");
           }
         }), this._scheduleFullSnapshot();
         var d = this._gatherRRWebPlugins();
@@ -2249,14 +2125,14 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
         }, i)), this.instance._addCaptureHook((function(e) {
           try {
             if ("$pageview" === e) {
-              var t = P ? n._maskUrl(P.location.href) : "";
+              var t = I ? n._maskUrl(I.location.href) : "";
               if (!t) return;
               n._tryAddCustomEvent("$pageview", {
                 href: t
               }), n._tryTakeFullSnapshot();
             }
           } catch (e) {
-            j.error("Could not add $pageview to rrweb session", e);
+            U.error("Could not add $pageview to rrweb session", e);
           }
         })), this._lastActivityTimestamp = Date.now(), this.isIdle = !1, this._tryAddCustomEvent("$session_options", {
           sessionRecordingOptions: i,
@@ -2266,7 +2142,7 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
         }), this._tryAddCustomEvent("$posthog_config", {
           config: this.instance.config
         });
-      } else j.error(ai + "onScriptLoaded was called but rrwebRecord is not available. This indicates something has gone wrong.");
+      } else U.error(ci + "onScriptLoaded was called but rrwebRecord is not available. This indicates something has gone wrong.");
     }
   }, {
     key: "_scheduleFullSnapshot",
@@ -2274,26 +2150,26 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
       var e = this;
       this._fullSnapshotTimer && clearInterval(this._fullSnapshotTimer), this._fullSnapshotTimer = setInterval((function() {
         e._tryTakeFullSnapshot();
-      }), ii);
+      }), oi);
     }
   }, {
     key: "_gatherRRWebPlugins",
     value: function() {
       var e = [];
-      (B.rrwebConsoleRecord && this.isConsoleLogCaptureEnabled && e.push(B.rrwebConsoleRecord.getRecordConsolePlugin()), 
-      this.networkPayloadCapture && y(B.getRecordNetworkPlugin)) && (!Et.includes(location.hostname) || this._forceAllowLocalhostNetworkCapture ? e.push(B.getRecordNetworkPlugin(Vn(this.instance.config, this.networkPayloadCapture))) : j.info(ai + " NetworkCapture not started because we are on localhost."));
+      (H.rrwebConsoleRecord && this.isConsoleLogCaptureEnabled && e.push(H.rrwebConsoleRecord.getRecordConsolePlugin()), 
+      this.networkPayloadCapture && y(H.getRecordNetworkPlugin)) && (!rt.includes(location.hostname) || this._forceAllowLocalhostNetworkCapture ? e.push(H.getRecordNetworkPlugin(Gn(this.instance.config, this.networkPayloadCapture))) : U.info(ci + " NetworkCapture not started because we are on localhost."));
       return e;
     }
   }, {
     key: "onRRwebEmit",
     value: function(e) {
       if (this._processQueuedEvents(), e && b(e)) {
-        if (e.type === qn.Meta) {
+        if (e.type === pn.Meta) {
           var t = this._maskUrl(e.data.href);
           if (this._lastHref = t, !t) return;
           e.data.href = t;
         } else this._pageViewFallBack();
-        e.type === qn.FullSnapshot && this._scheduleFullSnapshot();
+        e.type === pn.FullSnapshot && this._scheduleFullSnapshot();
         var n = this.mutationRateLimiter ? this.mutationRateLimiter.throttleMutations(e) : e;
         if (n) {
           var i = function(e) {
@@ -2306,7 +2182,7 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
             }
             return e;
           }(n), r = JSON.stringify(i).length;
-          if (this._updateWindowAndSessionIds(i), !this.isIdle || i.type === qn.Custom) {
+          if (this._updateWindowAndSessionIds(i), !this.isIdle || i.type === pn.Custom) {
             var s = {
               $snapshot_bytes: r,
               $snapshot_data: i,
@@ -2321,8 +2197,8 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
   }, {
     key: "_pageViewFallBack",
     value: function() {
-      if (!this.instance.config.capture_pageview && P) {
-        var e = this._maskUrl(P.location.href);
+      if (!this.instance.config.capture_pageview && I) {
+        var e = this._maskUrl(I.location.href);
         this._lastHref !== e && (this._tryAddCustomEvent("$url_changed", {
           href: e
         }), this._lastHref = e);
@@ -2374,7 +2250,7 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
     value: function() {
       var e = this;
       this.flushBufferTimer && (clearTimeout(this.flushBufferTimer), this.flushBufferTimer = void 0);
-      var t = this._minimumDuration, n = this.sessionDuration, i = R(n) && n >= 0, r = R(t) && i && n < t;
+      var t = this.minimumDuration, n = this.sessionDuration, i = P(n) && n >= 0, r = P(t) && i && n < t;
       return "buffering" === this.status || r ? (this.flushBufferTimer = setTimeout((function() {
         e._flushBuffer();
       }), 2e3), this.buffer || this.clearBuffer()) : this.buffer && 0 !== this.buffer.data.length ? (this._captureSnapshot({
@@ -2389,7 +2265,7 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
     value: function(e) {
       var t, n = this, i = 2 + ((null === (t = this.buffer) || void 0 === t ? void 0 : t.data.length) || 0);
       (!this.buffer || this.buffer.size + e.$snapshot_bytes + i > 943718.4 || this.buffer.sessionId && this.buffer.sessionId !== this.sessionId) && (this.buffer = this._flushBuffer()), 
-      S(this.buffer.sessionId) && !S(this.sessionId) && (this.buffer.sessionId = this.sessionId, 
+      F(this.buffer.sessionId) && !F(this.sessionId) && (this.buffer.sessionId = this.sessionId, 
       this.buffer.windowId = this.windowId), this.buffer.size += e.$snapshot_bytes, this.buffer.data.push(e.$snapshot_data), 
       this.flushBufferTimer || (this.flushBufferTimer = setTimeout((function() {
         n._flushBuffer();
@@ -2405,7 +2281,7 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
       });
     }
   } ]), e;
-}(), li = function() {
+}(), hi = function() {
   function e(t) {
     i(this, e), this.instance = t, this.instance.decideEndpointWasHit = this.instance._hasBootstrappedFeatureFlags();
   }
@@ -2416,15 +2292,15 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
         token: this.instance.config.token,
         distinct_id: this.instance.get_distinct_id(),
         groups: this.instance.getGroups(),
-        person_properties: this.instance.get_property(je),
-        group_properties: this.instance.get_property(Ue),
+        person_properties: this.instance.get_property(be),
+        group_properties: this.instance.get_property(ke),
         disable_flags: this.instance.config.advanced_disable_feature_flags || this.instance.config.advanced_disable_feature_flags_on_first_load || void 0
       };
       this.instance._send_request({
         method: "POST",
         url: this.instance.requestRouter.endpointFor("api", "/decide/?v=3"),
         data: t,
-        compression: Xe.Base64,
+        compression: this.instance.config.disable_compression ? void 0 : ne.Base64,
         timeout: this.instance.config.feature_flag_request_timeout_ms,
         callback: function(t) {
           return e.parseDecideResponse(t.json);
@@ -2434,46 +2310,47 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
   }, {
     key: "parseDecideResponse",
     value: function(e) {
-      var t, n = this;
+      var t, n, i = this;
       this.instance.featureFlags.setReloadingPaused(!1), this.instance.featureFlags._startReloadTimer();
-      var i = !e;
-      if (this.instance.config.advanced_disable_feature_flags_on_first_load || this.instance.config.advanced_disable_feature_flags || this.instance.featureFlags.receivedFeatureFlags(null != e ? e : {}, i), 
-      i) j.error("Failed to fetch feature flags from PostHog."); else {
-        if (!O || !O.body) return j.info("document not ready yet, trying again in 500 milliseconds..."), 
+      var r = !e;
+      if (this.instance.config.advanced_disable_feature_flags_on_first_load || this.instance.config.advanced_disable_feature_flags || this.instance.featureFlags.receivedFeatureFlags(null != e ? e : {}, r), 
+      r) U.error("Failed to fetch feature flags from PostHog."); else {
+        if (!O || !O.body) return U.info("document not ready yet, trying again in 500 milliseconds..."), 
         void setTimeout((function() {
-          n.parseDecideResponse(e);
+          i.parseDecideResponse(e);
         }), 500);
         this.instance.toolbar.afterDecideResponse(e), null === (t = this.instance.sessionRecording) || void 0 === t || t.afterDecideResponse(e), 
-        Ze.afterDecideResponse(e, this.instance), this.instance._afterDecideResponse(e);
-        var r = null == P ? void 0 : P.extendPostHogWithSurveys;
-        e.surveys && !r && ie(this.instance.requestRouter.endpointFor("assets", "/static/surveys.js"), (function(e) {
-          if (e) return j.error("Could not load surveys script", e);
-          P.extendPostHogWithSurveys(n.instance);
+        null === (n = this.instance.autocapture) || void 0 === n || n.afterDecideResponse(e), 
+        this.instance._afterDecideResponse(e);
+        var s = null == I ? void 0 : I.extendPostHogWithSurveys;
+        this.instance.config.disable_surveys || !e.surveys || s || se(this.instance.requestRouter.endpointFor("assets", "/static/surveys.js"), (function(e) {
+          if (e) return U.error("Could not load surveys script", e);
+          I.extendPostHogWithSurveys(i.instance);
         }));
-        var s = null == P ? void 0 : P.extendPostHogWithExceptionAutoCapture;
-        if (e.autocaptureExceptions && e.autocaptureExceptions && w(s) && ie(this.instance.requestRouter.endpointFor("assets", "/static/exception-autocapture.js"), (function(t) {
-          if (t) return j.error("Could not load exception autocapture script", t);
-          P.extendPostHogWithExceptionAutocapture(n.instance, e);
+        var o = null == I ? void 0 : I.extendPostHogWithExceptionAutoCapture;
+        if (e.autocaptureExceptions && e.autocaptureExceptions && w(o) && se(this.instance.requestRouter.endpointFor("assets", "/static/exception-autocapture.js"), (function(t) {
+          if (t) return U.error("Could not load exception autocapture script", t);
+          I.extendPostHogWithExceptionAutocapture(i.instance, e);
         })), e.siteApps) if (this.instance.config.opt_in_site_apps) {
-          var o, a = h(e.siteApps);
+          var a, u = h(e.siteApps);
           try {
-            var u = function() {
-              var e = o.value, t = e.id, i = e.url, r = n.instance.requestRouter.endpointFor("api", i);
-              B["__$$ph_site_app_".concat(t)] = n.instance, ie(r, (function(e) {
-                e && j.error("Error while initializing PostHog app with config id ".concat(t), e);
+            var l = function() {
+              var e = a.value, t = e.id, n = e.url, r = i.instance.requestRouter.endpointFor("api", n);
+              H["__$$ph_site_app_".concat(t)] = i.instance, se(r, (function(e) {
+                e && U.error("Error while initializing PostHog app with config id ".concat(t), e);
               }));
             };
-            for (a.s(); !(o = a.n()).done; ) u();
+            for (u.s(); !(a = u.n()).done; ) l();
           } catch (e) {
-            a.e(e);
+            u.e(e);
           } finally {
-            a.f();
+            u.f();
           }
-        } else e.siteApps.length > 0 && j.error('PostHog site apps are disabled. Enable the "opt_in_site_apps" config to proceed.');
+        } else e.siteApps.length > 0 && U.error('PostHog site apps are disabled. Enable the "opt_in_site_apps" config to proceed.');
       }
     }
   } ]), e;
-}(), ci = null != P && P.location ? $t(P.location.hash, "__posthog") || $t(location.hash, "state") : null, di = "_postHogToolbarParams", hi = function() {
+}(), fi = null != I && I.location ? lt(I.location.hash, "__posthog") || lt(location.hash, "state") : null, pi = "_postHogToolbarParams", gi = function() {
   function e(t) {
     i(this, e), o(this, "_toolbarScriptLoaded", !1), this.instance = t;
   }
@@ -2489,23 +2366,23 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
     key: "maybeLoadToolbar",
     value: function() {
       var e, t, n = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : void 0, i = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : void 0, r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : void 0;
-      if (!P || !O) return !1;
-      n = null !== (e = n) && void 0 !== e ? e : P.location, r = null !== (t = r) && void 0 !== t ? t : P.history;
+      if (!I || !O) return !1;
+      n = null !== (e = n) && void 0 !== e ? e : I.location, r = null !== (t = r) && void 0 !== t ? t : I.history;
       try {
         if (!i) {
           try {
-            P.localStorage.setItem("test", "test"), P.localStorage.removeItem("test");
+            I.localStorage.setItem("test", "test"), I.localStorage.removeItem("test");
           } catch (e) {
             return !1;
           }
-          i = null == P ? void 0 : P.localStorage;
+          i = null == I ? void 0 : I.localStorage;
         }
-        var s, o = ci || $t(n.hash, "__posthog") || $t(n.hash, "state"), a = o ? K((function() {
+        var s, o = fi || lt(n.hash, "__posthog") || lt(n.hash, "state"), a = o ? X((function() {
           return JSON.parse(atob(decodeURIComponent(o)));
-        })) || K((function() {
+        })) || X((function() {
           return JSON.parse(decodeURIComponent(o));
         })) : null;
-        return a && "ph_authorize" === a.action ? ((s = a).source = "url", s && Object.keys(s).length > 0 && (a.desiredHash ? n.hash = a.desiredHash : r ? r.replaceState("", O.title, n.pathname + n.search) : n.hash = "")) : ((s = JSON.parse(i.getItem(di) || "{}")).source = "localstorage", 
+        return a && "ph_authorize" === a.action ? ((s = a).source = "url", s && Object.keys(s).length > 0 && (a.desiredHash ? n.hash = a.desiredHash : r ? r.replaceState("", O.title, n.pathname + n.search) : n.hash = "")) : ((s = JSON.parse(i.getItem(pi) || "{}")).source = "localstorage", 
         delete s.userIntent), !(!s.token || this.instance.config.token !== s.token) && (this.loadToolbar(s), 
         !0);
       } catch (e) {
@@ -2515,13 +2392,13 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
   }, {
     key: "_callLoadToolbar",
     value: function(e) {
-      (B.ph_load_toolbar || B.ph_load_editor)(e, this.instance);
+      (H.ph_load_toolbar || H.ph_load_editor)(e, this.instance);
     }
   }, {
     key: "loadToolbar",
     value: function(e) {
       var n = this;
-      if (!P || P.localStorage.getItem(di) && this._toolbarScriptLoaded) return !1;
+      if (!I || I.localStorage.getItem(pi) && this._toolbarScriptLoaded) return !1;
       var i = "custom" === this.instance.requestRouter.region && this.instance.config.advanced_disable_toolbar_metrics, r = t(t({
         token: this.instance.config.token
       }, e), {}, {
@@ -2529,15 +2406,15 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
       }, i ? {
         instrument: !1
       } : {});
-      if (P.localStorage.setItem(di, JSON.stringify(t(t({}, r), {}, {
+      if (I.localStorage.setItem(pi, JSON.stringify(t(t({}, r), {}, {
         source: void 0
       }))), this._toolbarScriptLoaded) this._callLoadToolbar(r); else {
         this._toolbarScriptLoaded = !0;
         var s = 3e5, o = Math.floor(Date.now() / s) * s;
-        ie(this.instance.requestRouter.endpointFor("assets", "/static/toolbar.js?t=".concat(o)), (function(e) {
-          if (e) return j.error("Failed to load toolbar", e), void (n._toolbarScriptLoaded = !1);
+        se(this.instance.requestRouter.endpointFor("assets", "/static/toolbar.js?t=".concat(o)), (function(e) {
+          if (e) return U.error("Failed to load toolbar", e), void (n._toolbarScriptLoaded = !1);
           n._callLoadToolbar(r);
-        })), ne(P, "turbolinks:load", (function() {
+        })), re(I, "turbolinks:load", (function() {
           n._toolbarScriptLoaded = !1, n.loadToolbar(r);
         }));
       }
@@ -2555,7 +2432,7 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
       return this.maybeLoadToolbar(e, t, n);
     }
   } ]), e;
-}(), fi = function() {
+}(), vi = function() {
   function e(t) {
     i(this, e), o(this, "isPaused", !0), o(this, "queue", []), o(this, "flushTimeoutMs", 3e3), 
     this.sendRequest = t;
@@ -2594,7 +2471,7 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
         if (e.clearFlushTimeout(), e.queue.length > 0) {
           var t = e.formatQueue(), n = function(n) {
             var i = t[n], r = (new Date).getTime();
-            i.data && m(i.data) && z(i.data, (function(e) {
+            i.data && m(i.data) && G(i.data, (function(e) {
               e.offset = Math.abs(e.timestamp - r), delete e.timestamp;
             })), e.sendRequest(i);
           };
@@ -2611,7 +2488,7 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
     key: "formatQueue",
     value: function() {
       var e = {};
-      return z(this.queue, (function(n) {
+      return G(this.queue, (function(n) {
         var i, r = n, s = (r ? r.batchKey : null) || r.url;
         w(e[s]) && (e[s] = t(t({}, r), {}, {
           data: []
@@ -2619,68 +2496,68 @@ var si = [ ni.MouseMove, ni.MouseInteraction, ni.Scroll, ni.ViewportResize, ni.I
       })), this.queue = [], e;
     }
   } ]), e;
-}(), pi = Uint8Array, gi = Uint16Array, vi = Uint32Array, _i = new pi([ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 0, 0, 0 ]), mi = new pi([ 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 0, 0 ]), yi = new pi([ 16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15 ]), bi = function(e, t) {
-  for (var n = new gi(31), i = 0; i < 31; ++i) n[i] = t += 1 << e[i - 1];
-  var r = new vi(n[30]);
+}(), _i = Uint8Array, mi = Uint16Array, yi = Uint32Array, bi = new _i([ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 0, 0, 0 ]), ki = new _i([ 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 0, 0 ]), wi = new _i([ 16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15 ]), Si = function(e, t) {
+  for (var n = new mi(31), i = 0; i < 31; ++i) n[i] = t += 1 << e[i - 1];
+  var r = new yi(n[30]);
   for (i = 1; i < 30; ++i) for (var s = n[i]; s < n[i + 1]; ++s) r[s] = s - n[i] << 5 | i;
   return [ n, r ];
-}, wi = bi(_i, 2), ki = wi[0], Si = wi[1];
+}, Fi = Si(bi, 2), Ri = Fi[0], Pi = Fi[1];
 
-ki[28] = 258, Si[258] = 28;
+Ri[28] = 258, Pi[258] = 28;
 
-for (var Fi = bi(mi, 0)[1], Ri = new gi(32768), xi = 0; xi < 32768; ++xi) {
-  var Ei = (43690 & xi) >>> 1 | (21845 & xi) << 1;
-  Ei = (61680 & (Ei = (52428 & Ei) >>> 2 | (13107 & Ei) << 2)) >>> 4 | (3855 & Ei) << 4, 
-  Ri[xi] = ((65280 & Ei) >>> 8 | (255 & Ei) << 8) >>> 1;
+for (var xi = Si(ki, 0)[1], Ei = new mi(32768), Ii = 0; Ii < 32768; ++Ii) {
+  var Ci = (43690 & Ii) >>> 1 | (21845 & Ii) << 1;
+  Ci = (61680 & (Ci = (52428 & Ci) >>> 2 | (13107 & Ci) << 2)) >>> 4 | (3855 & Ci) << 4, 
+  Ei[Ii] = ((65280 & Ci) >>> 8 | (255 & Ci) << 8) >>> 1;
 }
 
-var Pi = function(e, t, n) {
-  for (var i = e.length, r = 0, s = new gi(t); r < i; ++r) ++s[e[r] - 1];
-  var o, a = new gi(t);
+var $i = function(e, t, n) {
+  for (var i = e.length, r = 0, s = new mi(t); r < i; ++r) ++s[e[r] - 1];
+  var o, a = new mi(t);
   for (r = 0; r < t; ++r) a[r] = a[r - 1] + s[r - 1] << 1;
   if (n) {
-    o = new gi(1 << t);
+    o = new mi(1 << t);
     var u = 15 - t;
-    for (r = 0; r < i; ++r) if (e[r]) for (var l = r << 4 | e[r], c = t - e[r], d = a[e[r] - 1]++ << c, h = d | (1 << c) - 1; d <= h; ++d) o[Ri[d] >>> u] = l;
-  } else for (o = new gi(i), r = 0; r < i; ++r) o[r] = Ri[a[e[r] - 1]++] >>> 15 - e[r];
+    for (r = 0; r < i; ++r) if (e[r]) for (var l = r << 4 | e[r], c = t - e[r], d = a[e[r] - 1]++ << c, h = d | (1 << c) - 1; d <= h; ++d) o[Ei[d] >>> u] = l;
+  } else for (o = new mi(i), r = 0; r < i; ++r) o[r] = Ei[a[e[r] - 1]++] >>> 15 - e[r];
   return o;
-}, Ii = new pi(288);
+}, Ti = new _i(288);
 
-for (xi = 0; xi < 144; ++xi) Ii[xi] = 8;
+for (Ii = 0; Ii < 144; ++Ii) Ti[Ii] = 8;
 
-for (xi = 144; xi < 256; ++xi) Ii[xi] = 9;
+for (Ii = 144; Ii < 256; ++Ii) Ti[Ii] = 9;
 
-for (xi = 256; xi < 280; ++xi) Ii[xi] = 7;
+for (Ii = 256; Ii < 280; ++Ii) Ti[Ii] = 7;
 
-for (xi = 280; xi < 288; ++xi) Ii[xi] = 8;
+for (Ii = 280; Ii < 288; ++Ii) Ti[Ii] = 8;
 
-var Ci = new pi(32);
+var qi = new _i(32);
 
-for (xi = 0; xi < 32; ++xi) Ci[xi] = 5;
+for (Ii = 0; Ii < 32; ++Ii) qi[Ii] = 5;
 
-var Ti = Pi(Ii, 9, 0), $i = Pi(Ci, 5, 0), Ai = function(e) {
+var Mi = $i(Ti, 9, 0), Oi = $i(qi, 5, 0), Ai = function(e) {
   return (e / 8 >> 0) + (7 & e && 1);
-}, Oi = function(e, t, n) {
+}, Di = function(e, t, n) {
   (null == t || t < 0) && (t = 0), (null == n || n > e.length) && (n = e.length);
-  var i = new (e instanceof gi ? gi : e instanceof vi ? vi : pi)(n - t);
+  var i = new (e instanceof mi ? mi : e instanceof yi ? yi : _i)(n - t);
   return i.set(e.subarray(t, n)), i;
-}, Mi = function(e, t, n) {
+}, Li = function(e, t, n) {
   n <<= 7 & t;
   var i = t / 8 >> 0;
   e[i] |= n, e[i + 1] |= n >>> 8;
-}, qi = function(e, t, n) {
+}, Ni = function(e, t, n) {
   n <<= 7 & t;
   var i = t / 8 >> 0;
   e[i] |= n, e[i + 1] |= n >>> 8, e[i + 2] |= n >>> 16;
-}, Di = function(e, t) {
+}, Bi = function(e, t) {
   for (var n = [], i = 0; i < e.length; ++i) e[i] && n.push({
     s: i,
     f: e[i]
   });
   var r = n.length, s = n.slice();
-  if (!r) return [ new pi(0), 0 ];
+  if (!r) return [ new _i(0), 0 ];
   if (1 == r) {
-    var o = new pi(n[0].s + 1);
+    var o = new _i(n[0].s + 1);
     return o[n[0].s] = 1, [ o, 1 ];
   }
   n.sort((function(e, t) {
@@ -2704,7 +2581,7 @@ var Ti = Pi(Ii, 9, 0), $i = Pi(Ci, 5, 0), Ai = function(e) {
   };
   var h = s[0].s;
   for (i = 1; i < r; ++i) s[i].s > h && (h = s[i].s);
-  var f = new gi(h + 1), p = Li(n[c - 1], f, 0);
+  var f = new mi(h + 1), p = Hi(n[c - 1], f, 0);
   if (p > t) {
     i = 0;
     var g = 0, v = p - t, _ = 1 << v;
@@ -2725,12 +2602,12 @@ var Ti = Pi(Ii, 9, 0), $i = Pi(Ci, 5, 0), Ai = function(e) {
     }
     p = t;
   }
-  return [ new pi(f), p ];
-}, Li = function e(t, n, i) {
+  return [ new _i(f), p ];
+}, Hi = function e(t, n, i) {
   return -1 == t.s ? Math.max(e(t.l, n, i + 1), e(t.r, n, i + 1)) : n[t.s] = i;
-}, Ni = function(e) {
+}, ji = function(e) {
   for (var t = e.length; t && !e[--t]; ) ;
-  for (var n = new gi(++t), i = 0, r = e[0], s = 1, o = function(e) {
+  for (var n = new mi(++t), i = 0, r = e[0], s = 1, o = function(e) {
     n[i++] = e;
   }, a = 1; a <= t; ++a) if (e[a] == r && a != t) ++s; else {
     if (!r && s > 2) {
@@ -2744,104 +2621,104 @@ var Ti = Pi(Ii, 9, 0), $i = Pi(Ci, 5, 0), Ai = function(e) {
     s = 1, r = e[a];
   }
   return [ n.subarray(0, i), t ];
-}, Bi = function(e, t) {
+}, Ui = function(e, t) {
   for (var n = 0, i = 0; i < t.length; ++i) n += e[i] * t[i];
   return n;
-}, Hi = function(e, t, n) {
+}, Wi = function(e, t, n) {
   var i = n.length, r = Ai(t + 2);
   e[r] = 255 & i, e[r + 1] = i >>> 8, e[r + 2] = 255 ^ e[r], e[r + 3] = 255 ^ e[r + 1];
   for (var s = 0; s < i; ++s) e[r + s + 4] = n[s];
   return 8 * (r + 4 + i);
-}, ji = function(e, t, n, i, r, s, o, a, u, l, c) {
-  Mi(t, c++, n), ++r[256];
-  for (var d = Di(r, 15), h = d[0], f = d[1], p = Di(s, 15), g = p[0], v = p[1], _ = Ni(h), m = _[0], y = _[1], b = Ni(g), w = b[0], k = b[1], S = new gi(19), F = 0; F < m.length; ++F) S[31 & m[F]]++;
-  for (F = 0; F < w.length; ++F) S[31 & w[F]]++;
-  for (var R = Di(S, 7), x = R[0], E = R[1], P = 19; P > 4 && !x[yi[P - 1]]; --P) ;
-  var I, C, T, $, A = l + 5 << 3, O = Bi(r, Ii) + Bi(s, Ci) + o, M = Bi(r, h) + Bi(s, g) + o + 14 + 3 * P + Bi(S, x) + (2 * S[16] + 3 * S[17] + 7 * S[18]);
-  if (A <= O && A <= M) return Hi(t, c, e.subarray(u, u + l));
-  if (Mi(t, c, 1 + (M < O)), c += 2, M < O) {
-    I = Pi(h, f, 0), C = h, T = Pi(g, v, 0), $ = g;
-    var q = Pi(x, E, 0);
-    Mi(t, c, y - 257), Mi(t, c + 5, k - 1), Mi(t, c + 10, P - 4), c += 14;
-    for (F = 0; F < P; ++F) Mi(t, c + 3 * F, x[yi[F]]);
-    c += 3 * P;
-    for (var D = [ m, w ], L = 0; L < 2; ++L) {
+}, Vi = function(e, t, n, i, r, s, o, a, u, l, c) {
+  Li(t, c++, n), ++r[256];
+  for (var d = Bi(r, 15), h = d[0], f = d[1], p = Bi(s, 15), g = p[0], v = p[1], _ = ji(h), m = _[0], y = _[1], b = ji(g), k = b[0], w = b[1], S = new mi(19), F = 0; F < m.length; ++F) S[31 & m[F]]++;
+  for (F = 0; F < k.length; ++F) S[31 & k[F]]++;
+  for (var R = Bi(S, 7), P = R[0], x = R[1], E = 19; E > 4 && !P[wi[E - 1]]; --E) ;
+  var I, C, $, T, q = l + 5 << 3, M = Ui(r, Ti) + Ui(s, qi) + o, O = Ui(r, h) + Ui(s, g) + o + 14 + 3 * E + Ui(S, P) + (2 * S[16] + 3 * S[17] + 7 * S[18]);
+  if (q <= M && q <= O) return Wi(t, c, e.subarray(u, u + l));
+  if (Li(t, c, 1 + (O < M)), c += 2, O < M) {
+    I = $i(h, f, 0), C = h, $ = $i(g, v, 0), T = g;
+    var A = $i(P, x, 0);
+    Li(t, c, y - 257), Li(t, c + 5, w - 1), Li(t, c + 10, E - 4), c += 14;
+    for (F = 0; F < E; ++F) Li(t, c + 3 * F, P[wi[F]]);
+    c += 3 * E;
+    for (var D = [ m, k ], L = 0; L < 2; ++L) {
       var N = D[L];
       for (F = 0; F < N.length; ++F) {
         var B = 31 & N[F];
-        Mi(t, c, q[B]), c += x[B], B > 15 && (Mi(t, c, N[F] >>> 5 & 127), c += N[F] >>> 12);
+        Li(t, c, A[B]), c += P[B], B > 15 && (Li(t, c, N[F] >>> 5 & 127), c += N[F] >>> 12);
       }
     }
-  } else I = Ti, C = Ii, T = $i, $ = Ci;
+  } else I = Mi, C = Ti, $ = Oi, T = qi;
   for (F = 0; F < a; ++F) if (i[F] > 255) {
     B = i[F] >>> 18 & 31;
-    qi(t, c, I[B + 257]), c += C[B + 257], B > 7 && (Mi(t, c, i[F] >>> 23 & 31), c += _i[B]);
+    Ni(t, c, I[B + 257]), c += C[B + 257], B > 7 && (Li(t, c, i[F] >>> 23 & 31), c += bi[B]);
     var H = 31 & i[F];
-    qi(t, c, T[H]), c += $[H], H > 3 && (qi(t, c, i[F] >>> 5 & 8191), c += mi[H]);
-  } else qi(t, c, I[i[F]]), c += C[i[F]];
-  return qi(t, c, I[256]), c + C[256];
-}, Ui = new vi([ 65540, 131080, 131088, 131104, 262176, 1048704, 1048832, 2114560, 2117632 ]), Vi = new pi(0), Wi = function() {
-  for (var e = new vi(256), t = 0; t < 256; ++t) {
+    Ni(t, c, $[H]), c += T[H], H > 3 && (Ni(t, c, i[F] >>> 5 & 8191), c += ki[H]);
+  } else Ni(t, c, I[i[F]]), c += C[i[F]];
+  return Ni(t, c, I[256]), c + C[256];
+}, zi = new yi([ 65540, 131080, 131088, 131104, 262176, 1048704, 1048832, 2114560, 2117632 ]), Gi = new _i(0), Qi = function() {
+  for (var e = new yi(256), t = 0; t < 256; ++t) {
     for (var n = t, i = 9; --i; ) n = (1 & n && 3988292384) ^ n >>> 1;
     e[t] = n;
   }
   return e;
-}(), zi = function(e, t, n, i, r) {
+}(), Yi = function(e, t, n, i, r) {
   return function(e, t, n, i, r, s) {
-    var o = e.length, a = new pi(i + o + 5 * (1 + Math.floor(o / 7e3)) + r), u = a.subarray(i, a.length - r), l = 0;
+    var o = e.length, a = new _i(i + o + 5 * (1 + Math.floor(o / 7e3)) + r), u = a.subarray(i, a.length - r), l = 0;
     if (!t || o < 8) for (var c = 0; c <= o; c += 65535) {
       var d = c + 65535;
-      d < o ? l = Hi(u, l, e.subarray(c, d)) : (u[c] = s, l = Hi(u, l, e.subarray(c, o)));
+      d < o ? l = Wi(u, l, e.subarray(c, d)) : (u[c] = s, l = Wi(u, l, e.subarray(c, o)));
     } else {
-      for (var h = Ui[t - 1], f = h >>> 13, p = 8191 & h, g = (1 << n) - 1, v = new gi(32768), _ = new gi(g + 1), m = Math.ceil(n / 3), y = 2 * m, b = function(t) {
+      for (var h = zi[t - 1], f = h >>> 13, p = 8191 & h, g = (1 << n) - 1, v = new mi(32768), _ = new mi(g + 1), m = Math.ceil(n / 3), y = 2 * m, b = function(t) {
         return (e[t] ^ e[t + 1] << m ^ e[t + 2] << y) & g;
-      }, w = new vi(25e3), k = new gi(288), S = new gi(32), F = 0, R = 0, x = (c = 0, 
-      0), E = 0, P = 0; c < o; ++c) {
-        var I = b(c), C = 32767 & c, T = _[I];
-        if (v[C] = T, _[I] = C, E <= c) {
-          var $ = o - c;
-          if ((F > 7e3 || x > 24576) && $ > 423) {
-            l = ji(e, u, 0, w, k, S, R, x, P, c - P, l), x = F = R = 0, P = c;
-            for (var A = 0; A < 286; ++A) k[A] = 0;
-            for (A = 0; A < 30; ++A) S[A] = 0;
+      }, k = new yi(25e3), w = new mi(288), S = new mi(32), F = 0, R = 0, P = (c = 0, 
+      0), x = 0, E = 0; c < o; ++c) {
+        var I = b(c), C = 32767 & c, $ = _[I];
+        if (v[C] = $, _[I] = C, x <= c) {
+          var T = o - c;
+          if ((F > 7e3 || P > 24576) && T > 423) {
+            l = Vi(e, u, 0, k, w, S, R, P, E, c - E, l), P = F = R = 0, E = c;
+            for (var q = 0; q < 286; ++q) w[q] = 0;
+            for (q = 0; q < 30; ++q) S[q] = 0;
           }
-          var O = 2, M = 0, q = p, D = C - T & 32767;
-          if ($ > 2 && I == b(c - D)) for (var L = Math.min(f, $) - 1, N = Math.min(32767, c), B = Math.min(258, $); D <= N && --q && C != T; ) {
-            if (e[c + O] == e[c + O - D]) {
+          var M = 2, O = 0, A = p, D = C - $ & 32767;
+          if (T > 2 && I == b(c - D)) for (var L = Math.min(f, T) - 1, N = Math.min(32767, c), B = Math.min(258, T); D <= N && --A && C != $; ) {
+            if (e[c + M] == e[c + M - D]) {
               for (var H = 0; H < B && e[c + H] == e[c + H - D]; ++H) ;
-              if (H > O) {
-                if (O = H, M = D, H > L) break;
+              if (H > M) {
+                if (M = H, O = D, H > L) break;
                 var j = Math.min(D, H - 2), U = 0;
-                for (A = 0; A < j; ++A) {
-                  var V = c - D + A + 32768 & 32767, W = V - v[V] + 32768 & 32767;
-                  W > U && (U = W, T = V);
+                for (q = 0; q < j; ++q) {
+                  var W = c - D + q + 32768 & 32767, V = W - v[W] + 32768 & 32767;
+                  V > U && (U = V, $ = W);
                 }
               }
             }
-            D += (C = T) - (T = v[C]) + 32768 & 32767;
+            D += (C = $) - ($ = v[C]) + 32768 & 32767;
           }
-          if (M) {
-            w[x++] = 268435456 | Si[O] << 18 | Fi[M];
-            var z = 31 & Si[O], G = 31 & Fi[M];
-            R += _i[z] + mi[G], ++k[257 + z], ++S[G], E = c + O, ++F;
-          } else w[x++] = e[c], ++k[e[c]];
+          if (O) {
+            k[P++] = 268435456 | Pi[M] << 18 | xi[O];
+            var z = 31 & Pi[M], G = 31 & xi[O];
+            R += bi[z] + ki[G], ++w[257 + z], ++S[G], x = c + M, ++F;
+          } else k[P++] = e[c], ++w[e[c]];
         }
       }
-      l = ji(e, u, s, w, k, S, R, x, P, c - P, l), s || (l = Hi(u, l, Vi));
+      l = Vi(e, u, s, k, w, S, R, P, E, c - E, l), s || (l = Wi(u, l, Gi));
     }
-    return Oi(a, 0, i + Ai(l) + r);
+    return Di(a, 0, i + Ai(l) + r);
   }(e, null == t.level ? 6 : t.level, null == t.mem ? Math.ceil(1.5 * Math.max(8, Math.min(13, Math.log(e.length)))) : 12 + t.mem, n, i, !r);
-}, Gi = function(e, t, n) {
+}, Ji = function(e, t, n) {
   for (;n; ++t) e[t] = n, n >>>= 8;
 };
 
-function Qi(e, t) {
+function Ki(e, t) {
   void 0 === t && (t = {});
   var n = function() {
     var e = 4294967295;
     return {
       p: function(t) {
-        for (var n = e, i = 0; i < t.length; ++i) n = Wi[255 & n ^ t[i]] ^ n >>> 8;
+        for (var n = e, i = 0; i < t.length; ++i) n = Qi[255 & n ^ t[i]] ^ n >>> 8;
         e = n;
       },
       d: function() {
@@ -2850,40 +2727,40 @@ function Qi(e, t) {
     };
   }(), i = e.length;
   n.p(e);
-  var r, s = zi(e, t, 10 + ((r = t).filename && r.filename.length + 1 || 0), 8), o = s.length;
+  var r, s = Yi(e, t, 10 + ((r = t).filename && r.filename.length + 1 || 0), 8), o = s.length;
   return function(e, t) {
     var n = t.filename;
     if (e[0] = 31, e[1] = 139, e[2] = 8, e[8] = t.level < 2 ? 4 : 9 == t.level ? 2 : 0, 
-    e[9] = 3, 0 != t.mtime && Gi(e, 4, Math.floor(new Date(t.mtime || Date.now()) / 1e3)), 
+    e[9] = 3, 0 != t.mtime && Ji(e, 4, Math.floor(new Date(t.mtime || Date.now()) / 1e3)), 
     n) {
       e[3] = 8;
       for (var i = 0; i <= n.length; ++i) e[i + 10] = n.charCodeAt(i);
     }
-  }(s, t), Gi(s, o - 8, n.d()), Gi(s, o - 4, i), s;
+  }(s, t), Ji(s, o - 8, n.d()), Ji(s, o - 4, i), s;
 }
 
-var Yi = !!D || !!q, Ji = "text/plain", Ki = function(e, n) {
+var Xi = !!L || !!D, Zi = "text/plain", er = function(e, n) {
   var i = u(e.split("?"), 2), r = i[0], s = i[1], o = t({}, n);
   null == s || s.split("&").forEach((function(e) {
     var t = u(e.split("="), 1)[0];
     delete o[t];
   }));
-  var a = Ct(o);
+  var a = at(o);
   return a = a ? (s ? s + "&" : "") + a : s, "".concat(r, "?").concat(a);
-}, Xi = function(e) {
+}, tr = function(e) {
   return "data=" + encodeURIComponent("string" == typeof e ? e : JSON.stringify(e));
-}, Zi = function(e) {
+}, nr = function(e) {
   var t = e.data, n = e.compression;
   if (t) {
-    if (n === Xe.GZipJS) {
-      var i = Qi(function(e, t) {
+    if (n === ne.GZipJS) {
+      var i = Ki(function(e, t) {
         var n = e.length;
         if (!t && "undefined" != typeof TextEncoder) return (new TextEncoder).encode(e);
-        for (var i = new pi(e.length + (e.length >>> 1)), r = 0, s = function(e) {
+        for (var i = new _i(e.length + (e.length >>> 1)), r = 0, s = function(e) {
           i[r++] = e;
         }, o = 0; o < n; ++o) {
           if (r + 5 > i.length) {
-            var a = new pi(r + 8 + (n - o << 1));
+            var a = new _i(r + 8 + (n - o << 1));
             a.set(i), i = a;
           }
           var u = e.charCodeAt(o);
@@ -2891,22 +2768,22 @@ var Yi = !!D || !!q, Ji = "text/plain", Ki = function(e, n) {
           s(128 | u >>> 12 & 63), s(128 | u >>> 6 & 63), s(128 | 63 & u)) : (s(224 | u >>> 12), 
           s(128 | u >>> 6 & 63), s(128 | 63 & u));
         }
-        return Oi(i, 0, r);
+        return Di(i, 0, r);
       }(JSON.stringify(t)), {
         mtime: 0
       });
       return {
-        contentType: Ji,
+        contentType: Zi,
         body: new Blob([ i ], {
-          type: Ji
+          type: Zi
         })
       };
     }
-    if (n === Xe.Base64) {
+    if (n === ne.Base64) {
       var r = function(e) {
         var t, n, i, r, s, o = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=", a = 0, u = 0, l = "", c = [];
         if (!e) return e;
-        e = te(e);
+        e = ie(e);
         do {
           t = (s = e.charCodeAt(a++) << 16 | e.charCodeAt(a++) << 8 | e.charCodeAt(a++)) >> 18 & 63, 
           n = s >> 12 & 63, i = s >> 6 & 63, r = 63 & s, c[u++] = o.charAt(t) + o.charAt(n) + o.charAt(i) + o.charAt(r);
@@ -2923,7 +2800,7 @@ var Yi = !!D || !!q, Ji = "text/plain", Ki = function(e, n) {
       }(JSON.stringify(t));
       return {
         contentType: "application/x-www-form-urlencoded",
-        body: Xi(r)
+        body: tr(r)
       };
     }
     return {
@@ -2931,11 +2808,11 @@ var Yi = !!D || !!q, Ji = "text/plain", Ki = function(e, n) {
       body: JSON.stringify(t)
     };
   }
-}, er = function(e) {
-  var t, n = new D;
+}, ir = function(e) {
+  var t, n = new L;
   n.open(e.method || "GET", e.url, !0);
-  var i = null !== (t = Zi(e)) && void 0 !== t ? t : {}, r = i.contentType, s = i.body;
-  z(e.headers, (function(e, t) {
+  var i = null !== (t = nr(e)) && void 0 !== t ? t : {}, r = i.contentType, s = i.body;
+  G(e.headers, (function(e, t) {
     n.setRequestHeader(t, e);
   })), r && n.setRequestHeader("Content-Type", r), e.timeout && (n.timeout = e.timeout), 
   n.withCredentials = !0, n.onreadystatechange = function() {
@@ -2950,14 +2827,14 @@ var Yi = !!D || !!q, Ji = "text/plain", Ki = function(e, n) {
       null === (t = e.callback) || void 0 === t || t.call(e, i);
     }
   }, n.send(s);
-}, tr = function(e) {
-  var t, n, i = null !== (t = Zi(e)) && void 0 !== t ? t : {}, r = i.contentType, s = i.body, o = new Headers;
-  z(o, (function(e, t) {
+}, rr = function(e) {
+  var t, n, i = null !== (t = nr(e)) && void 0 !== t ? t : {}, r = i.contentType, s = i.body, o = new Headers;
+  G(o, (function(e, t) {
     o.append(t, e);
   })), r && o.append("Content-Type", r);
   var a = e.url, u = null;
-  if (L) {
-    var l = new L;
+  if (N) {
+    var l = new N;
     u = {
       signal: l.signal,
       timeout: setTimeout((function() {
@@ -2965,7 +2842,7 @@ var Yi = !!D || !!q, Ji = "text/plain", Ki = function(e, n) {
       }), e.timeout)
     };
   }
-  q(a, {
+  D(a, {
     method: (null == e ? void 0 : e.method) || "GET",
     headers: o,
     keepalive: "POST" === e.method,
@@ -2980,30 +2857,30 @@ var Yi = !!D || !!q, Ji = "text/plain", Ki = function(e, n) {
       if (200 === t.status) try {
         r.json = JSON.parse(n);
       } catch (e) {
-        j.error(e);
+        U.error(e);
       }
       null === (i = e.callback) || void 0 === i || i.call(e, r);
     }));
   })).catch((function(t) {
     var n;
-    j.error(t), null === (n = e.callback) || void 0 === n || n.call(e, {
+    U.error(t), null === (n = e.callback) || void 0 === n || n.call(e, {
       statusCode: 0,
       text: t
     });
   })).finally((function() {
     return u ? clearTimeout(u.timeout) : null;
   }));
-}, nr = function(e) {
-  var t = Ki(e.url, {
+}, sr = function(e) {
+  var t = er(e.url, {
     beacon: "1"
   });
   try {
-    var n, i = null !== (n = Zi(e)) && void 0 !== n ? n : {}, r = i.contentType, s = i.body, o = "string" == typeof s ? new Blob([ s ], {
+    var n, i = null !== (n = nr(e)) && void 0 !== n ? n : {}, r = i.contentType, s = i.body, o = "string" == typeof s ? new Blob([ s ], {
       type: r
     }) : s;
-    A.sendBeacon(t, o);
+    M.sendBeacon(t, o);
   } catch (e) {}
-}, ir = function(e) {
+}, or = function(e) {
   var t;
   if (O) {
     var n = O.createElement("script");
@@ -3011,24 +2888,24 @@ var Yi = !!D || !!q, Ji = "text/plain", Ki = function(e, n) {
     var i = O.getElementsByTagName("script")[0];
     null === (t = i.parentNode) || void 0 === t || t.insertBefore(n, i);
   }
-}, rr = [ "retriesPerformedSoFar" ];
+}, ar = [ "retriesPerformedSoFar" ];
 
-var sr, or = function() {
+var ur, lr = function() {
   function e(t) {
     var n = this;
     i(this, e), o(this, "isPolling", !1), o(this, "pollIntervalMs", 3e3), o(this, "queue", []), 
-    this.instance = t, this.queue = [], this.areWeOnline = !0, !w(P) && "onLine" in P.navigator && (this.areWeOnline = P.navigator.onLine, 
-    P.addEventListener("online", (function() {
+    this.instance = t, this.queue = [], this.areWeOnline = !0, !w(I) && "onLine" in I.navigator && (this.areWeOnline = I.navigator.onLine, 
+    I.addEventListener("online", (function() {
       n.areWeOnline = !0, n.flush();
-    })), P.addEventListener("offline", (function() {
+    })), I.addEventListener("offline", (function() {
       n.areWeOnline = !1;
     })));
   }
   return s(e, [ {
     key: "retriableRequest",
     value: function(e) {
-      var n = this, i = e.retriesPerformedSoFar, r = a(e, rr);
-      R(i) && i > 0 && (r.url = Ki(r.url, {
+      var n = this, i = e.retriesPerformedSoFar, r = a(e, ar);
+      P(i) && i > 0 && (r.url = er(r.url, {
         retry_count: i
       })), this.instance._send_request(t(t({}, r), {}, {
         callback: function(e) {
@@ -3051,7 +2928,7 @@ var sr, or = function() {
         requestOptions: e
       });
       var r = "Enqueued failed request for retry in ".concat(n);
-      navigator.onLine || (r += " (Browser is offline)"), j.warn(r), this.isPolling || (this.isPolling = !0, 
+      navigator.onLine || (r += " (Browser is offline)"), U.warn(r), this.isPolling || (this.isPolling = !0, 
       this.poll());
     }
   }, {
@@ -3095,7 +2972,7 @@ var sr, or = function() {
               transport: "sendBeacon"
             }));
           } catch (e) {
-            j.error(e);
+            U.error(e);
           }
         }
       } catch (e) {
@@ -3106,18 +2983,18 @@ var sr, or = function() {
       this.queue = [];
     }
   } ]), e;
-}(), ar = 1800, ur = function() {
+}(), cr = 1800, dr = function() {
   function e(t, n, r, s) {
     i(this, e), o(this, "_sessionIdChangedHandlers", []), this.config = t, this.persistence = n, 
     this._windowId = void 0, this._sessionId = void 0, this._sessionStartTimestamp = null, 
-    this._sessionActivityTimestamp = null, this._sessionIdGenerator = r || dt, this._windowIdGenerator = s || dt;
-    var a = t.persistence_name || t.token, u = t.session_idle_timeout_seconds || ar;
-    if (R(u) ? u > ar ? j.warn("session_idle_timeout_seconds cannot be  greater than 30 minutes. Using 30 minutes instead.") : u < 60 && j.warn("session_idle_timeout_seconds cannot be less than 60 seconds. Using 60 seconds instead.") : (j.warn("session_idle_timeout_seconds must be a number. Defaulting to 30 minutes."), 
-    u = ar), this._sessionTimeoutMs = 1e3 * Math.min(Math.max(u, 60), ar), this._window_id_storage_key = "ph_" + a + "_window_id", 
+    this._sessionActivityTimestamp = null, this._sessionIdGenerator = r || je, this._windowIdGenerator = s || je;
+    var a = t.persistence_name || t.token, u = t.session_idle_timeout_seconds || cr;
+    if (P(u) ? u > cr ? U.warn("session_idle_timeout_seconds cannot be  greater than 30 minutes. Using 30 minutes instead.") : u < 60 && U.warn("session_idle_timeout_seconds cannot be less than 60 seconds. Using 60 seconds instead.") : (U.warn("session_idle_timeout_seconds must be a number. Defaulting to 30 minutes."), 
+    u = cr), this._sessionTimeoutMs = 1e3 * Math.min(Math.max(u, 60), cr), this._window_id_storage_key = "ph_" + a + "_window_id", 
     this._primary_window_exists_storage_key = "ph_" + a + "_primary_window_exists", 
     this._canUseSessionStorage()) {
-      var l = xt.parse(this._window_id_storage_key), c = xt.parse(this._primary_window_exists_storage_key);
-      l && !c ? this._windowId = l : xt.remove(this._window_id_storage_key), xt.set(this._primary_window_exists_storage_key, !0);
+      var l = it.parse(this._window_id_storage_key), c = it.parse(this._primary_window_exists_storage_key);
+      l && !c ? this._windowId = l : it.remove(this._window_id_storage_key), it.set(this._primary_window_exists_storage_key, !0);
     }
     this._listenToReloadWindow();
   }
@@ -3136,29 +3013,29 @@ var sr, or = function() {
   }, {
     key: "_canUseSessionStorage",
     value: function() {
-      return "memory" !== this.config.persistence && !this.persistence.disabled && xt.is_supported();
+      return "memory" !== this.config.persistence && !this.persistence.disabled && it.is_supported();
     }
   }, {
     key: "_setWindowId",
     value: function(e) {
-      e !== this._windowId && (this._windowId = e, this._canUseSessionStorage() && xt.set(this._window_id_storage_key, e));
+      e !== this._windowId && (this._windowId = e, this._canUseSessionStorage() && it.set(this._window_id_storage_key, e));
     }
   }, {
     key: "_getWindowId",
     value: function() {
-      return this._windowId ? this._windowId : this._canUseSessionStorage() ? xt.parse(this._window_id_storage_key) : null;
+      return this._windowId ? this._windowId : this._canUseSessionStorage() ? it.parse(this._window_id_storage_key) : null;
     }
   }, {
     key: "_setSessionId",
     value: function(e, t, n) {
       e === this._sessionId && t === this._sessionActivityTimestamp && n === this._sessionStartTimestamp || (this._sessionStartTimestamp = n, 
-      this._sessionActivityTimestamp = t, this._sessionId = e, this.persistence.register(o({}, Le, [ t, e, n ])));
+      this._sessionActivityTimestamp = t, this._sessionId = e, this.persistence.register(o({}, ve, [ t, e, n ])));
     }
   }, {
     key: "_getSessionId",
     value: function() {
       if (this._sessionId && this._sessionActivityTimestamp && this._sessionStartTimestamp) return [ this._sessionActivityTimestamp, this._sessionId, this._sessionStartTimestamp ];
-      var e = this.persistence.props[Le];
+      var e = this.persistence.props[ve];
       return m(e) && 2 === e.length && e.push(e[0]), e || [ 0, null, 0 ];
     }
   }, {
@@ -3170,15 +3047,15 @@ var sr, or = function() {
     key: "_listenToReloadWindow",
     value: function() {
       var e = this;
-      null == P || P.addEventListener("beforeunload", (function() {
-        e._canUseSessionStorage() && xt.remove(e._primary_window_exists_storage_key);
+      null == I || I.addEventListener("beforeunload", (function() {
+        e._canUseSessionStorage() && it.remove(e._primary_window_exists_storage_key);
       }));
     }
   }, {
     key: "checkAndGetSessionAndWindowId",
     value: function() {
       var e = arguments.length > 0 && void 0 !== arguments[0] && arguments[0], t = (arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : null) || (new Date).getTime(), n = u(this._getSessionId(), 3), i = n[0], r = n[1], s = n[2], o = this._getWindowId(), a = s && s > 0 && Math.abs(t - s) > 864e5, l = !1, c = !r, d = !e && Math.abs(t - i) > this._sessionTimeoutMs;
-      c || d || a ? (r = this._sessionIdGenerator(), o = this._windowIdGenerator(), j.info("[SessionId] new session ID generated", {
+      c || d || a ? (r = this._sessionIdGenerator(), o = this._windowIdGenerator(), U.info("[SessionId] new session ID generated", {
         sessionId: r,
         windowId: o,
         changeReason: {
@@ -3201,9 +3078,9 @@ var sr, or = function() {
 
 !function(e) {
   e.US = "us", e.EU = "eu", e.CUSTOM = "custom";
-}(sr || (sr = {}));
+}(ur || (ur = {}));
 
-var lr = function() {
+var hr = "i.posthog.com", fr = function() {
   function e(t) {
     i(this, e), o(this, "_regionCache", {}), this.instance = t;
   }
@@ -3221,16 +3098,16 @@ var lr = function() {
   }, {
     key: "region",
     get: function() {
-      return this._regionCache[this.apiHost] || (/https:\/\/(app|us|us-assets)(\.i)?\.posthog\.com/i.test(this.apiHost) ? this._regionCache[this.apiHost] = sr.US : /https:\/\/(eu|eu-assets)(\.i)?\.posthog\.com/i.test(this.apiHost) ? this._regionCache[this.apiHost] = sr.EU : this._regionCache[this.apiHost] = sr.CUSTOM), 
+      return this._regionCache[this.apiHost] || (/https:\/\/(app|us|us-assets)(\.i)?\.posthog\.com/i.test(this.apiHost) ? this._regionCache[this.apiHost] = ur.US : /https:\/\/(eu|eu-assets)(\.i)?\.posthog\.com/i.test(this.apiHost) ? this._regionCache[this.apiHost] = ur.EU : this._regionCache[this.apiHost] = ur.CUSTOM), 
       this._regionCache[this.apiHost];
     }
   }, {
     key: "endpointFor",
     value: function(e) {
       var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "";
-      if (t && (t = "/" === t[0] ? t : "/".concat(t)), "ui" === e) return (this.uiHost || this.apiHost) + t;
-      if (this.region === sr.CUSTOM) return this.apiHost + t;
-      var n = "i.posthog.com" + t;
+      if (t && (t = "/" === t[0] ? t : "/".concat(t)), "ui" === e) return (this.uiHost || this.apiHost.replace(".".concat(hr), ".posthog.com")) + t;
+      if (this.region === ur.CUSTOM) return this.apiHost + t;
+      var n = hr + t;
       switch (e) {
        case "assets":
         return "https://".concat(this.region, "-assets.").concat(n);
@@ -3240,31 +3117,33 @@ var lr = function() {
       }
     }
   } ]), e;
-}(), cr = s((function e(t, n, r, s) {
+}(), pr = s((function e(t, n, r, s) {
+  var o = arguments.length > 4 && void 0 !== arguments[4] ? arguments[4] : [ "error" ];
   i(this, e), this.name = "posthog-js", this.setupOnce = function(e) {
     e((function(e) {
-      var i, o, a, u, l;
-      if ("error" !== e.level || !t.__loaded) return e;
+      var i, a, u, l, c;
+      if (!("*" === o || o.includes(e.level)) || !t.__loaded) return e;
       e.tags || (e.tags = {});
-      var c = t.requestRouter.endpointFor("ui", "/person/" + t.get_distinct_id());
-      e.tags["PostHog Person URL"] = c, t.sessionRecordingStarted() && (e.tags["PostHog Recording URL"] = t.get_session_replay_url({
+      var d = t.requestRouter.endpointFor("ui", "/project/".concat(t.config.token, "/person/").concat(t.get_distinct_id()));
+      e.tags["PostHog Person URL"] = d, t.sessionRecordingStarted() && (e.tags["PostHog Recording URL"] = t.get_session_replay_url({
         withTimestamp: !0
       }));
-      var d = (null === (i = e.exception) || void 0 === i ? void 0 : i.values) || [], h = {
-        $exception_message: null === (o = d[0]) || void 0 === o ? void 0 : o.value,
-        $exception_type: null === (a = d[0]) || void 0 === a ? void 0 : a.type,
-        $exception_personURL: c,
+      var h = (null === (i = e.exception) || void 0 === i ? void 0 : i.values) || [], f = {
+        $exception_message: (null === (a = h[0]) || void 0 === a ? void 0 : a.value) || e.message,
+        $exception_type: null === (u = h[0]) || void 0 === u ? void 0 : u.type,
+        $exception_personURL: d,
         $sentry_event_id: e.event_id,
         $sentry_exception: e.exception,
-        $sentry_exception_message: null === (u = d[0]) || void 0 === u ? void 0 : u.value,
-        $sentry_exception_type: null === (l = d[0]) || void 0 === l ? void 0 : l.type,
-        $sentry_tags: e.tags
+        $sentry_exception_message: (null === (l = h[0]) || void 0 === l ? void 0 : l.value) || e.message,
+        $sentry_exception_type: null === (c = h[0]) || void 0 === c ? void 0 : c.type,
+        $sentry_tags: e.tags,
+        $level: e.level
       };
-      return n && r && (h.$sentry_url = (s || "https://sentry.io/organizations/") + n + "/issues/?project=" + r + "&query=" + e.event_id), 
-      t.capture("$exception", h), e;
+      return n && r && (f.$sentry_url = (s || "https://sentry.io/organizations/") + n + "/issues/?project=" + r + "&query=" + e.event_id), 
+      t.capture("$exception", f), e;
     }));
   };
-})), dr = function() {
+})), gr = function() {
   function e(t) {
     var n = this;
     i(this, e), o(this, "_hasSeenPageView", !1), o(this, "_updateScrollData", (function() {
@@ -3282,7 +3161,7 @@ var lr = function() {
     value: function() {
       var e;
       return {
-        pathname: null !== (e = null == P ? void 0 : P.location.pathname) && void 0 !== e ? e : ""
+        pathname: null !== (e = null == I ? void 0 : I.location.pathname) && void 0 !== e ? e : ""
       };
     }
   }, {
@@ -3311,35 +3190,35 @@ var lr = function() {
       return t = Math.ceil(t), n = Math.ceil(n), i = Math.ceil(i), r = Math.ceil(r), s = Math.ceil(s), 
       o = Math.ceil(o), {
         $prev_pageview_last_scroll: n,
-        $prev_pageview_last_scroll_percentage: t <= 1 ? 1 : hr(n / t, 0, 1),
+        $prev_pageview_last_scroll_percentage: t <= 1 ? 1 : vr(n / t, 0, 1),
         $prev_pageview_max_scroll: i,
-        $prev_pageview_max_scroll_percentage: t <= 1 ? 1 : hr(i / t, 0, 1),
+        $prev_pageview_max_scroll_percentage: t <= 1 ? 1 : vr(i / t, 0, 1),
         $prev_pageview_last_content: s,
-        $prev_pageview_last_content_percentage: r <= 1 ? 1 : hr(s / r, 0, 1),
+        $prev_pageview_last_content_percentage: r <= 1 ? 1 : vr(s / r, 0, 1),
         $prev_pageview_max_content: o,
-        $prev_pageview_max_content_percentage: r <= 1 ? 1 : hr(o / r, 0, 1)
+        $prev_pageview_max_content_percentage: r <= 1 ? 1 : vr(o / r, 0, 1)
       };
     }
   }, {
     key: "startMeasuringScrollPosition",
     value: function() {
-      null == P || P.addEventListener("scroll", this._updateScrollData, !0), null == P || P.addEventListener("scrollend", this._updateScrollData, !0), 
-      null == P || P.addEventListener("resize", this._updateScrollData);
+      null == I || I.addEventListener("scroll", this._updateScrollData, !0), null == I || I.addEventListener("scrollend", this._updateScrollData, !0), 
+      null == I || I.addEventListener("resize", this._updateScrollData);
     }
   }, {
     key: "stopMeasuringScrollPosition",
     value: function() {
-      null == P || P.removeEventListener("scroll", this._updateScrollData), null == P || P.removeEventListener("scrollend", this._updateScrollData), 
-      null == P || P.removeEventListener("resize", this._updateScrollData);
+      null == I || I.removeEventListener("scroll", this._updateScrollData), null == I || I.removeEventListener("scrollend", this._updateScrollData), 
+      null == I || I.removeEventListener("resize", this._updateScrollData);
     }
   }, {
     key: "_scrollElement",
     value: function() {
-      if (!this._instance.config.scroll_root_selector) return null == P ? void 0 : P.document.documentElement;
+      if (!this._instance.config.scroll_root_selector) return null == I ? void 0 : I.document.documentElement;
       var e, t = h(m(this._instance.config.scroll_root_selector) ? this._instance.config.scroll_root_selector : [ this._instance.config.scroll_root_selector ]);
       try {
         for (t.s(); !(e = t.n()).done; ) {
-          var n = e.value, i = null == P ? void 0 : P.document.querySelector(n);
+          var n = e.value, i = null == I ? void 0 : I.document.querySelector(n);
           if (i) return i;
         }
       } catch (e) {
@@ -3361,7 +3240,7 @@ var lr = function() {
         var e = this._scrollElement();
         return e && e.scrollTop || 0;
       }
-      return P && (P.scrollY || P.pageYOffset || P.document.documentElement.scrollTop) || 0;
+      return I && (I.scrollY || I.pageYOffset || I.document.documentElement.scrollTop) || 0;
     }
   }, {
     key: "_contentHeight",
@@ -3378,28 +3257,30 @@ var lr = function() {
   } ]), e;
 }();
 
-function hr(e, t, n) {
+function vr(e, t, n) {
   return Math.max(t, Math.min(e, n));
 }
 
-var fr = {
+var _r = {
   icontains: function(e) {
-    return !!P && P.location.href.toLowerCase().indexOf(e.toLowerCase()) > -1;
+    return !!I && I.location.href.toLowerCase().indexOf(e.toLowerCase()) > -1;
   },
   regex: function(e) {
-    return !!P && It(P.location.href, e);
+    return !!I && ot(I.location.href, e);
   },
   exact: function(e) {
-    return (null == P ? void 0 : P.location.href) === e;
+    return (null == I ? void 0 : I.location.href) === e;
   }
-}, pr = function() {
+}, mr = function() {
   function e(t) {
     i(this, e), this.instance = t;
   }
   return s(e, [ {
     key: "getSurveys",
     value: function(e) {
-      var t = this, n = arguments.length > 1 && void 0 !== arguments[1] && arguments[1], i = this.instance.get_property(Ve);
+      var t = this, n = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
+      if (this.instance.config.disable_surveys) return e([]);
+      var i = this.instance.get_property(we);
       if (i && !n) return e(i);
       this.instance._send_request({
         url: this.instance.requestRouter.endpointFor("api", "/api/surveys/?token=".concat(this.instance.config.token)),
@@ -3409,7 +3290,7 @@ var fr = {
           var i;
           if (200 !== n.statusCode || !n.json) return e([]);
           var r = n.json.surveys || [];
-          return null === (i = t.instance.persistence) || void 0 === i || i.register(o({}, Ve, r)), 
+          return null === (i = t.instance.persistence) || void 0 === i || i.register(o({}, we, r)), 
           e(r);
         }
       });
@@ -3424,7 +3305,7 @@ var fr = {
         })).filter((function(e) {
           var t, n, i, r;
           if (!e.conditions) return !0;
-          var s = null === (t = e.conditions) || void 0 === t || !t.url || fr[null !== (n = null === (i = e.conditions) || void 0 === i ? void 0 : i.urlMatchType) && void 0 !== n ? n : "icontains"](e.conditions.url), o = null === (r = e.conditions) || void 0 === r || !r.selector || (null == O ? void 0 : O.querySelector(e.conditions.selector));
+          var s = null === (t = e.conditions) || void 0 === t || !t.url || _r[null !== (n = null === (i = e.conditions) || void 0 === i ? void 0 : i.urlMatchType) && void 0 !== n ? n : "icontains"](e.conditions.url), o = null === (r = e.conditions) || void 0 === r || !r.selector || (null == O ? void 0 : O.querySelector(e.conditions.selector));
           return s && o;
         })).filter((function(e) {
           if (!e.linked_flag_key && !e.targeting_flag_key) return !0;
@@ -3435,17 +3316,17 @@ var fr = {
       }), n);
     }
   } ]), e;
-}(), gr = function() {
+}(), yr = function() {
   function e() {
     var t = this;
     i(this, e), o(this, "limits", {}), o(this, "checkForLimiting", (function(e) {
       var n = e.text;
       if (n && n.length) try {
         (JSON.parse(n).quota_limited || []).forEach((function(e) {
-          j.info("[RateLimiter] ".concat(e || "events", " is quota limited.")), t.limits[e] = (new Date).getTime() + 6e4;
+          U.info("[RateLimiter] ".concat(e || "events", " is quota limited.")), t.limits[e] = (new Date).getTime() + 6e4;
         }));
       } catch (e) {
-        return void j.warn('[RateLimiter] could not rate limit - continuing. Error: "'.concat(null == e ? void 0 : e.message, '"'), {
+        return void U.warn('[RateLimiter] could not rate limit - continuing. Error: "'.concat(null == e ? void 0 : e.message, '"'), {
           text: n
         });
       }
@@ -3458,12 +3339,12 @@ var fr = {
       return !1 !== t && (new Date).getTime() < t;
     }
   } ]), e;
-}(), vr = function() {
+}(), br = function() {
   return t({
-    initialPathName: (null == M ? void 0 : M.pathname) || "",
-    referringDomain: Cn.referringDomain()
-  }, Cn.campaignParams());
-}, _r = function() {
+    initialPathName: (null == A ? void 0 : A.pathname) || "",
+    referringDomain: un.referringDomain()
+  }, un.campaignParams());
+}, kr = function() {
   function e(t, n, r) {
     var s = this;
     i(this, e), o(this, "_onSessionIdCallback", (function(e) {
@@ -3473,15 +3354,15 @@ var fr = {
           sessionId: e,
           props: s._sessionSourceParamGenerator()
         };
-        s._persistence.register(o({}, Qe, n));
+        s._persistence.register(o({}, Pe, n));
       }
-    })), this._sessionIdManager = t, this._persistence = n, this._sessionSourceParamGenerator = r || vr, 
+    })), this._sessionIdManager = t, this._persistence = n, this._sessionSourceParamGenerator = r || br, 
     this._sessionIdManager.onSessionId(this._onSessionIdCallback);
   }
   return s(e, [ {
     key: "_getStoredProps",
     value: function() {
-      return this._persistence.props[Qe];
+      return this._persistence.props[Pe];
     }
   }, {
     key: "getSessionProps",
@@ -3498,43 +3379,256 @@ var fr = {
       } : {};
     }
   } ]), e;
-}(), mr = [ "ahrefsbot", "ahrefssiteaudit", "applebot", "baiduspider", "bingbot", "bingpreview", "bot.htm", "bot.php", "crawler", "duckduckbot", "facebookexternal", "facebookcatalog", "gptbot", "http://yandex.com/bots", "hubspot", "ia_archiver", "linkedinbot", "mj12bot", "msnbot", "nessus", "petalbot", "pinterest", "prerender", "rogerbot", "screaming frog", "semrushbot", "sitebulb", "slurp", "turnitin", "twitterbot", "vercelbot", "yahoo! slurp", "yandexbot", "adsbot-google", "apis-google", "duplexweb-google", "feedfetcher-google", "google favicon", "google web preview", "google-read-aloud", "googlebot", "googleweblight", "mediapartners-google", "storebot-google" ], yr = function(e, t) {
+}(), wr = [ "ahrefsbot", "ahrefssiteaudit", "applebot", "baiduspider", "bingbot", "bingpreview", "bot.htm", "bot.php", "crawler", "duckduckbot", "facebookexternal", "facebookcatalog", "gptbot", "http://yandex.com/bots", "hubspot", "ia_archiver", "linkedinbot", "mj12bot", "msnbot", "nessus", "petalbot", "pinterest", "prerender", "rogerbot", "screaming frog", "semrushbot", "sitebulb", "slurp", "turnitin", "twitterbot", "vercelbot", "yahoo! slurp", "yandexbot", "adsbot-google", "apis-google", "duplexweb-google", "feedfetcher-google", "google favicon", "google web preview", "google-read-aloud", "googlebot", "googleweblight", "mediapartners-google", "storebot-google", "Bytespider;" ], Sr = function(e, t) {
   if (!e) return !1;
   var n = e.toLowerCase();
-  return mr.concat(t || []).some((function(e) {
+  return wr.concat(t || []).some((function(e) {
     var t = e.toLowerCase();
-    return n.includes ? n.includes(t) : -1 !== n.indexOf(t);
+    return -1 !== n.indexOf(t);
   }));
-}, br = {}, wr = function() {}, kr = "posthog", Sr = !Yi && -1 === (null == N ? void 0 : N.indexOf("MSIE")) && -1 === (null == N ? void 0 : N.indexOf("Mozilla")), Fr = function() {
+}, Fr = function() {
+  function e() {
+    i(this, e), o(this, "events", {}), this.events = {};
+  }
+  return s(e, [ {
+    key: "on",
+    value: function(e, t) {
+      var n = this;
+      return this.events[e] || (this.events[e] = []), this.events[e].push(t), function() {
+        n.events[e] = n.events[e].filter((function(e) {
+          return e !== t;
+        }));
+      };
+    }
+  }, {
+    key: "emit",
+    value: function(e, t) {
+      var n, i = h(this.events[e] || []);
+      try {
+        for (i.s(); !(n = i.n()).done; ) {
+          (0, n.value)(t);
+        }
+      } catch (e) {
+        i.e(e);
+      } finally {
+        i.f();
+      }
+      var r, s = h(this.events["*"] || []);
+      try {
+        for (s.s(); !(r = s.n()).done; ) {
+          (0, r.value)(e, t);
+        }
+      } catch (e) {
+        s.e(e);
+      } finally {
+        s.f();
+      }
+    }
+  } ]), e;
+}(), Rr = function() {
+  function e() {
+    i(this, e), this.clicks = [];
+  }
+  return s(e, [ {
+    key: "isRageClick",
+    value: function(e, t, n) {
+      var i = this.clicks[this.clicks.length - 1];
+      if (i && Math.abs(e - i.x) + Math.abs(t - i.y) < 30 && n - i.timestamp < 1e3) {
+        if (this.clicks.push({
+          x: e,
+          y: t,
+          timestamp: n
+        }), 3 === this.clicks.length) return !0;
+      } else this.clicks = [ {
+        x: e,
+        y: t,
+        timestamp: n
+      } ];
+      return !1;
+    }
+  } ]), e;
+}(), Pr = "$copy_autocapture";
+
+function xr(e, t) {
+  return t.length > e ? t.slice(0, e) + "..." : t;
+}
+
+var Er = function() {
+  function e(t) {
+    i(this, e), o(this, "_initialized", !1), o(this, "_isDisabledServerSide", null), 
+    o(this, "rageclicks", new Rr), o(this, "_elementsChainAsString", !1), this.instance = t;
+  }
+  return s(e, [ {
+    key: "config",
+    get: function() {
+      var e, t = b(this.instance.config.autocapture) ? this.instance.config.autocapture : {};
+      return t.url_allowlist = null === (e = t.url_allowlist) || void 0 === e ? void 0 : e.map((function(e) {
+        return new RegExp(e);
+      })), t;
+    }
+  }, {
+    key: "_addDomEventHandlers",
+    value: function() {
+      var e = this;
+      if (this.isBrowserSupported()) {
+        if (I && O) {
+          var t = function(t) {
+            t = t || (null == I ? void 0 : I.event);
+            try {
+              e._captureEvent(t);
+            } catch (e) {
+              U.error("Failed to capture event", e);
+            }
+          }, n = function(t) {
+            t = t || (null == I ? void 0 : I.event), e._captureEvent(t, Pr);
+          };
+          re(O, "submit", t, !1, !0), re(O, "change", t, !1, !0), re(O, "click", t, !1, !0), 
+          this.config.capture_copied_text && (re(O, "copy", n, !1, !0), re(O, "cut", n, !1, !0));
+        }
+      } else U.info("Disabling Automatic Event Collection because this browser is not supported");
+    }
+  }, {
+    key: "afterDecideResponse",
+    value: function(e) {
+      this._initialized ? U.info("autocapture already initialized") : (this.instance.persistence && this.instance.persistence.register(o({}, le, !!e.autocapture_opt_out)), 
+      this._isDisabledServerSide = !!e.autocapture_opt_out, e.elementsChainAsString && (this._elementsChainAsString = e.elementsChainAsString), 
+      this.isEnabled && (this._addDomEventHandlers(), this._initialized = !0));
+    }
+  }, {
+    key: "isEnabled",
+    get: function() {
+      var e, t = F(this._isDisabledServerSide) ? !(null === (e = this.instance.persistence) || void 0 === e || !e.props[le]) : this._isDisabledServerSide;
+      return !!this.instance.config.autocapture && !t;
+    }
+  }, {
+    key: "_previousElementSibling",
+    value: function(e) {
+      if (e.previousElementSibling) return e.previousElementSibling;
+      var t = e;
+      do {
+        t = t.previousSibling;
+      } while (t && !yn(t));
+      return t;
+    }
+  }, {
+    key: "_getAugmentPropertiesFromElement",
+    value: function(e) {
+      if (!Pn(e)) return {};
+      var t = {};
+      return G(e.attributes, (function(e) {
+        if (e.name && 0 === e.name.indexOf("data-ph-capture-attribute")) {
+          var n = e.name.replace("data-ph-capture-attribute-", ""), i = e.value;
+          n && i && Mn(i) && (t[n] = i);
+        }
+      })), t;
+    }
+  }, {
+    key: "_getPropertiesFromElement",
+    value: function(e, t, n) {
+      var i, r = e.tagName.toLowerCase(), s = {
+        tag_name: r
+      };
+      Sn.indexOf(r) > -1 && !n && ("a" === r.toLowerCase() || "button" === r.toLowerCase() ? s.$el_text = xr(1024, On(e)) : s.$el_text = xr(1024, mn(e)));
+      var o = vn(e);
+      o.length > 0 && (s.classes = o.filter((function(e) {
+        return "" !== e;
+      })));
+      var a = null === (i = this.config) || void 0 === i ? void 0 : i.element_attribute_ignorelist;
+      G(e.attributes, (function(n) {
+        var i;
+        if ((!xn(e) || -1 !== [ "name", "id", "class", "aria-label" ].indexOf(n.name)) && ((null == a || !a.includes(n.name)) && !t && Mn(n.value) && (i = n.name, 
+        !S(i) || "_ngcontent" !== i.substring(0, 10) && "_nghost" !== i.substring(0, 7)))) {
+          var r = n.value;
+          "class" === n.name && (r = gn(r).join(" ")), s["attr__" + n.name] = xr(1024, r);
+        }
+      }));
+      for (var u = 1, l = 1, c = e; c = this._previousElementSibling(c); ) u++, c.tagName === e.tagName && l++;
+      return s.nth_child = u, s.nth_of_type = l, s;
+    }
+  }, {
+    key: "_getDefaultProperties",
+    value: function(e) {
+      return {
+        $event_type: e,
+        $ce_version: 1
+      };
+    }
+  }, {
+    key: "_getEventTarget",
+    value: function(e) {
+      return w(e.target) ? e.srcElement || null : null !== (t = e.target) && void 0 !== t && t.shadowRoot ? e.composedPath()[0] || null : e.target || null;
+      var t;
+    }
+  }, {
+    key: "_captureEvent",
+    value: function(e) {
+      var t, n = this, i = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "$autocapture", r = this._getEventTarget(e);
+      (kn(r) && (r = r.parentNode || null), "$autocapture" === i && "click" === e.type && e instanceof MouseEvent) && (this.instance.config.rageclick && null !== (t = this.rageclicks) && void 0 !== t && t.isRageClick(e.clientX, e.clientY, (new Date).getTime()) && this._captureEvent(e, "$rageclick"));
+      var s = i === Pr;
+      if (r && Rn(r, e, this.config, s, s ? [ "copy", "cut" ] : void 0)) {
+        for (var o, a, u = [ r ], l = r; l.parentNode && !bn(l, "body"); ) wn(l.parentNode) ? (u.push(l.parentNode.host), 
+        l = l.parentNode.host) : (u.push(l.parentNode), l = l.parentNode);
+        var c, d = [], h = {}, f = !1;
+        if (G(u, (function(e) {
+          var t = Pn(e);
+          "a" === e.tagName.toLowerCase() && (c = e.getAttribute("href"), c = t && Mn(c) && c), 
+          Y(vn(e), "ph-no-capture") && (f = !0), d.push(n._getPropertiesFromElement(e, n.instance.config.mask_all_element_attributes, n.instance.config.mask_all_text));
+          var i = n._getAugmentPropertiesFromElement(e);
+          Q(h, i);
+        })), this.instance.config.mask_all_text || ("a" === r.tagName.toLowerCase() || "button" === r.tagName.toLowerCase() ? d[0].$el_text = On(r) : d[0].$el_text = mn(r)), 
+        c && (d[0].attr__href = c), f) return !1;
+        var p = Q(this._getDefaultProperties(e.type), this._elementsChainAsString ? {
+          $elements_chain: Dn(d)
+        } : {
+          $elements: d
+        }, null !== (o = d[0]) && void 0 !== o && o.$el_text ? {
+          $el_text: null === (a = d[0]) || void 0 === a ? void 0 : a.$el_text
+        } : {}, h);
+        if (i === Pr) {
+          var g, v = _n(null == I || null === (g = I.getSelection()) || void 0 === g ? void 0 : g.toString()), _ = e.type || "clipboard";
+          if (!v) return !1;
+          p.$selected_content = v, p.$copy_type = _;
+        }
+        return this.instance.capture(i, p), !0;
+      }
+    }
+  }, {
+    key: "isBrowserSupported",
+    value: function() {
+      return y(null == O ? void 0 : O.querySelectorAll);
+    }
+  } ]), e;
+}(), Ir = {}, Cr = function() {}, $r = "posthog", Tr = !Xi && -1 === (null == B ? void 0 : B.indexOf("MSIE")) && -1 === (null == B ? void 0 : B.indexOf("Mozilla")), qr = function() {
   var e, t, n;
   return {
-    api_host: "https://app.posthog.com",
+    api_host: "https://us.i.posthog.com",
     api_transport: "XHR",
     ui_host: null,
     token: "",
     autocapture: !0,
     rageclick: !0,
     cross_subdomain_cookie: (t = null == O ? void 0 : O.location, n = null == t ? void 0 : t.hostname, 
-    !!k(n) && "herokuapp.com" !== n.split(".").slice(-2).join(".")),
+    !!S(n) && "herokuapp.com" !== n.split(".").slice(-2).join(".")),
     persistence: "localStorage+cookie",
     persistence_name: "",
     cookie_name: "",
-    loaded: wr,
+    loaded: Cr,
     store_google: !0,
     custom_campaign_params: [],
     custom_blocked_useragents: [],
     save_referrer: !0,
     capture_pageview: !0,
     capture_pageleave: !0,
-    debug: !1,
+    debug: A && S(null == A ? void 0 : A.search) && -1 !== A.search.indexOf("__posthog_debug=true") || !1,
     verbose: !1,
     cookie_expiration: 365,
     upgrade: !1,
     disable_session_recording: !1,
     disable_persistence: !1,
     disable_cookie: !1,
+    disable_surveys: !1,
     enable_recording_console_log: void 0,
-    secure_cookie: "https:" === (null == P || null === (e = P.location) || void 0 === e ? void 0 : e.protocol),
+    secure_cookie: "https:" === (null == I || null === (e = I.location) || void 0 === e ? void 0 : e.protocol),
     ip: !0,
     opt_out_capturing_by_default: !1,
     opt_out_persistence_by_default: !1,
@@ -3561,19 +3655,20 @@ var fr = {
     feature_flag_request_timeout_ms: 3e3,
     on_request_error: function(e) {
       var t = "Bad HTTP status: " + e.statusCode + " " + e.text;
-      j.error(t);
+      U.error(t);
     },
     get_device_id: function(e) {
       return e;
     },
-    _onCapture: wr,
+    _onCapture: Cr,
     capture_performance: void 0,
     name: "posthog",
     bootstrap: {},
     disable_compression: !1,
-    session_idle_timeout_seconds: 1800
+    session_idle_timeout_seconds: 1800,
+    process_person: "always"
   };
-}, Rr = function() {
+}, Mr = function() {
   function e() {
     i(this, e), o(this, "__forceAllowLocalhost", !1);
   }
@@ -3583,17 +3678,18 @@ var fr = {
       return this.__forceAllowLocalhost;
     },
     set: function(e) {
-      j.error("WebPerformanceObserver is deprecated and has no impact on network capture. Use `_forceAllowLocalhostNetworkCapture` on `posthog.sessionRecording`"), 
+      U.error("WebPerformanceObserver is deprecated and has no impact on network capture. Use `_forceAllowLocalhostNetworkCapture` on `posthog.sessionRecording`"), 
       this.__forceAllowLocalhost = e;
     }
   } ]), e;
-}(), xr = function() {
+}(), Or = function() {
   function e() {
     var t = this;
-    i(this, e), o(this, "webPerformance", new Rr), this.config = Fr(), this.decideEndpointWasHit = !1, 
-    this.SentryIntegration = cr, this.segmentIntegration = function() {
+    i(this, e), o(this, "webPerformance", new Mr), o(this, "_debugEventEmitter", new Fr), 
+    this.config = qr(), this.decideEndpointWasHit = !1, this.SentryIntegration = pr, 
+    this.segmentIntegration = function() {
       return function(e) {
-        Promise && Promise.resolve || j.warn("This browser does not have Promise support, and can not use the segment integration");
+        Promise && Promise.resolve || U.warn("This browser does not have Promise support, and can not use the segment integration");
         var t = function(t, n) {
           t.event.userId || t.event.anonymousId === e.get_distinct_id() || e.reset(), t.event.userId && t.event.userId !== e.get_distinct_id() && (e.register({
             distinct_id: t.event.userId
@@ -3625,26 +3721,28 @@ var fr = {
           }
         };
       }(t);
-    }, this.__captureHooks = [], this.__request_queue = [], this.__loaded = !1, this.__autocapture = void 0, 
-    this.analyticsDefaultEndpoint = "/e/", this.elementsChainAsString = !1, this.featureFlags = new rt(this), 
-    this.toolbar = new hi(this), this.pageViewManager = new dr(this), this.surveys = new pr(this), 
-    this.rateLimiter = new gr, this.requestRouter = new lr(this), this.people = {
+    }, this.__request_queue = [], this.__loaded = !1, this.analyticsDefaultEndpoint = "/e/", 
+    this.featureFlags = new Oe(this), this.toolbar = new gi(this), this.pageViewManager = new gr(this), 
+    this.surveys = new mr(this), this.rateLimiter = new yr, this.requestRouter = new fr(this), 
+    this.people = {
       set: function(e, n, i) {
-        var r = k(e) ? o({}, e, n) : e;
+        var r = S(e) ? o({}, e, n) : e;
         t.setPersonProperties(r), null == i || i({});
       },
       set_once: function(e, n, i) {
-        var r = k(e) ? o({}, e, n) : e;
+        var r = S(e) ? o({}, e, n) : e;
         t.setPersonProperties(void 0, r), null == i || i({});
       }
-    };
+    }, this.on("eventCaptured", (function(e) {
+      return U.info("send", e);
+    }));
   }
   return s(e, [ {
     key: "init",
     value: function(t, n, i) {
-      if (i && i !== kr) {
-        var r, s = null !== (r = br[i]) && void 0 !== r ? r : new e;
-        return s._init(t, n, i), br[i] = s, br[kr][i] = s, s;
+      if (i && i !== $r) {
+        var r, s = null !== (r = Ir[i]) && void 0 !== r ? r : new e;
+        return s._init(t, n, i), Ir[i] = s, Ir[$r][i] = s, s;
       }
       return this._init(t, n, i);
     }
@@ -3653,37 +3751,30 @@ var fr = {
     value: function(e) {
       var n, i, r = this, s = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, o = arguments.length > 2 ? arguments[2] : void 0;
       if (w(e) || function(e) {
-        return k(e) && 0 === e.trim().length;
-      }(e)) return j.critical("PostHog was initialized without a token. This likely indicates a misconfiguration. Please check the first argument passed to posthog.init()"), 
+        return S(e) && 0 === e.trim().length;
+      }(e)) return U.critical("PostHog was initialized without a token. This likely indicates a misconfiguration. Please check the first argument passed to posthog.init()"), 
       this;
-      if (this.__loaded) return j.warn("You have already initialized PostHog! Re-initializing is a no-op"), 
+      if (this.__loaded) return U.warn("You have already initialized PostHog! Re-initializing is a no-op"), 
       this;
       if (this.__loaded = !0, this.config = {}, this._triggered_notifs = [], s.request_headers = s.request_headers || s.xhr_headers, 
-      this.set_config(G({}, Fr(), s, {
+      this.set_config(Q({}, qr(), s, {
         name: o,
         token: e
-      })), this.compression = s.disable_compression ? void 0 : Xe.Base64, this.persistence = new $n(this.config), 
-      this.sessionPersistence = "sessionStorage" === this.config.persistence ? this.persistence : new $n(t(t({}, this.config), {}, {
+      })), this.compression = s.disable_compression ? void 0 : ne.Base64, this.persistence = new cn(this.config), 
+      this.sessionPersistence = "sessionStorage" === this.config.persistence ? this.persistence : new cn(t(t({}, this.config), {}, {
         persistence: "sessionStorage"
-      })), this._requestQueue = new fi((function(e) {
+      })), this._requestQueue = new vi((function(e) {
         return r._send_request(e);
-      })), this._retryQueue = new or(this), this.__captureHooks = [], this.__request_queue = [], 
-      this.sessionManager = new ur(this.config, this.persistence), this.sessionPropsManager = new _r(this.sessionManager, this.persistence), 
-      this.sessionRecording = new ui(this), this.sessionRecording.startRecordingIfEnabled(), 
-      this.config.disable_scroll_properties || this.pageViewManager.startMeasuringScrollPosition(), 
-      this.__autocapture = this.config.autocapture, Ze._setIsAutocaptureEnabled(this), 
-      Ze._isAutocaptureEnabled) {
-        this.__autocapture = this.config.autocapture;
-        Ze.enabledForProject(this.config.token, 100, 100) ? Ze.isBrowserSupported() ? Ze.init(this) : (this.__autocapture = !1, 
-        j.info("Disabling Automatic Event Collection because this browser is not supported")) : (this.__autocapture = !1, 
-        j.info("Not in active bucket: disabling Automatic Event Collection."));
-      }
-      if (f.DEBUG = f.DEBUG || this.config.debug, this._gdpr_init(), s.segment && (this.config.get_device_id = function() {
+      })), this._retryQueue = new lr(this), this.__request_queue = [], this.sessionManager = new dr(this.config, this.persistence), 
+      this.sessionPropsManager = new kr(this.sessionManager, this.persistence), this.sessionRecording = new di(this), 
+      this.sessionRecording.startRecordingIfEnabled(), this.config.disable_scroll_properties || this.pageViewManager.startMeasuringScrollPosition(), 
+      this.autocapture = new Er(this), f.DEBUG = f.DEBUG || this.config.debug, this._gdpr_init(), 
+      s.segment && (this.config.get_device_id = function() {
         return s.segment.user().anonymousId();
       }, s.segment.user().id() && (this.register({
         distinct_id: s.segment.user().id()
       }), this.persistence.set_user_state("identified"))), void 0 !== (null === (n = s.bootstrap) || void 0 === n ? void 0 : n.distinctID)) {
-        var a, u, l = this.config.get_device_id(dt()), c = null !== (a = s.bootstrap) && void 0 !== a && a.isIdentifiedID ? l : s.bootstrap.distinctID;
+        var a, u, l = this.config.get_device_id(je()), c = null !== (a = s.bootstrap) && void 0 !== a && a.isIdentifiedID ? l : s.bootstrap.distinctID;
         this.persistence.set_user_state(null !== (u = s.bootstrap) && void 0 !== u && u.isIdentifiedID ? "identified" : "anonymous"), 
         this.register({
           distinct_id: s.bootstrap.distinctID,
@@ -3711,24 +3802,25 @@ var fr = {
         });
       }
       if (!this.get_distinct_id()) {
-        var v = this.config.get_device_id(dt());
+        var v = this.config.get_device_id(je());
         this.register_once({
           distinct_id: v,
           $device_id: v
         }, ""), this.persistence.set_user_state("anonymous");
       }
-      return null == P || null === (i = P.addEventListener) || void 0 === i || i.call(P, "onpagehide" in self ? "pagehide" : "unload", this._handle_unload.bind(this)), 
+      return null == I || null === (i = I.addEventListener) || void 0 === i || i.call(I, "onpagehide" in self ? "pagehide" : "unload", this._handle_unload.bind(this)), 
       this.toolbar.maybeLoadToolbar(), s.segment ? s.segment.register(this.segmentIntegration()).then((function() {
         r._loaded();
-      })) : this._loaded(), this;
+      })) : this._loaded(), y(this.config._onCapture) && this.on("eventCaptured", (function(e) {
+        return r.config._onCapture(e.event, e);
+      })), this;
     }
   }, {
     key: "_afterDecideResponse",
     value: function(e) {
       var t;
-      this.compression = void 0, e.supportedCompression && !this.config.disable_compression && (this.compression = Q(e.supportedCompression, Xe.GZipJS) ? Xe.GZipJS : Q(e.supportedCompression, Xe.Base64) ? Xe.Base64 : void 0), 
-      null !== (t = e.analytics) && void 0 !== t && t.endpoint && (this.analyticsDefaultEndpoint = e.analytics.endpoint), 
-      e.elementsChainAsString && (this.elementsChainAsString = e.elementsChainAsString);
+      this.compression = void 0, e.supportedCompression && !this.config.disable_compression && (this.compression = Y(e.supportedCompression, ne.GZipJS) ? ne.GZipJS : Y(e.supportedCompression, ne.Base64) ? ne.Base64 : void 0), 
+      null !== (t = e.analytics) && void 0 !== t && t.endpoint && (this.analyticsDefaultEndpoint = e.analytics.endpoint);
     }
   }, {
     key: "_loaded",
@@ -3738,7 +3830,7 @@ var fr = {
       try {
         this.config.loaded(this);
       } catch (e) {
-        j.critical("`loaded` function failed", e);
+        U.critical("`loaded` function failed", e);
       }
       this._start_queue_if_opted_in(), this.config.capture_pageview && setTimeout((function() {
         O && e.capture("$pageview", {
@@ -3746,7 +3838,7 @@ var fr = {
         }, {
           send_instantly: !0
         });
-      }), 1), t || (new li(this).call(), this.featureFlags.resetRequestQueue());
+      }), 1), t || (new hi(this).call(), this.featureFlags.resetRequestQueue());
     }
   }, {
     key: "_start_queue_if_opted_in",
@@ -3758,7 +3850,7 @@ var fr = {
     key: "_dom_loaded",
     value: function() {
       var e = this;
-      this.has_opted_out_capturing() || W(this.__request_queue, (function(t) {
+      this.has_opted_out_capturing() || z(this.__request_queue, (function(t) {
         return e._send_retriable_request(t);
       })), this.__request_queue = [], this._start_queue_if_opted_in();
     }
@@ -3775,17 +3867,17 @@ var fr = {
     key: "_send_request",
     value: function(e) {
       var n = this;
-      this.__loaded && (Sr ? this.__request_queue.push(e) : this.rateLimiter.isRateLimited(e.batchKey) || (e.transport = e.transport || this.config.api_transport, 
-      e.url = Ki(e.url, {
+      this.__loaded && (Tr ? this.__request_queue.push(e) : this.rateLimiter.isRateLimited(e.batchKey) || (e.transport = e.transport || this.config.api_transport, 
+      e.url = er(e.url, {
         ip: this.config.ip ? 1 : 0
       }), e.headers = this.config.request_headers, e.compression = "best-available" === e.compression ? this.compression : e.compression, 
       function(e) {
         var n = t({}, e);
-        n.timeout = n.timeout || 6e4, n.url = Ki(n.url, {
+        n.timeout = n.timeout || 6e4, n.url = er(n.url, {
           _: (new Date).getTime().toString(),
           ver: f.LIB_VERSION,
           compression: n.compression
-        }), "sendBeacon" === n.transport && null != A && A.sendBeacon ? nr(n) : "fetch" === n.transport && q ? tr(n) : D || !O ? er(n) : ir(n);
+        }), "sendBeacon" === n.transport && null != M && M.sendBeacon ? sr(n) : "fetch" === n.transport && D ? rr(n) : L || !O ? ir(n) : or(n);
       }(t(t({}, e), {}, {
         callback: function(t) {
           var i, r, s;
@@ -3803,14 +3895,14 @@ var fr = {
     key: "_execute_array",
     value: function(e) {
       var t, n = this, i = [], r = [], s = [];
-      W(e, (function(e) {
+      z(e, (function(e) {
         e && (t = e[0], m(t) ? s.push(e) : y(e) ? e.call(n) : m(e) && "alias" === t ? i.push(e) : m(e) && -1 !== t.indexOf("capture") && y(n[t]) ? s.push(e) : r.push(e));
       }));
       var o = function(e, t) {
-        W(e, (function(e) {
+        z(e, (function(e) {
           if (m(e[0])) {
             var n = t;
-            z(e, (function(e) {
+            G(e, (function(e) {
               n = n[e[0]].apply(n, e.slice(1));
             }));
           } else this[e[0]].apply(this, e.slice(1));
@@ -3833,50 +3925,41 @@ var fr = {
     key: "capture",
     value: function(e, n, i) {
       var r;
-      if (!this.__loaded || !this.sessionPersistence || !this._requestQueue) return j.uninitializedWarning("posthog.capture");
-      if (!ti(this)) if (!w(e) && k(e)) {
-        if (!N || this.config.opt_out_useragent_filter || !yr(N, this.config.custom_blocked_useragents)) {
-          this.sessionPersistence.update_search_keyword(), this.config.store_google && this.sessionPersistence.update_campaign_params(), 
-          this.config.save_referrer && this.sessionPersistence.update_referrer_info();
+      if (!(this.__loaded && this.persistence && this.sessionPersistence && this._requestQueue)) return U.uninitializedWarning("posthog.capture");
+      if (!ri(this)) if (!w(e) && S(e)) {
+        if (!B || this.config.opt_out_useragent_filter || !Sr(B, this.config.custom_blocked_useragents)) {
+          this.sessionPersistence.update_search_keyword(), this.config.store_google && (this.sessionPersistence.update_campaign_params(), 
+          this.persistence.set_initial_campaign_params()), this.config.save_referrer && (this.sessionPersistence.update_referrer_info(), 
+          this.persistence.set_initial_referrer_info());
           var s = {
-            uuid: dt(),
+            uuid: je(),
             event: e,
             properties: this._calculate_event_properties(e, n || {})
           };
-          "$identify" === e && (s.$set = null == i ? void 0 : i.$set, s.$set_once = null == i ? void 0 : i.$set_once), 
-          (s = ee(s, null != i && i._noTruncate ? null : this.config.properties_string_max_length)).timestamp = (null == i ? void 0 : i.timestamp) || new Date, 
+          (null == i ? void 0 : i.$set) && (s.$set = null == i ? void 0 : i.$set);
+          var o = this._calculate_set_once_properties(null == i ? void 0 : i.$set_once);
+          o && (s.$set_once = o), (s = te(s, null != i && i._noTruncate ? null : this.config.properties_string_max_length)).timestamp = (null == i ? void 0 : i.timestamp) || new Date, 
           w(null == i ? void 0 : i.timestamp) || (s.properties.$event_time_override_provided = !0, 
           s.properties.$event_time_override_system_time = new Date);
-          var o = t(t({}, s.properties.$set), s.$set);
-          (function(e) {
-            if (b(e)) {
-              for (var t in e) if (v.call(e, t)) return !1;
-              return !0;
-            }
-            return !1;
-          })(o) || this.setPersonPropertiesForFlags(o), j.info("send", s);
-          var a = {
+          var a = t(t({}, s.properties.$set), s.$set);
+          k(a) || this.setPersonPropertiesForFlags(a), this._debugEventEmitter.emit("eventCaptured", s);
+          var u = {
             method: "POST",
             url: null !== (r = null == i ? void 0 : i._url) && void 0 !== r ? r : this.requestRouter.endpointFor("api", this.analyticsDefaultEndpoint),
             data: s,
             compression: "best-available",
             batchKey: null == i ? void 0 : i._batchKey
           };
-          return !this.config.request_batching || i && (null == i || !i._batchKey) || null != i && i.send_instantly ? this._send_retriable_request(a) : this._requestQueue.enqueue(a), 
-          this._invokeCaptureHooks(e, s), s;
+          return !this.config.request_batching || i && (null == i || !i._batchKey) || null != i && i.send_instantly ? this._send_retriable_request(u) : this._requestQueue.enqueue(u), 
+          s;
         }
-      } else j.error("No event name provided to posthog.capture");
+      } else U.error("No event name provided to posthog.capture");
     }
   }, {
     key: "_addCaptureHook",
     value: function(e) {
-      this.__captureHooks.push(e);
-    }
-  }, {
-    key: "_invokeCaptureHooks",
-    value: function(e, t) {
-      this.config._onCapture(e, t), z(this.__captureHooks, (function(t) {
-        return t(e);
+      this.on("eventCaptured", (function(t) {
+        return e(t.event);
       }));
     }
   }, {
@@ -3888,20 +3971,20 @@ var fr = {
         var s = t(t({}, this.persistence.properties()), this.sessionPersistence.properties());
         return r.distinct_id = s.distinct_id, r;
       }
-      var o = Cn.properties();
+      var o = un.properties();
       if (this.sessionManager) {
         var a = this.sessionManager.checkAndGetSessionAndWindowId(), u = a.sessionId, c = a.windowId;
         r.$session_id = u, r.$window_id = c;
       }
-      if (this.requestRouter.region === sr.CUSTOM && (r.$lib_custom_api_host = this.config.api_host), 
+      if (this.requestRouter.region === ur.CUSTOM && (r.$lib_custom_api_host = this.config.api_host), 
       this.sessionPropsManager && this.config.__preview_send_client_session_params && ("$pageview" === e || "$pageleave" === e || "$autocapture" === e)) {
         var d = this.sessionPropsManager.getSessionProps();
-        r = G(r, d);
+        r = Q(r, d);
       }
       if (!this.config.disable_scroll_properties) {
         var h = {};
         "$pageview" === e ? h = this.pageViewManager.doPageView() : "$pageleave" === e && (h = this.pageViewManager.doPageLeave()), 
-        r = G(r, h);
+        r = Q(r, h);
       }
       if ("$pageview" === e && O && (r.title = O.title), "$performance_event" === e) {
         var f = this.persistence.properties();
@@ -3911,13 +3994,20 @@ var fr = {
         var p = (new Date).getTime() - i;
         r.$duration = parseFloat((p / 1e3).toFixed(3));
       }
-      (N && this.config.opt_out_useragent_filter && (r.$browser_type = yr(N, this.config.custom_blocked_useragents) ? "bot" : "browser"), 
-      r = G({}, Cn.properties(), this.persistence.properties(), this.sessionPersistence.properties(), r), 
-      m(this.config.property_denylist) && m(this.config.property_blacklist)) ? z([].concat(l(this.config.property_blacklist), l(this.config.property_denylist)), (function(e) {
+      (B && this.config.opt_out_useragent_filter && (r.$browser_type = Sr(B, this.config.custom_blocked_useragents) ? "bot" : "browser"), 
+      (r = Q({}, un.properties(), this.persistence.properties(), this.sessionPersistence.properties(), r)).$is_identified = this._isIdentified(), 
+      m(this.config.property_denylist) && m(this.config.property_blacklist)) ? G([].concat(l(this.config.property_blacklist), l(this.config.property_denylist)), (function(e) {
         delete r[e];
-      })) : j.error("Invalid value for property_denylist config: " + this.config.property_denylist + " or property_blacklist config: " + this.config.property_blacklist);
+      })) : U.error("Invalid value for property_denylist config: " + this.config.property_denylist + " or property_blacklist config: " + this.config.property_blacklist);
       var g = this.config.sanitize_properties;
-      return g && (r = g(r, e)), r;
+      return g && (r = g(r, e)), r.$process_person = this._hasPersonProcessing(), r;
+    }
+  }, {
+    key: "_calculate_set_once_properties",
+    value: function(e) {
+      if (!this.persistence || !this._hasPersonProcessing()) return e;
+      var t = Q({}, this.persistence.get_initial_props(), e || {});
+      return k(t) ? void 0 : t;
     }
   }, {
     key: "register",
@@ -3991,6 +4081,11 @@ var fr = {
       return this.featureFlags.getEarlyAccessFeatures(e, t);
     }
   }, {
+    key: "on",
+    value: function(e, t) {
+      return this._debugEventEmitter.on(e, t);
+    }
+  }, {
     key: "onFeatureFlags",
     value: function(e) {
       return this.featureFlags.onFeatureFlags(e);
@@ -4016,38 +4111,41 @@ var fr = {
   }, {
     key: "identify",
     value: function(e, t, n) {
-      if (!this.__loaded || !this.persistence) return j.uninitializedWarning("posthog.identify");
-      if (R(e) && (e = e.toString(), j.warn("The first argument to posthog.identify was a number, but it should be a string. It has been converted to a string.")), 
-      e) if ([ "distinct_id", "distinctid" ].includes(e.toLowerCase())) j.critical('The string "'.concat(e, '" was set in posthog.identify which indicates an error. This ID should be unique to the user and not a hardcoded string.')); else {
-        var i = this.get_distinct_id();
-        if (this.register({
-          $user_id: e
-        }), !this.get_property("$device_id")) {
-          var r = i;
-          this.register_once({
-            $had_persisted_distinct_id: !0,
-            $device_id: r
-          }, "");
+      if (!this.__loaded || !this.persistence) return U.uninitializedWarning("posthog.identify");
+      if (P(e) && (e = e.toString(), U.warn("The first argument to posthog.identify was a number, but it should be a string. It has been converted to a string.")), 
+      e) {
+        if ([ "distinct_id", "distinctid" ].includes(e.toLowerCase())) U.critical('The string "'.concat(e, '" was set in posthog.identify which indicates an error. This ID should be unique to the user and not a hardcoded string.')); else if (this._requirePersonProcessing("posthog.identify")) {
+          var i = this.get_distinct_id();
+          if (this.register({
+            $user_id: e
+          }), !this.get_property("$device_id")) {
+            var r = i;
+            this.register_once({
+              $had_persisted_distinct_id: !0,
+              $device_id: r
+            }, "");
+          }
+          e !== i && e !== this.get_property(ae) && (this.unregister(ae), this.register({
+            distinct_id: e
+          }));
+          var s = "anonymous" === this.persistence.get_user_state();
+          e !== i && s ? (this.persistence.set_user_state("identified"), this.setPersonPropertiesForFlags(t || {}, !1), 
+          this.capture("$identify", {
+            distinct_id: e,
+            $anon_distinct_id: i
+          }, {
+            $set: t || {},
+            $set_once: n || {}
+          }), this.featureFlags.setAnonymousDistinctId(i)) : (t || n) && this.setPersonProperties(t, n), 
+          e !== i && (this.reloadFeatureFlags(), this.unregister(Se));
         }
-        e !== i && e !== this.get_property(Te) && (this.unregister(Te), this.register({
-          distinct_id: e
-        }));
-        var s = "anonymous" === this.persistence.get_user_state();
-        e !== i && s ? (this.persistence.set_user_state("identified"), this.setPersonPropertiesForFlags(t || {}, !1), 
-        this.capture("$identify", {
-          distinct_id: e,
-          $anon_distinct_id: i
-        }, {
-          $set: t || {},
-          $set_once: n || {}
-        }), this.featureFlags.setAnonymousDistinctId(i)) : (t || n) && this.setPersonProperties(t, n), 
-        e !== i && (this.reloadFeatureFlags(), this.unregister(We));
-      } else j.error("Unique user id has not been set in posthog.identify");
+      } else U.error("Unique user id has not been set in posthog.identify");
     }
   }, {
     key: "setPersonProperties",
     value: function(e, t) {
-      (e || t) && (this.setPersonPropertiesForFlags(e || {}), this.capture("$set", {
+      (e || t) && this._requirePersonProcessing("posthog.setPersonProperties") && (this.setPersonPropertiesForFlags(e || {}), 
+      this.capture("$set", {
         $set: e || {},
         $set_once: t || {}
       }));
@@ -4056,15 +4154,17 @@ var fr = {
     key: "group",
     value: function(e, n, i) {
       if (e && n) {
-        var r = this.getGroups();
-        r[e] !== n && this.resetGroupPropertiesForFlags(e), this.register({
-          $groups: t(t({}, r), {}, o({}, e, n))
-        }), i && (this.capture("$groupidentify", {
-          $group_type: e,
-          $group_key: n,
-          $group_set: i
-        }), this.setGroupPropertiesForFlags(o({}, e, i))), r[e] === n || i || this.reloadFeatureFlags();
-      } else j.error("posthog.group requires a group type and group key");
+        if (this._requirePersonProcessing("posthog.group")) {
+          var r = this.getGroups();
+          r[e] !== n && this.resetGroupPropertiesForFlags(e), this.register({
+            $groups: t(t({}, r), {}, o({}, e, n))
+          }), i && (this.capture("$groupidentify", {
+            $group_type: e,
+            $group_key: n,
+            $group_set: i
+          }), this.setGroupPropertiesForFlags(o({}, e, i))), r[e] === n || i || this.reloadFeatureFlags();
+        }
+      } else U.error("posthog.group requires a group type and group key");
     }
   }, {
     key: "resetGroups",
@@ -4077,7 +4177,7 @@ var fr = {
     key: "setPersonPropertiesForFlags",
     value: function(e) {
       var t = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
-      this.featureFlags.setPersonPropertiesForFlags(e, t);
+      this._requirePersonProcessing("posthog.setPersonPropertiesForFlags") && this.featureFlags.setPersonPropertiesForFlags(e, t);
     }
   }, {
     key: "resetPersonPropertiesForFlags",
@@ -4088,7 +4188,7 @@ var fr = {
     key: "setGroupPropertiesForFlags",
     value: function(e) {
       var t = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
-      this.featureFlags.setGroupPropertiesForFlags(e, t);
+      this._requirePersonProcessing("posthog.setGroupPropertiesForFlags") && this.featureFlags.setGroupPropertiesForFlags(e, t);
     }
   }, {
     key: "resetGroupPropertiesForFlags",
@@ -4099,12 +4199,12 @@ var fr = {
     key: "reset",
     value: function(e) {
       var t, n, i, r;
-      if (!this.__loaded) return j.uninitializedWarning("posthog.reset");
+      if (!this.__loaded) return U.uninitializedWarning("posthog.reset");
       var s = this.get_property("$device_id");
       null === (t = this.persistence) || void 0 === t || t.clear(), null === (n = this.sessionPersistence) || void 0 === n || n.clear(), 
       null === (i = this.persistence) || void 0 === i || i.set_user_state("anonymous"), 
       null === (r = this.sessionManager) || void 0 === r || r.resetSessionId();
-      var o = this.config.get_device_id(dt());
+      var o = this.config.get_device_id(je());
       this.register_once({
         distinct_id: o,
         $device_id: e ? o : s
@@ -4130,7 +4230,7 @@ var fr = {
     key: "get_session_replay_url",
     value: function(e) {
       if (!this.sessionManager) return "";
-      var t = this.sessionManager.checkAndGetSessionAndWindowId(!0), n = t.sessionId, i = t.sessionStartTimestamp, r = this.requestRouter.endpointFor("ui", "/replay/" + n);
+      var t = this.sessionManager.checkAndGetSessionAndWindowId(!0), n = t.sessionId, i = t.sessionStartTimestamp, r = this.requestRouter.endpointFor("ui", "/project/".concat(this.config.token, "/replay/").concat(n));
       if (null != e && e.withTimestamp && i) {
         var s, o = null !== (s = e.timestampLookBack) && void 0 !== s ? s : 10;
         if (!i) return r;
@@ -4142,32 +4242,36 @@ var fr = {
   }, {
     key: "alias",
     value: function(e, t) {
-      return e === this.get_property(Ce) ? (j.critical("Attempting to create alias for existing People user - aborting."), 
-      -2) : (w(t) && (t = this.get_distinct_id()), e !== t ? (this._register_single(Te, e), 
-      this.capture("$create_alias", {
+      return e === this.get_property(oe) ? (U.critical("Attempting to create alias for existing People user - aborting."), 
+      -2) : this._requirePersonProcessing("posthog.alias") ? (w(t) && (t = this.get_distinct_id()), 
+      e !== t ? (this._register_single(ae, e), this.capture("$create_alias", {
         alias: e,
         distinct_id: t
-      })) : (j.warn("alias matches current distinct_id - skipping api call."), this.identify(e), 
-      -1));
+      })) : (U.warn("alias matches current distinct_id - skipping api call."), this.identify(e), 
+      -1)) : void 0;
     }
   }, {
     key: "set_config",
     value: function(e) {
       var n, i = t({}, this.config);
-      if (b(e) && (G(this.config, e), this.config.persistence_name || (this.config.persistence_name = this.config.cookie_name), 
+      if (b(e) && (Q(this.config, e), this.config.persistence_name || (this.config.persistence_name = this.config.cookie_name), 
       this.config.disable_persistence || (this.config.disable_persistence = this.config.disable_cookie), 
       null === (n = this.persistence) || void 0 === n || n.update_config(this.config, i), 
-      this.sessionPersistence = "sessionStorage" === this.config.persistence ? this.persistence : new $n(t(t({}, this.config), {}, {
+      this.sessionPersistence = "sessionStorage" === this.config.persistence ? this.persistence : new cn(t(t({}, this.config), {}, {
         persistence: "sessionStorage"
-      })), bt.is_supported() && "true" === bt.get("ph_debug") && (this.config.debug = !0), 
+      })), Ke.is_supported() && "true" === Ke.get("ph_debug") && (this.config.debug = !0), 
       this.config.debug && (f.DEBUG = !0), this.sessionRecording && !w(e.disable_session_recording))) {
-        var r = i.disable_session_recording !== e.disable_session_recording, s = !ti(this) && !e.disable_session_recording && !this.sessionRecording.started;
+        var r = i.disable_session_recording !== e.disable_session_recording, s = !ri(this) && !e.disable_session_recording && !this.sessionRecording.started;
         (r || s) && (e.disable_session_recording ? this.sessionRecording.stopRecording() : this.sessionRecording.startRecordingIfEnabled());
       }
     }
   }, {
     key: "startSessionRecording",
-    value: function() {
+    value: function(e) {
+      if (null != e && e.sampling) {
+        var t, n, i = null === (t = this.sessionManager) || void 0 === t ? void 0 : t.checkAndGetSessionAndWindowId();
+        null === (n = this.persistence) || void 0 === n || n.register(o({}, _e, !0)), U.info("Session recording started with sampling override for session: ", null == i ? void 0 : i.sessionId);
+      }
       this.set_config({
         disable_session_recording: !1
       });
@@ -4205,13 +4309,31 @@ var fr = {
   }, {
     key: "toString",
     value: function() {
-      var e, t = null !== (e = this.config.name) && void 0 !== e ? e : kr;
-      return t !== kr && (t = kr + "." + t), t;
+      var e, t = null !== (e = this.config.name) && void 0 !== e ? e : $r;
+      return t !== $r && (t = $r + "." + t), t;
+    }
+  }, {
+    key: "_isIdentified",
+    value: function() {
+      var e, t;
+      return "identified" === (null === (e = this.persistence) || void 0 === e ? void 0 : e.get_user_state()) || "identified" === (null === (t = this.sessionPersistence) || void 0 === t ? void 0 : t.get_user_state());
+    }
+  }, {
+    key: "_hasPersonProcessing",
+    value: function() {
+      var e, t, n, i;
+      return !("never" === this.config.process_person || "identified_only" === this.config.process_person && !this._isIdentified() && k(this.getGroups()) && (null === (e = this.persistence) || void 0 === e || null === (t = e.props) || void 0 === t || !t[ae]) && (null === (n = this.persistence) || void 0 === n || null === (i = n.props) || void 0 === i || !i[Ie]));
+    }
+  }, {
+    key: "_requirePersonProcessing",
+    value: function(e) {
+      return "never" === this.config.process_person ? (U.error(e + ' was called, but process_person is set to "never". This call will be ignored.'), 
+      !1) : (this._register_single(Ie, !0), !0);
     }
   }, {
     key: "_gdpr_init",
     value: function() {
-      "localStorage" === this.config.opt_out_capturing_persistence_type && bt.is_supported() && (!this.has_opted_in_capturing() && this.has_opted_in_capturing({
+      "localStorage" === this.config.opt_out_capturing_persistence_type && Ke.is_supported() && (!this.has_opted_in_capturing() && this.has_opted_in_capturing({
         persistence_type: "cookie"
       }) && this.opt_in_capturing({
         enable_persistence: !1
@@ -4224,7 +4346,7 @@ var fr = {
         enable_persistence: !1
       })), this.has_opted_out_capturing() ? this._gdpr_update_persistence({
         clear_persistence: !0
-      }) : this.has_opted_in_capturing() || !this.config.opt_out_capturing_by_default && !mt.get("ph_optout") || (mt.remove("ph_optout"), 
+      }) : this.has_opted_in_capturing() || !this.config.opt_out_capturing_by_default && !Ye.get("ph_optout") || (Ye.remove("ph_optout"), 
       this.opt_out_capturing({
         clear_persistence: this.config.opt_out_persistence_by_default
       }));
@@ -4243,14 +4365,14 @@ var fr = {
   }, {
     key: "_gdpr_call_func",
     value: function(e, t) {
-      return t = G({
+      return t = Q({
         capture: this.capture.bind(this),
         persistence_type: this.config.opt_out_capturing_persistence_type,
         cookie_prefix: this.config.opt_out_capturing_cookie_prefix,
         cookie_expiration: this.config.cookie_expiration,
         cross_subdomain_cookie: this.config.cross_subdomain_cookie,
         secure_cookie: this.config.secure_cookie
-      }, t || {}), bt.is_supported() || "localStorage" !== t.persistence_type || (t.persistence_type = "cookie"), 
+      }, t || {}), Ke.is_supported() || "localStorage" !== t.persistence_type || (t.persistence_type = "cookie"), 
       e(this.config.token, {
         capture: t.capture,
         captureEventName: t.capture_event_name,
@@ -4265,43 +4387,43 @@ var fr = {
   }, {
     key: "opt_in_capturing",
     value: function(e) {
-      e = G({
+      e = Q({
         enable_persistence: !0
-      }, e || {}), this._gdpr_call_func(zn, e), this._gdpr_update_persistence(e);
+      }, e || {}), this._gdpr_call_func(Yn, e), this._gdpr_update_persistence(e);
     }
   }, {
     key: "opt_out_capturing",
     value: function(e) {
-      var t = G({
+      var t = Q({
         clear_persistence: !0
       }, e || {});
-      this._gdpr_call_func(Gn, t), this._gdpr_update_persistence(t);
+      this._gdpr_call_func(Jn, t), this._gdpr_update_persistence(t);
     }
   }, {
     key: "has_opted_in_capturing",
     value: function(e) {
-      return this._gdpr_call_func(Qn, e);
+      return this._gdpr_call_func(Kn, e);
     }
   }, {
     key: "has_opted_out_capturing",
     value: function(e) {
-      return this._gdpr_call_func(Yn, e);
+      return this._gdpr_call_func(Xn, e);
     }
   }, {
     key: "clear_opt_in_out_capturing",
     value: function(e) {
-      var t = G({
+      var t = Q({
         enable_persistence: !0
       }, null != e ? e : {});
-      this._gdpr_call_func(Jn, t), this._gdpr_update_persistence(t);
+      this._gdpr_call_func(Zn, t), this._gdpr_update_persistence(t);
     }
   }, {
     key: "debug",
     value: function(e) {
-      !1 === e ? (null == P || P.console.log("You've disabled debug mode."), localStorage && localStorage.removeItem("ph_debug"), 
+      !1 === e ? (null == I || I.console.log("You've disabled debug mode."), localStorage && localStorage.removeItem("ph_debug"), 
       this.set_config({
         debug: !1
-      })) : (null == P || P.console.log("You're now in debug mode. All calls to PostHog will be logged in your console.\nYou can disable this with `posthog.debug(false)`."), 
+      })) : (null == I || I.console.log("You're now in debug mode. All calls to PostHog will be logged in your console.\nYou can disable this with `posthog.debug(false)`."), 
       localStorage && localStorage.setItem("ph_debug", "true"), this.set_config({
         debug: !0
       }));
@@ -4310,27 +4432,27 @@ var fr = {
 }();
 
 !function(e, t) {
-  for (var n = 0; n < t.length; n++) e.prototype[t[n]] = X(e.prototype[t[n]]);
-}(xr, [ "identify" ]);
+  for (var n = 0; n < t.length; n++) e.prototype[t[n]] = Z(e.prototype[t[n]]);
+}(Or, [ "identify" ]);
 
-var Er, Pr;
+var Ar, Dr;
 
 !function(e) {
   e.Popover = "popover", e.API = "api", e.Widget = "widget";
-}(Er || (Er = {})), function(e) {
+}(Ar || (Ar = {})), function(e) {
   e.Open = "open", e.MultipleChoice = "multiple_choice", e.SingleChoice = "single_choice", 
   e.Rating = "rating", e.Link = "link";
-}(Pr || (Pr = {}));
+}(Dr || (Dr = {}));
 
-var Ir, Cr = (Ir = br[kr] = new xr, function() {
+var Lr, Nr = (Lr = Ir[$r] = new Or, function() {
   function e() {
-    e.done || (e.done = !0, Sr = !1, z(br, (function(e) {
+    e.done || (e.done = !0, Tr = !1, G(Ir, (function(e) {
       e._dom_loaded();
     })));
   }
   null != O && O.addEventListener && ("complete" === O.readyState ? e() : O.addEventListener("DOMContentLoaded", e, !1)), 
-  P && ne(P, "load", e, !0);
-}(), Ir);
+  I && re(I, "load", e, !0);
+}(), Lr);
 
 class PostHogController extends Controller {
   static values={
@@ -4338,7 +4460,7 @@ class PostHogController extends Controller {
     identification: Object
   };
   connect() {
-    Cr.init(this.apiKeyValue, {
+    Nr.init(this.apiKeyValue, {
       api_host: "https://eu.posthog.com",
       custom_campaign_params: [ "ref" ],
       session_recording: {
@@ -4350,7 +4472,7 @@ class PostHogController extends Controller {
     });
     if (Object.keys(this.identificationValue).length) {
       const {id: id, email: email, name: name} = this.identificationValue;
-      Cr.identify(id.toString(), {
+      Nr.identify(id.toString(), {
         email: email,
         name: name
       });
@@ -8202,6 +8324,10 @@ var CrispMessage = function() {
   function CrispMessage(crisp) {
     this.parent = crisp;
   }
+  CrispMessage.prototype.setMessageText = function(content) {
+    this.parent.createSingletonIfNecessary();
+    window.$crisp.push([ "set", "message:text", [ content ] ]);
+  };
   CrispMessage.prototype.send = function(type, content) {
     this.parent.createSingletonIfNecessary();
     window.$crisp.push([ "do", "message:send", [ type, content ] ]);
@@ -8257,23 +8383,39 @@ var CrispMessage = function() {
   };
   CrispMessage.prototype.onMessageSent = function(callback) {
     this.parent.createSingletonIfNecessary();
-    window.$crisp.push([ "off", "message:sent" ]);
+    this.offMessageSent();
     window.$crisp.push([ "on", "message:sent", callback ]);
+  };
+  CrispMessage.prototype.offMessageSent = function() {
+    this.parent.createSingletonIfNecessary();
+    window.$crisp.push([ "off", "message:sent" ]);
   };
   CrispMessage.prototype.onMessageReceived = function(callback) {
     this.parent.createSingletonIfNecessary();
-    window.$crisp.push([ "off", "message:received" ]);
+    this.offMessageReceived();
     window.$crisp.push([ "on", "message:received", callback ]);
+  };
+  CrispMessage.prototype.offMessageReceived = function() {
+    this.parent.createSingletonIfNecessary();
+    window.$crisp.push([ "off", "message:received" ]);
   };
   CrispMessage.prototype.onMessageComposeSent = function(callback) {
     this.parent.createSingletonIfNecessary();
-    window.$crisp.push([ "off", "message:compose:sent" ]);
+    this.offMessageComposeSent();
     window.$crisp.push([ "on", "message:compose:sent", callback ]);
+  };
+  CrispMessage.prototype.offMessageComposeSent = function() {
+    this.parent.createSingletonIfNecessary();
+    window.$crisp.push([ "off", "message:compose:sent" ]);
   };
   CrispMessage.prototype.onMessageComposeReceived = function(callback) {
     this.parent.createSingletonIfNecessary();
-    window.$crisp.push([ "off", "message:compose:received" ]);
+    this.offMessageComposeReceived();
     window.$crisp.push([ "on", "message:compose:received", callback ]);
+  };
+  CrispMessage.prototype.offMessageComposeReceived = function() {
+    this.parent.createSingletonIfNecessary();
+    window.$crisp.push([ "off", "message:compose:received" ]);
   };
   return CrispMessage;
 }();
@@ -8300,16 +8442,18 @@ var CrispUser = function() {
   };
   CrispUser.prototype.setCompany = function(name, data) {
     var _payload = {};
-    if (data && data.url) {
-      _payload.url = data.url;
-    }
-    if (data && data.description) {
-      _payload.description = data.description;
-    }
-    if (data && data.employment) {
-      _payload.employment = [ data.employment.title ];
-      if (data.employment.role) {
-        _payload.employment.push(data.employment.role);
+    if (data) {
+      if (data.url) {
+        _payload.url = data.url;
+      }
+      if (data.description) {
+        _payload.description = data.description;
+      }
+      if (data.employment) {
+        _payload.employment = [ data.employment.title ];
+        if (data.employment.role) {
+          _payload.employment.push(data.employment.role);
+        }
       }
     }
     this.parent.createSingletonIfNecessary();
@@ -8347,26 +8491,46 @@ var CrispUser = function() {
   };
   CrispUser.prototype.onEmailChanged = function(callback) {
     if (this.parent.isCrispInjected()) {
-      window.$crisp.push([ "off", "user:email:changed" ]);
+      this.offEmailChanged();
       window.$crisp.push([ "on", "user:email:changed", callback ]);
+    }
+  };
+  CrispUser.prototype.offEmailChanged = function() {
+    if (this.parent.isCrispInjected()) {
+      window.$crisp.push([ "off", "user:email:changed" ]);
     }
   };
   CrispUser.prototype.onPhoneChanged = function(callback) {
     if (this.parent.isCrispInjected()) {
-      window.$crisp.push([ "off", "user:phone:changed" ]);
+      this.offPhoneChanged();
       window.$crisp.push([ "on", "user:phone:changed", callback ]);
+    }
+  };
+  CrispUser.prototype.offPhoneChanged = function() {
+    if (this.parent.isCrispInjected()) {
+      window.$crisp.push([ "off", "user:phone:changed" ]);
     }
   };
   CrispUser.prototype.onNicknameChanged = function(callback) {
     if (this.parent.isCrispInjected()) {
-      window.$crisp.push([ "off", "user:nickname:changed" ]);
+      this.offNicknameChanged();
       window.$crisp.push([ "on", "user:nickname:changed", callback ]);
+    }
+  };
+  CrispUser.prototype.offNicknameChanged = function() {
+    if (this.parent.isCrispInjected()) {
+      window.$crisp.push([ "off", "user:nickname:changed" ]);
     }
   };
   CrispUser.prototype.onAvatarChanged = function(callback) {
     if (this.parent.isCrispInjected()) {
-      window.$crisp.push([ "off", "user:avatar:changed" ]);
+      this.offAvatarChanged();
       window.$crisp.push([ "on", "user:avatar:changed", callback ]);
+    }
+  };
+  CrispUser.prototype.offAvatarChanged = function() {
+    if (this.parent.isCrispInjected()) {
+      window.$crisp.push([ "off", "user:avatar:changed" ]);
     }
   };
   return CrispUser;
@@ -8407,7 +8571,7 @@ var CrispSession = function() {
       reload = false;
     }
     if (this.parent.isCrispInjected()) {
-      window.$crisp.do("session:reset", [ reload ]);
+      window.$crisp.push([ "do", "session:reset", [ reload ] ]);
     }
   };
   CrispSession.prototype.setSegments = function(segments, overwrite) {
@@ -8450,8 +8614,12 @@ var CrispSession = function() {
   };
   CrispSession.prototype.onLoaded = function(callback) {
     this.parent.createSingletonIfNecessary();
-    window.$crisp.push([ "off", "session:loaded" ]);
+    this.offLoaded();
     window.$crisp.push([ "on", "session:loaded", callback ]);
+  };
+  CrispSession.prototype.offLoaded = function() {
+    this.parent.createSingletonIfNecessary();
+    window.$crisp.push([ "off", "session:loaded" ]);
   };
   CrispSession.prototype.isValidDataValue = function(value) {
     return typeof value === "string" || typeof value === "number" || typeof value === "boolean";
@@ -8512,23 +8680,39 @@ var CrispChat = function() {
   };
   CrispChat.prototype.onChatInitiated = function(callback) {
     this.parent.createSingletonIfNecessary();
-    window.$crisp.push([ "off", "chat:initiated" ]);
+    this.offChatInitiated();
     window.$crisp.push([ "on", "chat:initiated", callback ]);
+  };
+  CrispChat.prototype.offChatInitiated = function() {
+    this.parent.createSingletonIfNecessary();
+    window.$crisp.push([ "off", "chat:initiated" ]);
   };
   CrispChat.prototype.onChatOpened = function(callback) {
     this.parent.createSingletonIfNecessary();
-    window.$crisp.push([ "off", "chat:opened" ]);
+    this.offChatOpened();
     window.$crisp.push([ "on", "chat:opened", callback ]);
+  };
+  CrispChat.prototype.offChatOpened = function() {
+    this.parent.createSingletonIfNecessary();
+    window.$crisp.push([ "off", "chat:opened" ]);
   };
   CrispChat.prototype.onChatClosed = function(callback) {
     this.parent.createSingletonIfNecessary();
-    window.$crisp.push([ "off", "chat:closed" ]);
+    this.offChatClosed();
     window.$crisp.push([ "on", "chat:closed", callback ]);
+  };
+  CrispChat.prototype.offChatClosed = function() {
+    this.parent.createSingletonIfNecessary();
+    window.$crisp.push([ "off", "chat:closed" ]);
   };
   CrispChat.prototype.onHelpdeskQueried = function(callback) {
     this.parent.createSingletonIfNecessary();
-    window.$crisp.push([ "off", "helpdesk:queried" ]);
+    this.offHelpdeskQueried();
     window.$crisp.push([ "on", "helpdesk:queried", callback ]);
+  };
+  CrispChat.prototype.offHelpdeskQueried = function() {
+    this.parent.createSingletonIfNecessary();
+    window.$crisp.push([ "off", "helpdesk:queried" ]);
   };
   return CrispChat;
 }();
@@ -8698,8 +8882,12 @@ var Crisp = function() {
   };
   Crisp.prototype.onWebsiteAvailabilityChanged = function(callback) {
     this.createSingletonIfNecessary();
-    window.$crisp.push([ "off", "website:availability:changed" ]);
+    this.offWebsiteAvailabilityChanged();
     window.$crisp.push([ "on", "website:availability:changed", callback ]);
+  };
+  Crisp.prototype.offWebsiteAvailabilityChanged = function() {
+    this.createSingletonIfNecessary();
+    window.$crisp.push([ "off", "website:availability:changed" ]);
   };
   Crisp.prototype.createSingletonIfNecessary = function() {
     if (window.$crisp === undefined) {
