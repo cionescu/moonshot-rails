@@ -1,6 +1,6 @@
 {
   "name": "moonshot-rails",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A collection of Stimulus controllers for building SaaS applications with Rails",
   "main": "app/assets/javascripts/moonshot.js",
   "module": "app/assets/javascripts/moonshot/index.js",
