@@ -2,16 +2,21 @@
 
 VERSION=`cat lib/moonshot-rails/version.rb | grep VERSION | cut -d \" -f2`
 
-# if [ -z $1 ] ; then
-#   echo "Please provide version number: bin/release 1.0.0" && exit 1;
-# fi
+if [ -z $1 ] ; then
+  echo "Please provide version number: bin/release 1.0.0. Current$VERSION" && exit 1;
+fi
 
-# # printf "# frozen_string_literal: true module MoonshotRails\n    VERSION = \"$VERSION\"\n  end\n" > ./lib/moonshot-rails/version.rb
+sed -i '' "s/VERSION = '.*'/VERSION = '${1}'/" ./lib/moonshot-rails/version.rb
+
+sed -i '' "s/\"version\": \".*\"/\"version\": \"${1}\"/" ./package.json
+
 bundle
 cd spec/dummy
 bundle
 cd ../../
 npm install
+
+exit 0
 
 git add .
 git commit -m "Bump version for $VERSION"
