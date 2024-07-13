@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'excon'
+
 module Moonshot
   module Convertkit
     class UpsertJob < ApplicationJob
