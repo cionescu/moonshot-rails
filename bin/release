@@ -17,24 +17,11 @@ cd ../../
 npm install
 
 git add .
-git commit -m "Bump version for $VERSION"
+git commit -m "Bump version for ${1}"
 git push
-git tag v$VERSION
+git tag v${1}
 git push
 
 bundle exec rake release
 
 npm run release
-
-# echo "Need to publish NPM package too? [y/n]"
-
-# while true; do
-#   read yn
-#   case $yn in
-#     [Yy]* )
-#       npm run release
-#       break;;
-#     [Nn]* ) break;;
-#     * ) echo "Please answer yes or no.";;
-#   esac
-# done
