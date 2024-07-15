@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe 'User', type: :model do
   describe 'convertkit' do
     let(:form_id) { MoonshotRails.configuration.convertkit_form_id }
     let(:user) { User.create! email: 'test@testy.com' }

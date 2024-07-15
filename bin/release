@@ -16,8 +16,6 @@ bundle
 cd ../../
 npm install
 
-exit 0
-
 git add .
 git commit -m "Bump version for $VERSION"
 git push

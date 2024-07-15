@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'excon'
+
 require 'moonshot-rails/version'
 require 'moonshot-rails/engine'
 require 'moonshot-rails/config'
