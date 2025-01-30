@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'rails', '~> 7.2.0'
+gem 'rails', '~> 8.0.1'
 
 gem 'puma', '~> 6.0'
 gem 'rake', '~> 13.0'

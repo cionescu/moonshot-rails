@@ -1,6 +1,6 @@
 {
   "name": "moonshot-rails",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "A collection of Stimulus controllers for building SaaS applications with Rails",
   "main": "app/assets/javascripts/moonshot.js",
   "module": "app/assets/javascripts/moonshot/index.js",
@@ -40,7 +40,7 @@
     "@hotwired/stimulus": "^3.2.2",
     "@rails/request.js": "^0.0.9",
     "crisp-sdk-web": "^1.0.21",
-    "posthog-js": "^1.167.0",
+    "posthog-js": "^1.212.1",
     "shepherd.js": "^11.0.1"
   }
 }
