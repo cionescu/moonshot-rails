@@ -5514,6 +5514,11 @@ class PostHogController extends Controller {
         name: name
       });
     }
+    this.trackPageView = this.trackPageView.bind(this);
+    document.addEventListener("turbo:load", this.trackPageView);
+  }
+  trackPageView() {
+    ko.capture("$pageview");
   }
 }
 
