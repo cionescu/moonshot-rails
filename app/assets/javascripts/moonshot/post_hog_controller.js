@@ -24,5 +24,12 @@ export default class extends Controller {
       const { id, email, name } = this.identificationValue
       posthog.identify(id.toString(), { email, name })
     }
+
+    this.trackPageView = this.trackPageView.bind(this)
+    document.addEventListener('turbo:load', this.trackPageView)
+  }
+
+  trackPageView() {
+    posthog.capture('$pageview')
   }
 }
